@@ -1,13 +1,13 @@
 # ninja log v5
 8301	10411	6754756492960148	_deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/Win32/WglExtensions.cpp.obj	4d3315e26ce15634
 9	81	0	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs	edb34d7f9f04d310
-2698	5085	6754756439691751	_deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.obj	73571fd58f0ada0e
 127	1025	6754756399179807	_deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Time.cpp.obj	9ae7ecd52b98be57
+2698	5085	6754756439691751	_deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/Mouse.cpp.obj	73571fd58f0ada0e
 9938	13553	6754756524344620	_deps/sfml-build/src/SFML/Network/CMakeFiles/sfml-network.dir/SocketSelector.cpp.obj	58a1eade36deae80
 41	1064	6754756399100255	_deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Lock.cpp.obj	eab210ec60a8d52c
 22760	25023	6754756638987361	_deps/sfml-build/src/SFML/Audio/CMakeFiles/sfml-audio.dir/SoundFileReaderFlac.cpp.obj	53f82563d160f644
-1041	2198	6754756410416072	_deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.obj	a25837dd4aed777d
 5410	9937	6754756488204868	_deps/sfml-build/src/SFML/Window/CMakeFiles/sfml-window.dir/Win32/WindowImplWin32.cpp.obj	325426a807414fee
+1041	2198	6754756410416072	_deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/FileInputStream.cpp.obj	a25837dd4aed777d
 109	1087	6754756399364142	_deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Sleep.cpp.obj	cfc603d1e2f7d702
 11314	13751	6754756525974833	_deps/sfml-build/src/SFML/Network/CMakeFiles/sfml-network.dir/Ftp.cpp.obj	85565ddac9bcd99f
 25	1126	6754756399263290	_deps/sfml-build/src/SFML/System/CMakeFiles/sfml-system.dir/Clock.cpp.obj	220697f09d23f0a4
@@ -134,4 +134,4 @@
 28193	34540	6754756734519778	googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	b5f5ee4d92efd4d7
 27282	37454	6754756763488163	googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	428ae6a7d0a4b1c3
 37455	37654	6754756765228834	lib/gtest.lib	a5eff71398e89cef
-77	13191	6754832683124868	build.ninja	2efe6741411d8509
+77	13191	6754845998701833	build.ninja	2efe6741411d8509

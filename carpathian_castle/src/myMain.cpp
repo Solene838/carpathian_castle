@@ -31,15 +31,21 @@ source distribution.
 *********************************************************************/
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics.hpp>
 #include <SFML/Window/Event.hpp>
 
 #include <tmxlite/Map.hpp>
 
 #include "SFMLOrthogonalLayer.h"
+#include "Player.h"
 
 int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+
+    sf::CircleShape circle;
+    Player player(0,0);
+    circle.setPosition(player);
 
     tmx::Map map;
     map.load("../../../../resources/castle.tmx");
@@ -55,6 +61,7 @@ int myMain()
     sf::Clock globalClock;
     while (window.isOpen())
     {
+
         sf::Event event;
         while (window.pollEvent(event))
         {

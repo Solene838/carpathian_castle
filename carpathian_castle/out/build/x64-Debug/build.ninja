@@ -2227,7 +2227,7 @@ build mainLauncher\resources | ${cmake_ninja_workdir}mainLauncher\resources: CUS
 
 build cmake_object_order_depends_target_src: phony || cmake_object_order_depends_target_pugixml cmake_object_order_depends_target_sfml-graphics cmake_object_order_depends_target_sfml-system cmake_object_order_depends_target_sfml-window
 
-build src\CMakeFiles\src.dir\myMain.cpp.obj: CXX_COMPILER__src_Debug C$:\CPP_1\carpathian_castle\carpathian_castle\src\myMain.cpp || cmake_object_order_depends_target_src
+build src\CMakeFiles\src.dir\Player.cpp.obj: CXX_COMPILER__src_Debug C$:\CPP_1\carpathian_castle\carpathian_castle\src\Player.cpp || cmake_object_order_depends_target_src
   DEFINES = -DSFML_STATIC
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++20
   INCLUDES = -IC:\CPP_1\carpathian_castle\carpathian_castle\out\build\x64-Debug\tmxlite-src\tmxlite\include -IC:\CPP_1\carpathian_castle\carpathian_castle\src\. -IC:\CPP_1\carpathian_castle\carpathian_castle\out\build\x64-Debug\_deps\pugixml-src\src -IC:\CPP_1\carpathian_castle\carpathian_castle\out\build\x64-Debug\_deps\sfml-src\include
@@ -2236,7 +2236,7 @@ build src\CMakeFiles\src.dir\myMain.cpp.obj: CXX_COMPILER__src_Debug C$:\CPP_1\c
   TARGET_COMPILE_PDB = src\CMakeFiles\src.dir\src.pdb
   TARGET_PDB = src\src.pdb
 
-build src\CMakeFiles\src.dir\player.cpp.obj: CXX_COMPILER__src_Debug C$:\CPP_1\carpathian_castle\carpathian_castle\src\player.cpp || cmake_object_order_depends_target_src
+build src\CMakeFiles\src.dir\myMain.cpp.obj: CXX_COMPILER__src_Debug C$:\CPP_1\carpathian_castle\carpathian_castle\src\myMain.cpp || cmake_object_order_depends_target_src
   DEFINES = -DSFML_STATIC
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++20
   INCLUDES = -IC:\CPP_1\carpathian_castle\carpathian_castle\out\build\x64-Debug\tmxlite-src\tmxlite\include -IC:\CPP_1\carpathian_castle\carpathian_castle\src\. -IC:\CPP_1\carpathian_castle\carpathian_castle\out\build\x64-Debug\_deps\pugixml-src\src -IC:\CPP_1\carpathian_castle\carpathian_castle\out\build\x64-Debug\_deps\sfml-src\include
@@ -2253,7 +2253,7 @@ build src\CMakeFiles\src.dir\player.cpp.obj: CXX_COMPILER__src_Debug C$:\CPP_1\c
 #############################################
 # Link the static library src\src.lib
 
-build src\src.lib: CXX_STATIC_LIBRARY_LINKER__src_Debug src\CMakeFiles\src.dir\myMain.cpp.obj src\CMakeFiles\src.dir\player.cpp.obj || _deps\pugixml-build\pugixml.lib _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib
+build src\src.lib: CXX_STATIC_LIBRARY_LINKER__src_Debug src\CMakeFiles\src.dir\Player.cpp.obj src\CMakeFiles\src.dir\myMain.cpp.obj || _deps\pugixml-build\pugixml.lib _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = src\CMakeFiles\src.dir
