@@ -39,7 +39,7 @@ source distribution.
 
 int myMain()
 {
-    sf::RenderWindow window(sf::VideoMode(600, 400), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
     tmx::Map map;
     map.load("../../../../resources/castle.tmx");
@@ -47,6 +47,10 @@ int myMain()
     MapLayer layerZero(map, 0);
     MapLayer layerOne(map, 1);
     MapLayer layerTwo(map, 2);
+    MapLayer layerThree(map, 3);
+    MapLayer layerFour(map, 4);
+    MapLayer layerFive(map, 5);
+    MapLayer layerSix(map, 6);
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -65,6 +69,10 @@ int myMain()
         window.draw(layerZero);
         window.draw(layerOne);
         window.draw(layerTwo);
+        window.draw(layerThree);
+        window.draw(layerFour);
+        window.draw(layerFive);
+        window.draw(layerSix);
         window.display();
     }
 
