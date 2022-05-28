@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "unitTests.exe"
+			"path" : "mainLauncher/mainLauncher.exe"
 		},
 		{
-			"path" : "unitTests.pdb"
+			"path" : "mainLauncher/mainLauncher.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -19,6 +19,7 @@
 		],
 		"files" : 
 		[
+			"mainLauncher/CMakeLists.txt",
 			"CMakeLists.txt"
 		],
 		"nodes" : 
@@ -29,26 +30,23 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 122,
+				"line" : 2,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 123,
+				"line" : 4,
 				"parent" : 0
 			},
 			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 124,
-				"parent" : 0
+				"file" : 1
 			},
 			{
 				"command" : 2,
-				"file" : 0,
+				"file" : 1,
 				"line" : 68,
-				"parent" : 0
+				"parent" : 3
 			}
 		]
 	},
@@ -67,7 +65,7 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"define" : "SFML_STATIC"
 				}
 			],
@@ -78,26 +76,16 @@
 					"path" : "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-src/tmxlite/include"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "C:/CPP_1/carpathian_castle/carpathian_castle/src/."
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-src/src"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-src/include"
-				},
-				{
-					"backtrace" : 2,
-					"isSystem" : true,
-					"path" : "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src/googletest/include"
-				},
-				{
-					"backtrace" : 2,
-					"isSystem" : true,
-					"path" : "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src/googletest"
 				}
 			],
 			"language" : "CXX",
@@ -105,8 +93,7 @@
 			{
 				"backtraces" : 
 				[
-					2,
-					3
+					2
 				],
 				"standard" : "20"
 			},
@@ -119,39 +106,31 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "pugixml::@ec157c7f07670d922be3"
 		},
 		{
-			"backtrace" : 3,
-			"id" : "sfml-window::@5730451e331e3690ae65"
-		},
-		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "sfml-system::@8cb1db2982443611e568"
 		},
 		{
-			"backtrace" : 3,
-			"id" : "tmxlite::@9c532a5ca9e874c93f8b"
+			"backtrace" : 2,
+			"id" : "sfml-window::@5730451e331e3690ae65"
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "sfml-graphics::@98af38147d5fa7e70f61"
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "src::@145eef247bfb46b6828c"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "gtest_main::@32fe1c6cd3a65a2fab56"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "gtest::@32fe1c6cd3a65a2fab56"
+			"id" : "tmxlite::@9c532a5ca9e874c93f8b"
 		}
 	],
-	"id" : "unitTests::@6890427a1f51a3e7e1df",
+	"id" : "mainLauncher::@448b1704701f8cdccfe4",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -166,31 +145,22 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "lib\\gtest_main.lib",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 3,
 				"fragment" : "src\\src.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "_deps\\pugixml-build\\pugixml.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "_deps\\sfml-build\\lib\\sfml-graphics-s-d.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "tmxlite-build\\tmxlite\\tmxlite-s-d.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "lib\\gtest.lib",
 				"role" : "libraries"
 			},
 			{
@@ -228,12 +198,12 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "unitTests",
-	"nameOnDisk" : "unitTests.exe",
+	"name" : "mainLauncher",
+	"nameOnDisk" : "mainLauncher.exe",
 	"paths" : 
 	{
-		"build" : ".",
-		"source" : "."
+		"build" : "mainLauncher",
+		"source" : "mainLauncher"
 	},
 	"sourceGroups" : 
 	[
@@ -250,7 +220,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "unitTests.cpp",
+			"path" : "mainLauncher/mainLauncher.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

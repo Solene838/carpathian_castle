@@ -39,10 +39,10 @@ source distribution.
 
 int myMain()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(600, 400), "SFML window");
 
     tmx::Map map;
-    map.load("../../../../resources/tilemap.tmx");
+    map.load("../../../../resources/castle.tmx");
 
     MapLayer layerZero(map, 0);
     MapLayer layerOne(map, 1);
