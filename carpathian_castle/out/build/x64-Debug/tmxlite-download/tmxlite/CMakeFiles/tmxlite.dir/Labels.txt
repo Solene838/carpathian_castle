@@ -1,0 +1,14 @@
+# Target labels
+ tmxlite
+# Source files and their labels
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/CMakeFiles/tmxlite
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/CMakeFiles/tmxlite.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/CMakeFiles/tmxlite-complete.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-build.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-configure.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-download.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-install.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-mkdir.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-patch.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-test.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-update.rule

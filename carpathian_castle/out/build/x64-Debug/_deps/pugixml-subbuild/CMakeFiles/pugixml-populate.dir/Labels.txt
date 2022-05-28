@@ -1,0 +1,14 @@
+# Target labels
+ pugixml-populate
+# Source files and their labels
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/CMakeFiles/pugixml-populate
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/CMakeFiles/pugixml-populate.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/CMakeFiles/pugixml-populate-complete.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/pugixml-populate-prefix/src/pugixml-populate-stamp/pugixml-populate-build.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/pugixml-populate-prefix/src/pugixml-populate-stamp/pugixml-populate-configure.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/pugixml-populate-prefix/src/pugixml-populate-stamp/pugixml-populate-download.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/pugixml-populate-prefix/src/pugixml-populate-stamp/pugixml-populate-install.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/pugixml-populate-prefix/src/pugixml-populate-stamp/pugixml-populate-mkdir.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/pugixml-populate-prefix/src/pugixml-populate-stamp/pugixml-populate-patch.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/pugixml-populate-prefix/src/pugixml-populate-stamp/pugixml-populate-test.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-subbuild/pugixml-populate-prefix/src/pugixml-populate-stamp/pugixml-populate-update.rule

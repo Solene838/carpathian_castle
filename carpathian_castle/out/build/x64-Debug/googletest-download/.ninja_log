@@ -1,0 +1,21 @@
+# ninja log v5
+2	578	6754755731716369	googletest-prefix/src/googletest-stamp/googletest-mkdir	15c3c7898126b112
+2	578	6754755731716369	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-mkdir	15c3c7898126b112
+580	26744	6754755993384016	googletest-prefix/src/googletest-stamp/googletest-download	d84b2e5c16b66bb
+580	26744	6754755993384016	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-download	d84b2e5c16b66bb
+26745	30422	0	googletest-prefix/src/googletest-stamp/googletest-update	a897b6de01d211e2
+26745	30422	0	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-update	a897b6de01d211e2
+30427	30600	6754756031883755	googletest-prefix/src/googletest-stamp/googletest-patch	418749333f63abc5
+30427	30600	6754756031883755	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-patch	418749333f63abc5
+30602	30781	6754756033722252	googletest-prefix/src/googletest-stamp/googletest-configure	9775f4982b08d83a
+30602	30781	6754756033722252	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-configure	9775f4982b08d83a
+30782	30953	6754756035385848	googletest-prefix/src/googletest-stamp/googletest-build	ea1990a2380271c9
+30782	30953	6754756035385848	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-build	ea1990a2380271c9
+30954	31139	6754756037221019	googletest-prefix/src/googletest-stamp/googletest-install	b14873e71529a629
+30954	31139	6754756037221019	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-install	b14873e71529a629
+31140	31319	6754756039099911	googletest-prefix/src/googletest-stamp/googletest-test	6229d3e68a891233
+31140	31319	6754756039099911	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-test	6229d3e68a891233
+31320	31605	6754756041930173	CMakeFiles/googletest-complete	25ec86845c4c5a56
+31320	31605	6754756041930173	googletest-prefix/src/googletest-stamp/googletest-done	25ec86845c4c5a56
+31320	31605	6754756041930173	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/CMakeFiles/googletest-complete	25ec86845c4c5a56
+31320	31605	6754756041930173	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-done	25ec86845c4c5a56

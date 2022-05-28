@@ -1,0 +1,21 @@
+# ninja log v5
+1	545	6754753213291757	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	3160c36f5f0d355d
+1	545	6754753213291757	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	3160c36f5f0d355d
+547	231327	6754755521133325	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	57edf08e4220f1d
+547	231327	6754755521133325	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	57edf08e4220f1d
+231328	231681	0	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	9df2e7e7d4b2f9e5
+231328	231681	0	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	9df2e7e7d4b2f9e5
+231682	231839	6754755526219008	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	ea7af87878115fd3
+231682	231839	6754755526219008	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	ea7af87878115fd3
+231840	231991	6754755527790707	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	f73803c6c46e978f
+231840	231991	6754755527790707	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	f73803c6c46e978f
+231992	232159	6754755529381386	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	f858311f17222a31
+231992	232159	6754755529381386	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	f858311f17222a31
+232160	232340	6754755531208191	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	5738894244c40276
+232160	232340	6754755531208191	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	5738894244c40276
+232341	232527	6754755533128318	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	ef7fb4fe27a45c96
+232341	232527	6754755533128318	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	ef7fb4fe27a45c96
+232527	232773	6754755535545840	CMakeFiles/sfml-populate-complete	8b6956caf9eac9a5
+232527	232773	6754755535545840	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	8b6956caf9eac9a5
+232527	232773	6754755535545840	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/CMakeFiles/sfml-populate-complete	8b6956caf9eac9a5
+232527	232773	6754755535545840	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	8b6956caf9eac9a5

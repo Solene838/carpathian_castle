@@ -1,0 +1,3 @@
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/CMakeFiles/tmxlite.dir
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/CMakeFiles/edit_cache.dir
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/CMakeFiles/rebuild_cache.dir

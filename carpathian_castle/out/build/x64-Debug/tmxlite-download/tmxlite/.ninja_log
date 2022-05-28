@@ -1,0 +1,21 @@
+# ninja log v5
+2	590	6754755622189538	tmxlite-prefix/src/tmxlite-stamp/tmxlite-mkdir	cb60a81095737376
+2	590	6754755622189538	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-mkdir	cb60a81095737376
+591	8150	6754755697821839	tmxlite-prefix/src/tmxlite-stamp/tmxlite-download	b8585bb7e247a8d5
+591	8150	6754755697821839	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-download	b8585bb7e247a8d5
+8151	8522	0	tmxlite-prefix/src/tmxlite-stamp/tmxlite-update	847f420f8ed5cabd
+8151	8522	0	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-update	847f420f8ed5cabd
+8527	8703	6754755703369654	tmxlite-prefix/src/tmxlite-stamp/tmxlite-patch	28811271469ec1d4
+8527	8703	6754755703369654	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-patch	28811271469ec1d4
+8704	8896	6754755705290490	tmxlite-prefix/src/tmxlite-stamp/tmxlite-configure	3e8f01d6a8b87750
+8704	8896	6754755705290490	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-configure	3e8f01d6a8b87750
+8897	9066	6754755707004244	tmxlite-prefix/src/tmxlite-stamp/tmxlite-build	6ca20dfdfa8fc10e
+8897	9066	6754755707004244	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-build	6ca20dfdfa8fc10e
+9066	9228	6754755708571030	tmxlite-prefix/src/tmxlite-stamp/tmxlite-install	5dceac269170a18a
+9066	9228	6754755708571030	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-install	5dceac269170a18a
+9229	9407	6754755710388346	tmxlite-prefix/src/tmxlite-stamp/tmxlite-test	a5588a69c4bc92dc
+9229	9407	6754755710388346	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-test	a5588a69c4bc92dc
+9408	9668	6754755712976740	CMakeFiles/tmxlite-complete	192f2a705a49976a
+9408	9668	6754755712976740	tmxlite-prefix/src/tmxlite-stamp/tmxlite-done	192f2a705a49976a
+9408	9668	6754755712976740	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/CMakeFiles/tmxlite-complete	192f2a705a49976a
+9408	9668	6754755712976740	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-download/tmxlite/tmxlite-prefix/src/tmxlite-stamp/tmxlite-done	192f2a705a49976a

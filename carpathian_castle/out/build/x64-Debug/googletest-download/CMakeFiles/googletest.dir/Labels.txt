@@ -1,0 +1,14 @@
+# Target labels
+ googletest
+# Source files and their labels
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/CMakeFiles/googletest
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/CMakeFiles/googletest.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/CMakeFiles/googletest-complete.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-build.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-configure.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-download.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-install.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-mkdir.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-patch.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-test.rule
+C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-update.rule
