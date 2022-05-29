@@ -76,6 +76,7 @@ int myMain()
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D)) {
                 player.goRight();
             }
+
         }
 
         sf::Time duration = globalClock.getElapsedTime();

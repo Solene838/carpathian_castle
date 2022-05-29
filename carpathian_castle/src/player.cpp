@@ -15,9 +15,13 @@ int Player::getY() const {
 }
 
 void Player::goLeft() {
-	x += -10;
+	if ((x - 10) >= 0) {
+		x += -10;
+	}
 }
 
 void Player::goRight() {
-	x += 10;
+	if ((x + 10) <= 620) {
+		x += 10;
+	}
 }
