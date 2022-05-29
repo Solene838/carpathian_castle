@@ -38,6 +38,7 @@ source distribution.
 
 #include "SFMLOrthogonalLayer.h"
 #include "Player.h"
+#include <iostream>
 
 int myMain()
 {
@@ -50,6 +51,13 @@ int myMain()
 
     tmx::Map map;
     map.load("../../../../resources/castle.tmx");
+    for (auto tileset : map.getTilesets()) {
+        std::cerr << "Tileset name : " << tileset.getName() << std::endl;
+
+        for (auto tile : tileset.getTiles()) {
+            std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
+        }
+    }
 
     MapLayer layerZero(map, 0);
     MapLayer layerOne(map, 1);
