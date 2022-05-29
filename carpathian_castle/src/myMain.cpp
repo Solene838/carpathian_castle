@@ -44,8 +44,9 @@ int myMain()
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
     sf::CircleShape circle;
-    Player player(0,0);
-    circle.setPosition(player);
+    Player player(400,300);
+    circle.setFillColor(sf::Color::Blue);
+    circle.setRadius(10);
 
     tmx::Map map;
     map.load("../../../../resources/castle.tmx");
@@ -67,10 +68,19 @@ int myMain()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q)) {
+                player.goLeft();
+            }
+
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D)) {
+                player.goRight();
+            }
         }
 
         sf::Time duration = globalClock.getElapsedTime();
         layerZero.update(duration);
+        circle.setPosition(player.getX(), player.getY());
 
         window.clear(sf::Color::Black);
         window.draw(layerZero);
@@ -80,6 +90,7 @@ int myMain()
         window.draw(layerFour);
         window.draw(layerFive);
         window.draw(layerSix);
+        window.draw(circle);
         window.display();
     }
 

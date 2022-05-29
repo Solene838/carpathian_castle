@@ -14,3 +14,10 @@ int Player::getY() const {
 	return y;
 }
 
+void Player::goLeft() {
+	x += -10;
+}
+
+void Player::goRight() {
+	x += 10;
+}

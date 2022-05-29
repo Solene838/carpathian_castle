@@ -136,19 +136,19 @@
 		},
 		{
 			"backtrace" : 3,
-			"id" : "src::@145eef247bfb46b6828c"
-		},
-		{
-			"backtrace" : 3,
 			"id" : "tmxlite::@9c532a5ca9e874c93f8b"
 		},
 		{
-			"backtrace" : 2,
-			"id" : "gtest_main::@32fe1c6cd3a65a2fab56"
+			"backtrace" : 3,
+			"id" : "src::@145eef247bfb46b6828c"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "gtest::@32fe1c6cd3a65a2fab56"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "gtest_main::@32fe1c6cd3a65a2fab56"
 		}
 	],
 	"id" : "unitTests::@6890427a1f51a3e7e1df",

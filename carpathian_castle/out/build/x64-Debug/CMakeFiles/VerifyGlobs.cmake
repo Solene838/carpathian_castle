@@ -46,9 +46,9 @@ endif()
 # SOURCES at src/CMakeLists.txt:2 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/CPP_1/carpathian_castle/carpathian_castle/src/*.h")
 set(OLD_GLOB
+  "C:/CPP_1/carpathian_castle/carpathian_castle/src/Player.h"
   "C:/CPP_1/carpathian_castle/carpathian_castle/src/SFMLOrthogonalLayer.h"
   "C:/CPP_1/carpathian_castle/carpathian_castle/src/myMain.h"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/player.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

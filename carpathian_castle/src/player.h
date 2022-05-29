@@ -9,4 +9,6 @@ public:
 	Player(int x, int y);
 	int getX() const;
 	int getY() const;
+	void goLeft();
+	void goRight();
 };
