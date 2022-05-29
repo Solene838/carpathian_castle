@@ -44,6 +44,8 @@ int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
+    static const char *enum_str[] = { "Boolean", "Float", "Int", "String", "Colour", "File", "Undef" };
+
     sf::CircleShape circle;
     Player player(400,300);
     circle.setFillColor(sf::Color::Blue);
@@ -59,7 +61,7 @@ int myMain()
                 std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
                 for (auto const& property : tile.properties) {
                     // std::cerr << "Tile property type : " << property.getType() << std::endl;
-                    std::cerr << "Tile property name : " << property.getName() << std::endl;
+                    //std::cerr << "Tile property name : " << property.getType() << std::endl;
                 }
             }
         }
@@ -100,9 +102,17 @@ int myMain()
         int y_tile = int(player.getY() / 32) + 1;
         std::cerr << "pos_x/pos_y : " << player.getX() << "/" << player.getY() << " x_tile/y_tile : " << x_tile << "/" << y_tile << std::endl;
 
-        //get the tile corresponding to the position of the player
-        //auto tile = layerTwo.getTile(x_tile, y_tile);
-        //std::cerr << "tile id : " << tile.ID << std::endl;
+        //get the tile (in TileLayer) corresponding to the position of the player
+        auto tile1 = layerTwo.getTile(x_tile, y_tile);
+        std::cerr << "tile1 id : " << tile1.ID << std::endl;
+        auto tile_id = (uint32_t)tile1.ID;
+        auto test = map.getTilesets()[1].getTile(tile_id);
+        std::cerr << "Tile test id : " << test->ID << std::endl;
+        for (auto property : test->properties) {
+            std::cerr << "Tile test name of property : " << property.getName() << std::endl;
+            std::string tmp(enum_str[property.getType()]);
+            std::cerr << "Tile test type of property : " << tmp << std::endl;
+        }
 
 
 
