@@ -51,11 +51,17 @@ int myMain()
 
     tmx::Map map;
     map.load("../../../../resources/castle.tmx");
-    for (auto tileset : map.getTilesets()) {
+    std::cerr << "Number of tiles in the map x/y : " << map.getTileCount().x << "/" << map.getTileCount().y << std::endl;
+    for (auto const& tileset : map.getTilesets()) {
         std::cerr << "Tileset name : " << tileset.getName() << std::endl;
-
-        for (auto tile : tileset.getTiles()) {
-            std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
+        if (tileset.getName() != "Background_bis") {
+            for (auto const& tile : tileset.getTiles()) {
+                std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
+                for (auto const& property : tile.properties) {
+                    // std::cerr << "Tile property type : " << property.getType() << std::endl;
+                    std::cerr << "Tile property name : " << property.getName() << std::endl;
+                }
+            }
         }
     }
 
@@ -65,7 +71,6 @@ int myMain()
     MapLayer layerThree(map, 3);
     MapLayer layerFour(map, 4);
     MapLayer layerFive(map, 5);
-    MapLayer layerSix(map, 6);
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -91,6 +96,16 @@ int myMain()
         layerZero.update(duration);
         circle.setPosition(player.getX(), player.getY());
 
+        int x_tile = int(player.getX() / 32) + 1;
+        int y_tile = int(player.getY() / 32) + 1;
+        std::cerr << "pos_x/pos_y : " << player.getX() << "/" << player.getY() << " x_tile/y_tile : " << x_tile << "/" << y_tile << std::endl;
+
+        //get the tile corresponding to the position of the player
+        //auto tile = layerTwo.getTile(x_tile, y_tile);
+        //std::cerr << "tile id : " << tile.ID << std::endl;
+
+
+
         window.clear(sf::Color::Black);
         window.draw(layerZero);
         window.draw(layerOne);
@@ -98,7 +113,6 @@ int myMain()
         window.draw(layerThree);
         window.draw(layerFour);
         window.draw(layerFive);
-        window.draw(layerSix);
         window.draw(circle);
         window.display();
     }
