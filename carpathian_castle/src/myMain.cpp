@@ -47,8 +47,8 @@ int myMain()
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
     Assets gameAssets;
 
-    Object purse(500, 200, "purse");
-    purse.setSprite("../../../../resources/Sprite/purse.png");
+    Object purse(540, 260, "purse");
+    purse.setSprite(purse.getLabel(), gameAssets);
 
     sf::Texture texture;
     sf::Sprite sprite;
@@ -118,6 +118,16 @@ int myMain()
         int y_tile = int(player.getY() / 32) + 1;
         //std::cerr << "pos_x/pos_y : " << player.getX() << "/" << player.getY() << " x_tile/y_tile : " << x_tile << "/" << y_tile << std::endl;
 
+        sf::Text text;
+        //check if the player is near an object
+        if (purse.getBoxCollider().contains(player.getX(), player.getY())) {
+            std::cerr << "Press E to grab the purse" << std::endl;
+            text.setString("Press E to grab the purse");
+            text.setCharacterSize(100);
+            text.setStyle(sf::Text::Bold);
+            text.setFillColor(sf::Color::Red);
+            text.setPosition(purse.getX(), purse.getY() + 50);
+        }
 
 
         window.clear(sf::Color::Black);
@@ -129,7 +139,8 @@ int myMain()
         window.draw(layerObjects);
         window.draw(circle);
         window.draw(sprite);
-        window.draw(purse.getSprite());
+        window.draw(text);
+        //window.draw(purse.getSprite());
         window.display();
     }
 
