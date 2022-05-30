@@ -48,14 +48,14 @@ int myMain()
     Assets gameAssets;
 
     Object purse(500, 200, "purse");
-    purse.setSprite("C:/CPP_1/carpathian_castle/carpathian_castle/resources/Sprite/purse.png");
+    purse.setSprite("../../../../resources/Sprite/purse.png");
 
     sf::Texture texture;
     sf::Sprite sprite;
 
     texture = gameAssets.purse;
     sprite.setTexture(texture);
-    sprite.setPosition(400, 200);
+    sprite.setPosition(540, 260);
 
 
     tmx::Map map;
@@ -117,18 +117,6 @@ int myMain()
         int x_tile = int(player.getX() / 32) + 1;
         int y_tile = int(player.getY() / 32) + 1;
         //std::cerr << "pos_x/pos_y : " << player.getX() << "/" << player.getY() << " x_tile/y_tile : " << x_tile << "/" << y_tile << std::endl;
-
-        //get the tile (in TileLayer) corresponding to the position of the player
-        /*auto tile1 = layerTwo.getTile(x_tile, y_tile);
-        std::cerr << "tile1 id : " << tile1.ID << std::endl;
-        auto tile_id = (uint32_t)tile1.ID;
-        auto test = map.getTilesets()[1].getTile(tile_id);
-        std::cerr << "Tile test id : " << test->ID << std::endl;
-        for (auto property : test->properties) {
-            std::cerr << "Tile test name of property : " << property.getName() << std::endl;
-            std::string tmp(enum_str[property.getType()]);
-            std::cerr << "Tile test type of property : " << tmp << std::endl;
-        }*/
 
 
 

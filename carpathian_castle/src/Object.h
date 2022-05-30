@@ -10,6 +10,6 @@ private:
 public:
 	bool operator==(const Object&) const = default;
 	Object(int x, int y, const std::string& label);
-	void setSprite(std::string path);
-	sf::Sprite getSprite();
+	void setSprite(const std::string& path);
+	sf::Sprite getSprite() const;
 };
