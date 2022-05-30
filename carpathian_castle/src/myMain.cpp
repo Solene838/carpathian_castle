@@ -45,6 +45,12 @@ int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
+    sf::Texture texture;
+    sf::Sprite sprite;
+
+    texture.loadFromFile("C:/CPP_1/carpathian_castle/carpathian_castle/resources/Sprite/purse.png");
+    sprite.setTexture(texture);
+    sprite.setPosition(500, 200);
     tmx::Map map;
     map.load("../../../../resources/castle.tmx");
 
@@ -146,6 +152,7 @@ int myMain()
         window.draw(layerFour);
         window.draw(layerObjects);
         window.draw(circle);
+        window.draw(sprite);
         window.display();
     }
 
