@@ -41,21 +41,31 @@ source distribution.
 #include "Object.h"
 #include "Assets.h"
 #include <iostream>
+#include <vector>
 
 int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
     Assets gameAssets;
+    std::vector<Object> objectsRoom1;
 
     Object purse(540, 260, "purse");
     purse.setSprite(purse.getLabel(), gameAssets);
+    objectsRoom1.push_back(purse);
+    
+    Object book1(360, 230, "bookBlue");
+    book1.setSprite(book1.getLabel(), gameAssets);
+    objectsRoom1.push_back(book1);
 
-    sf::Texture texture;
-    sf::Sprite sprite;
+    sf::Texture texture1, texture2;
+    sf::Sprite sprite1, sprite2;
 
-    texture = gameAssets.purse;
-    sprite.setTexture(texture);
-    sprite.setPosition(540, 260);
+    texture1 = gameAssets.purse;
+    texture2 = gameAssets.bookBlue;
+    sprite1.setTexture(texture1);
+    sprite1.setPosition(540, 260);
+    sprite2.setTexture(texture2);
+    sprite2.setPosition(360, 230);
 
 
     tmx::Map map;
@@ -65,21 +75,6 @@ int myMain()
     Player player(400,300);
     circle.setFillColor(sf::Color::Blue);
     circle.setRadius(10);
-
- 
-    //std::cerr << "Number of tiles in the map x/y : " << map.getTileCount().x << "/" << map.getTileCount().y << std::endl;
-    //for (auto const& tileset : map.getTilesets()) {
-    //    std::cerr << "Tileset name : " << tileset.getName() << std::endl;
-    //    if (tileset.getName() != "Background_bis") {
-    //        for (auto const& tile : tileset.getTiles()) {
-    //            std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
-    //            for (auto const& property : tile.properties) {
-    //                std::cerr << "Tile property name : " << property.getName() << std::endl;
-    //                auto tmp = property.getType();
-    //            }
-    //        }
-    //    }
-    //}
 
     MapLayer layerZero(map, 0);
     MapLayer layerOne(map, 1);
@@ -121,15 +116,19 @@ int myMain()
         sf::Text text;
         sf::Font arial;
         arial.loadFromFile("../../../../resources/arial.ttf");
+
         //check if the player is near an object
-        if (purse.getBoxCollider().contains(player.getX(), player.getY())) {
-            text.setString("Press E to grab the object");
-            text.setFont(arial);
-            text.setCharacterSize(10);
-            text.setStyle(sf::Text::Bold);
-            text.setFillColor(sf::Color::White);
-            text.setPosition(purse.getX() - 50, purse.getY() - 20);
+        for (Object obj : objectsRoom1) {
+            if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
+                text.setString("Press E to grab the object");
+                text.setFont(arial);
+                text.setCharacterSize(10);
+                text.setStyle(sf::Text::Bold);
+                text.setFillColor(sf::Color::White);
+                text.setPosition(obj.getX() - 50, obj.getY() - 20);
+            }
         }
+        
 
 
         window.clear(sf::Color::Black);
@@ -140,7 +139,8 @@ int myMain()
         window.draw(layerFour);
         window.draw(layerObjects);
         window.draw(circle);
-        window.draw(sprite);
+        window.draw(sprite1);
+        window.draw(sprite2);
         window.draw(text);
         //window.draw(purse.getSprite());
         window.display();
