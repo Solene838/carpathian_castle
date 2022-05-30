@@ -38,41 +38,52 @@ source distribution.
 
 #include "SFMLOrthogonalLayer.h"
 #include "Player.h"
+#include "Object.h"
 #include <iostream>
 
 int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
-    static const char *enum_str[] = { "Boolean", "Float", "Int", "String", "Colour", "File", "Undef" };
+    tmx::Map map;
+    map.load("../../../../resources/castle.tmx");
+
+    //static const char *enum_str[] = { "Boolean", "Float", "Int", "String", "Colour", "File", "Undef" };
 
     sf::CircleShape circle;
     Player player(400,300);
     circle.setFillColor(sf::Color::Blue);
     circle.setRadius(10);
 
-    tmx::Map map;
-    map.load("../../../../resources/castle.tmx");
-    std::cerr << "Number of tiles in the map x/y : " << map.getTileCount().x << "/" << map.getTileCount().y << std::endl;
-    for (auto const& tileset : map.getTilesets()) {
-        std::cerr << "Tileset name : " << tileset.getName() << std::endl;
-        if (tileset.getName() != "Background_bis") {
-            for (auto const& tile : tileset.getTiles()) {
-                std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
-                for (auto const& property : tile.properties) {
-                    // std::cerr << "Tile property type : " << property.getType() << std::endl;
-                    //std::cerr << "Tile property name : " << property.getType() << std::endl;
-                }
-            }
+    Object object(400, 400, "BlueBook", 33);
+    const tmx::Tileset::Tile* tile_object;
+    for (auto tileset : map.getTilesets()) {
+        if (tileset.getName() == "props") {
+            tile_object = tileset.getTile(object.getIdTile());
         }
     }
+
+ 
+    //std::cerr << "Number of tiles in the map x/y : " << map.getTileCount().x << "/" << map.getTileCount().y << std::endl;
+    //for (auto const& tileset : map.getTilesets()) {
+    //    std::cerr << "Tileset name : " << tileset.getName() << std::endl;
+    //    if (tileset.getName() != "Background_bis") {
+    //        for (auto const& tile : tileset.getTiles()) {
+    //            std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
+    //            for (auto const& property : tile.properties) {
+    //                // std::cerr << "Tile property type : " << property.getType() << std::endl;
+    //                //std::cerr << "Tile property name : " << property.getType() << std::endl;
+    //            }
+    //        }
+    //    }
+    //}
 
     MapLayer layerZero(map, 0);
     MapLayer layerOne(map, 1);
     MapLayer layerTwo(map, 2);
     MapLayer layerThree(map, 3);
     MapLayer layerFour(map, 4);
-    MapLayer layerFive(map, 5);
+    MapLayer layerObjects(map, 5);
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -103,16 +114,16 @@ int myMain()
         std::cerr << "pos_x/pos_y : " << player.getX() << "/" << player.getY() << " x_tile/y_tile : " << x_tile << "/" << y_tile << std::endl;
 
         //get the tile (in TileLayer) corresponding to the position of the player
-        auto tile1 = layerTwo.getTile(x_tile, y_tile);
-        std::cerr << "tile1 id : " << tile1.ID << std::endl;
-        auto tile_id = (uint32_t)tile1.ID;
-        auto test = map.getTilesets()[1].getTile(tile_id);
-        std::cerr << "Tile test id : " << test->ID << std::endl;
-        for (auto property : test->properties) {
-            std::cerr << "Tile test name of property : " << property.getName() << std::endl;
-            std::string tmp(enum_str[property.getType()]);
-            std::cerr << "Tile test type of property : " << tmp << std::endl;
-        }
+        //auto tile1 = layerTwo.getTile(x_tile, y_tile);
+        //std::cerr << "tile1 id : " << tile1.ID << std::endl;
+        //auto tile_id = (uint32_t)tile1.ID;
+        //auto test = map.getTilesets()[1].getTile(tile_id);
+        //std::cerr << "Tile test id : " << test->ID << std::endl;
+        //for (auto property : test->properties) {
+        //    std::cerr << "Tile test name of property : " << property.getName() << std::endl;
+        //    std::string tmp(enum_str[property.getType()]);
+        //    std::cerr << "Tile test type of property : " << tmp << std::endl;
+        //}
 
 
 
@@ -122,7 +133,7 @@ int myMain()
         window.draw(layerTwo);
         window.draw(layerThree);
         window.draw(layerFour);
-        window.draw(layerFive);
+        window.draw(layerObjects);
         window.draw(circle);
         window.display();
     }
