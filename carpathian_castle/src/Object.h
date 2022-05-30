@@ -3,12 +3,12 @@
 
 class Object {
 private:
-	int x;
-	int y;
+	int x_px;
+	int y_px;
 	std::string label;
 	std::uint32_t id_tile;
 public:
 	bool operator==(const Object&) const = default;
-	Object(int x, int y, const std::string& label, std::uint32_t id_tile);
-	std::uint32_t getIdTile();
+	Object(int x_px, int y_px, const std::string& label, std::uint32_t id_tile);
+	std::uint32_t getIdTile() const;
 };
