@@ -48,8 +48,6 @@ int myMain()
     tmx::Map map;
     map.load("../../../../resources/castle.tmx");
 
-    //static const char *enum_str[] = { "Boolean", "Float", "Int", "String", "Colour", "File", "Undef" };
-
     sf::CircleShape circle;
     Player player(400,300);
     circle.setFillColor(sf::Color::Blue);
@@ -63,8 +61,8 @@ int myMain()
             for (auto const& tile : tileset.getTiles()) {
                 std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
                 for (auto const& property : tile.properties) {
-                    // std::cerr << "Tile property type : " << property.getType() << std::endl;
-                    //std::cerr << "Tile property name : " << property.getType() << std::endl;
+                    std::cerr << "Tile property name : " << property.getName() << std::endl;
+                    auto tmp = property.getType();
                 }
             }
         }
@@ -77,15 +75,24 @@ int myMain()
     MapLayer layerFour(map, 4);
     MapLayer layerObjects(map, 5);
 
-    Object object(400, 400, "BlueBook", 1);
+    Object object(400, 400, "BlueBook", 33);
     for (auto tileset : map.getTilesets()) {
         if (tileset.getName() == "props") {
-            std::uint32_t tmp = 33;
-            auto tile_object = tileset.getTile(tmp);
-            std::cerr << "Id of the tileset tile : " << tile_object->ID << std::endl;
+            //std::uint32_t tmp = 33;
+            //tile de type TilseSet
+            auto tile_object = tileset.getTile(object.getIdTile());
+            for (auto const& tile : tileset.getTiles()) {
+                if (tile.ID == object.getIdTile()) {
+                    std::cerr << "pouet" << std::endl;
+                    tile_object = &tile;
+                }
+            }
+            std::cerr << "Tile object id : " << tile_object->ID << std::endl;
+
             tmx::TileLayer::Tile tile_test(33);
             std::cerr << "Id of the tilelayer tile : " << tile_test.ID << std::endl;
-            layerObjects.setTile(5, 17, tile_test);
+            //layerObjects.setTile(5, 5, tile_test);
+            //layerObjects.setTile(5, 5, (tmx::TileLayer::Tile)(*tile_object));
         }
     }
 
