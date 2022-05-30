@@ -5,6 +5,7 @@ cmake_policy(SET CMP0009 NEW)
 # RESOURCES at mainLauncher/CMakeLists.txt:7 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/CPP_1/carpathian_castle/carpathian_castle/resources/*.*")
 set(OLD_GLOB
+  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/arial.ttf"
   "C:/CPP_1/carpathian_castle/carpathian_castle/resources/castle.tmx"
   "C:/CPP_1/carpathian_castle/carpathian_castle/resources/demo.tmx"
   "C:/CPP_1/carpathian_castle/carpathian_castle/resources/platform.tmx"

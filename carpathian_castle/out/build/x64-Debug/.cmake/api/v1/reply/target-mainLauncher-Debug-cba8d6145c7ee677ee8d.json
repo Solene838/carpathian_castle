@@ -119,11 +119,11 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "sfml-graphics::@98af38147d5fa7e70f61"
+			"id" : "tmxlite::@9c532a5ca9e874c93f8b"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "tmxlite::@9c532a5ca9e874c93f8b"
+			"id" : "sfml-graphics::@98af38147d5fa7e70f61"
 		},
 		{
 			"backtrace" : 2,

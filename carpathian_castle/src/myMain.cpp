@@ -119,14 +119,16 @@ int myMain()
         //std::cerr << "pos_x/pos_y : " << player.getX() << "/" << player.getY() << " x_tile/y_tile : " << x_tile << "/" << y_tile << std::endl;
 
         sf::Text text;
+        sf::Font arial;
+        arial.loadFromFile("../../../../resources/arial.ttf");
         //check if the player is near an object
         if (purse.getBoxCollider().contains(player.getX(), player.getY())) {
-            std::cerr << "Press E to grab the purse" << std::endl;
-            text.setString("Press E to grab the purse");
-            text.setCharacterSize(100);
+            text.setString("Press E to grab the object");
+            text.setFont(arial);
+            text.setCharacterSize(10);
             text.setStyle(sf::Text::Bold);
-            text.setFillColor(sf::Color::Red);
-            text.setPosition(purse.getX(), purse.getY() + 50);
+            text.setFillColor(sf::Color::White);
+            text.setPosition(purse.getX() - 50, purse.getY() - 20);
         }
 
 
