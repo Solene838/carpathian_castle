@@ -15,6 +15,9 @@ void Object::setSprite(const std::string& name, const Assets& gameAssets) {
 	else if (name == "bookBlue") {
 		texture = gameAssets.bookBlue;
 	}
+	else if (name == "poster") {
+		texture = gameAssets.poster;
+	}
 	sprite.setTexture(texture);
 	sprite.setPosition(x, y);
 	boxCollider.left = x - 10;

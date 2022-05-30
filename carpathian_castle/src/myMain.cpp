@@ -57,15 +57,22 @@ int myMain()
     book1.setSprite(book1.getLabel(), gameAssets);
     objectsRoom1.push_back(book1);
 
-    sf::Texture texture1, texture2;
-    sf::Sprite sprite1, sprite2;
+    Object poster(100, 200, "poster");
+    poster.setSprite(poster.getLabel(), gameAssets);
+    objectsRoom1.push_back(poster);
+
+    sf::Texture texture1, texture2, texture3;
+    sf::Sprite sprite1, sprite2, sprite3;
 
     texture1 = gameAssets.purse;
     texture2 = gameAssets.bookBlue;
+    texture3 = gameAssets.poster;
     sprite1.setTexture(texture1);
     sprite1.setPosition(540, 260);
     sprite2.setTexture(texture2);
     sprite2.setPosition(360, 230);
+    sprite3.setTexture(texture3);
+    sprite3.setPosition(100, 200);
 
 
     tmx::Map map;
@@ -120,12 +127,12 @@ int myMain()
         //check if the player is near an object
         for (Object obj : objectsRoom1) {
             if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
-                text.setString("Press E to grab the object");
+                text.setString("Press E to interact with the object");
                 text.setFont(arial);
                 text.setCharacterSize(10);
                 text.setStyle(sf::Text::Bold);
                 text.setFillColor(sf::Color::White);
-                text.setPosition(obj.getX() - 50, obj.getY() - 20);
+                text.setPosition(obj.getX() - 60, obj.getY() - 20);
             }
         }
         
@@ -141,6 +148,7 @@ int myMain()
         window.draw(circle);
         window.draw(sprite1);
         window.draw(sprite2);
+        window.draw(sprite3);
         window.draw(text);
         //window.draw(purse.getSprite());
         window.display();
