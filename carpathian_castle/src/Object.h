@@ -3,12 +3,13 @@
 
 class Object {
 private:
-	int x_px;
-	int y_px;
+	int x;
+	int y;
 	std::string label;
-	std::uint32_t id_tile;
+	sf::Sprite sprite;
 public:
 	bool operator==(const Object&) const = default;
-	Object(int x_px, int y_px, const std::string& label, std::uint32_t id_tile);
-	std::uint32_t getIdTile() const;
+	Object(int x, int y, const std::string& label);
+	void setSprite(std::string path);
+	sf::Sprite getSprite();
 };

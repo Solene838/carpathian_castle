@@ -1,13 +1,19 @@
 #include "Object.h"
 
-Object::Object(int x_px, int y_px, const std::string& label, std::uint32_t id_tile) :
-	x_px(x_px),
-	y_px(y_px),
-	label(label),
-	id_tile(id_tile)
+Object::Object(int x, int y, const std::string& label) :
+	x(x),
+	y(y),
+	label(label)
 {
 }
 
-std::uint32_t Object::getIdTile() const {
-	return id_tile;
+void Object::setSprite(std::string path) {
+	sf::Texture texture;
+	texture.loadFromFile(path);
+	sprite.setTexture(texture);
+	sprite.setPosition(x, y);
+}
+
+sf::Sprite Object::getSprite() {
+	return sprite;
 }

@@ -581,6 +581,11 @@
 },
 {
   "directory": "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug",
+  "command": "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1432~1.313\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DSFML_STATIC -IC:\\CPP_1\\carpathian_castle\\carpathian_castle\\out\\build\\x64-Debug\\tmxlite-src\\tmxlite\\include -IC:\\CPP_1\\carpathian_castle\\carpathian_castle\\src\\. -IC:\\CPP_1\\carpathian_castle\\carpathian_castle\\out\\build\\x64-Debug\\_deps\\pugixml-src\\src -IC:\\CPP_1\\carpathian_castle\\carpathian_castle\\out\\build\\x64-Debug\\_deps\\sfml-src\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++20 /Fosrc\\CMakeFiles\\src.dir\\Assets.cpp.obj /FdTARGET_COMPILE_PDB /FS -c C:\\CPP_1\\carpathian_castle\\carpathian_castle\\src\\Assets.cpp",
+  "file": "C:\\CPP_1\\carpathian_castle\\carpathian_castle\\src\\Assets.cpp"
+},
+{
+  "directory": "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug",
   "command": "C:\\PROGRA~1\\MICROS~4\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1432~1.313\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DSFML_STATIC -IC:\\CPP_1\\carpathian_castle\\carpathian_castle\\out\\build\\x64-Debug\\tmxlite-src\\tmxlite\\include -IC:\\CPP_1\\carpathian_castle\\carpathian_castle\\src\\. -IC:\\CPP_1\\carpathian_castle\\carpathian_castle\\out\\build\\x64-Debug\\_deps\\pugixml-src\\src -IC:\\CPP_1\\carpathian_castle\\carpathian_castle\\out\\build\\x64-Debug\\_deps\\sfml-src\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++20 /Fosrc\\CMakeFiles\\src.dir\\Object.cpp.obj /FdTARGET_COMPILE_PDB /FS -c C:\\CPP_1\\carpathian_castle\\carpathian_castle\\src\\Object.cpp",
   "file": "C:\\CPP_1\\carpathian_castle\\carpathian_castle\\src\\Object.cpp"
 },

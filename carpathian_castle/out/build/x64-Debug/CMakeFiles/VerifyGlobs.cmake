@@ -35,6 +35,7 @@ endif()
 # SOURCES at src/CMakeLists.txt:2 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/CPP_1/carpathian_castle/carpathian_castle/src/*.cpp")
 set(OLD_GLOB
+  "C:/CPP_1/carpathian_castle/carpathian_castle/src/Assets.cpp"
   "C:/CPP_1/carpathian_castle/carpathian_castle/src/Object.cpp"
   "C:/CPP_1/carpathian_castle/carpathian_castle/src/Player.cpp"
   "C:/CPP_1/carpathian_castle/carpathian_castle/src/myMain.cpp"
@@ -47,6 +48,7 @@ endif()
 # SOURCES at src/CMakeLists.txt:2 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/CPP_1/carpathian_castle/carpathian_castle/src/*.h")
 set(OLD_GLOB
+  "C:/CPP_1/carpathian_castle/carpathian_castle/src/Assets.h"
   "C:/CPP_1/carpathian_castle/carpathian_castle/src/Object.h"
   "C:/CPP_1/carpathian_castle/carpathian_castle/src/Player.h"
   "C:/CPP_1/carpathian_castle/carpathian_castle/src/SFMLOrthogonalLayer.h"

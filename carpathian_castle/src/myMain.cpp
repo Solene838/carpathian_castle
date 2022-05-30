@@ -39,18 +39,25 @@ source distribution.
 #include "SFMLOrthogonalLayer.h"
 #include "Player.h"
 #include "Object.h"
+#include "Assets.h"
 #include <iostream>
 
 int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    Assets gameAssets;
+
+    Object purse(500, 200, "purse");
+    purse.setSprite("C:/CPP_1/carpathian_castle/carpathian_castle/resources/Sprite/purse.png");
 
     sf::Texture texture;
     sf::Sprite sprite;
 
-    texture.loadFromFile("C:/CPP_1/carpathian_castle/carpathian_castle/resources/Sprite/purse.png");
+    texture = gameAssets.purse;
     sprite.setTexture(texture);
-    sprite.setPosition(500, 200);
+    sprite.setPosition(400, 200);
+
+
     tmx::Map map;
     map.load("../../../../resources/castle.tmx");
 
@@ -60,19 +67,19 @@ int myMain()
     circle.setRadius(10);
 
  
-    std::cerr << "Number of tiles in the map x/y : " << map.getTileCount().x << "/" << map.getTileCount().y << std::endl;
-    for (auto const& tileset : map.getTilesets()) {
-        std::cerr << "Tileset name : " << tileset.getName() << std::endl;
-        if (tileset.getName() != "Background_bis") {
-            for (auto const& tile : tileset.getTiles()) {
-                std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
-                for (auto const& property : tile.properties) {
-                    std::cerr << "Tile property name : " << property.getName() << std::endl;
-                    auto tmp = property.getType();
-                }
-            }
-        }
-    }
+    //std::cerr << "Number of tiles in the map x/y : " << map.getTileCount().x << "/" << map.getTileCount().y << std::endl;
+    //for (auto const& tileset : map.getTilesets()) {
+    //    std::cerr << "Tileset name : " << tileset.getName() << std::endl;
+    //    if (tileset.getName() != "Background_bis") {
+    //        for (auto const& tile : tileset.getTiles()) {
+    //            std::cerr << "Tile ID: " << tile.ID << " Tile pos_x/pos_y: " << tile.imagePosition.x << "/" << tile.imagePosition.y << std::endl;
+    //            for (auto const& property : tile.properties) {
+    //                std::cerr << "Tile property name : " << property.getName() << std::endl;
+    //                auto tmp = property.getType();
+    //            }
+    //        }
+    //    }
+    //}
 
     MapLayer layerZero(map, 0);
     MapLayer layerOne(map, 1);
@@ -81,26 +88,7 @@ int myMain()
     MapLayer layerFour(map, 4);
     MapLayer layerObjects(map, 5);
 
-    Object object(400, 400, "BlueBook", 33);
-    for (auto tileset : map.getTilesets()) {
-        if (tileset.getName() == "props") {
-            //std::uint32_t tmp = 33;
-            //tile de type TilseSet
-            auto tile_object = tileset.getTile(object.getIdTile());
-            for (auto const& tile : tileset.getTiles()) {
-                if (tile.ID == object.getIdTile()) {
-                    std::cerr << "pouet" << std::endl;
-                    tile_object = &tile;
-                }
-            }
-            std::cerr << "Tile object id : " << tile_object->ID << std::endl;
-
-            tmx::TileLayer::Tile tile_test(33);
-            std::cerr << "Id of the tilelayer tile : " << tile_test.ID << std::endl;
-            //layerObjects.setTile(5, 5, tile_test);
-            //layerObjects.setTile(5, 5, (tmx::TileLayer::Tile)(*tile_object));
-        }
-    }
+    
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -153,6 +141,7 @@ int myMain()
         window.draw(layerObjects);
         window.draw(circle);
         window.draw(sprite);
+        window.draw(purse.getSprite());
         window.display();
     }
 
