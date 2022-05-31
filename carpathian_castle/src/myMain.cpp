@@ -64,7 +64,7 @@ int myMain()
 
 
     tmx::Map map;
-    map.load("resources/castle_first.tmx");
+    map.load("resources/dunjeon.tmx");
 
     sf::CircleShape circle;
     Player player(400,300);
@@ -75,8 +75,8 @@ int myMain()
     MapLayer layerOne(map, 1);
     MapLayer layerTwo(map, 2);
     MapLayer layerThree(map, 3);
-    MapLayer layerFour(map, 4);
-    MapLayer layerObjects(map, 5);
+    //MapLayer layerFour(map, 4);
+    //MapLayer layerObjects(map, 5);
 
     
 
@@ -110,7 +110,7 @@ int myMain()
 
         sf::Text text;
         sf::Font arial;
-        arial.loadFromFile("../../../../resources/arial.ttf");
+        arial.loadFromFile("resources/arial.ttf");
 
         //check if the player is near an object
         for (Object obj : objectsRoom1) {
@@ -131,8 +131,8 @@ int myMain()
         window.draw(layerOne);
         window.draw(layerTwo);
         window.draw(layerThree);
-        window.draw(layerFour);
-        window.draw(layerObjects);
+        //window.draw(layerFour);
+        //window.draw(layerObjects);
         window.draw(circle);
         window.draw(text);
         window.draw(purse.getSprite());
