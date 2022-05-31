@@ -1,8 +1,8 @@
-# Install script for directory: C:/CPP_1/carpathian_castle/carpathian_castle/mainLauncher
+# Install script for directory: C:/Users/elois/Documents/carpathian_castle/carpathian_castle/mainLauncher
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/CPP_1/carpathian_castle/carpathian_castle/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

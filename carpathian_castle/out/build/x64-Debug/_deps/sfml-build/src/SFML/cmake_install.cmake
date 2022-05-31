@@ -1,8 +1,8 @@
-# Install script for directory: C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-src/src/SFML
+# Install script for directory: C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-src/src/SFML
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/CPP_1/carpathian_castle/carpathian_castle/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,12 +34,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/System/cmake_install.cmake")
-  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Main/cmake_install.cmake")
-  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Window/cmake_install.cmake")
-  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Network/cmake_install.cmake")
-  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Graphics/cmake_install.cmake")
-  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Audio/cmake_install.cmake")
+  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/System/cmake_install.cmake")
+  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Main/cmake_install.cmake")
+  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Window/cmake_install.cmake")
+  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Network/cmake_install.cmake")
+  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Graphics/cmake_install.cmake")
+  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/src/SFML/Audio/cmake_install.cmake")
 
 endif()
 
