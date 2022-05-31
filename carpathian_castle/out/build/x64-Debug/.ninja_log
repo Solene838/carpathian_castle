@@ -141,3 +141,16 @@
 17	102	0	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs	edb34d7f9f04d310
 25	459	6757247153770756	mainLauncher/resources	bfa9a1d92d976ed8
 25	459	6757247153770756	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/mainLauncher/resources	bfa9a1d92d976ed8
+6	92	0	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs	edb34d7f9f04d310
+15	5919	6757265055374037	src/CMakeFiles/src.dir/myMain.cpp.obj	8d9f8c7b0f72a939
+5920	6116	6757265057205292	src/src.lib	f7ac6ad0e80c64e8
+6116	7694	6757265070923608	mainLauncher/mainLauncher.exe	ff66a1c95006cf99
+7	107	0	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs	edb34d7f9f04d310
+15	5362	6757265762381834	src/CMakeFiles/src.dir/myMain.cpp.obj	8d9f8c7b0f72a939
+5364	5535	6757265764009379	src/src.lib	f7ac6ad0e80c64e8
+5536	6156	6757265769519780	mainLauncher/mainLauncher.exe	ff66a1c95006cf99
+5	72	0	C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs	edb34d7f9f04d310
+14	2789	6757266289040695	src/CMakeFiles/src.dir/Assets.cpp.obj	6a108e1883911594
+28	5194	6757266312957087	src/CMakeFiles/src.dir/myMain.cpp.obj	8d9f8c7b0f72a939
+5195	5364	6757266314476755	src/src.lib	f7ac6ad0e80c64e8
+5365	6345	6757266322312351	mainLauncher/mainLauncher.exe	ff66a1c95006cf99

@@ -61,22 +61,10 @@ int myMain()
     poster.setSprite(gameAssets.poster);
     objectsRoom1.push_back(poster);
 
-    sf::Texture texture1, texture2, texture3;
-    sf::Sprite sprite1, sprite2, sprite3;
-
-    texture1 = gameAssets.purse;
-    texture2 = gameAssets.bookBlue;
-    texture3 = gameAssets.poster;
-    sprite1.setTexture(texture1);
-    sprite1.setPosition(540, 260);
-    sprite2.setTexture(texture2);
-    sprite2.setPosition(360, 230);
-    sprite3.setTexture(texture3);
-    sprite3.setPosition(100, 200);
 
 
     tmx::Map map;
-    map.load("../../../../resources/castle.tmx");
+    map.load("resources/castle.tmx");
 
     sf::CircleShape circle;
     Player player(400,300);
@@ -146,11 +134,9 @@ int myMain()
         window.draw(layerFour);
         window.draw(layerObjects);
         window.draw(circle);
-        //window.draw(sprite1);
-        //window.draw(sprite2);
-        //window.draw(sprite3);
         window.draw(text);
         window.draw(purse.getSprite());
+        window.draw(book1.getSprite());
         window.display();
     }
 
