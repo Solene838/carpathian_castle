@@ -60,7 +60,7 @@ int myMain()
     Object poster(100, 200, "poster");
     poster.setSprite(gameAssets.poster);
     objectsRoom1.push_back(poster);
-
+    
 
 
     tmx::Map map;
