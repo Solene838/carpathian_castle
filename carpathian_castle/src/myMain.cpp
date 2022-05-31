@@ -64,7 +64,7 @@ int myMain()
 
 
     tmx::Map map;
-    map.load("resources/castle.tmx");
+    map.load("resources/castle_first.tmx");
 
     sf::CircleShape circle;
     Player player(400,300);
