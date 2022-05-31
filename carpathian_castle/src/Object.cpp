@@ -7,17 +7,8 @@ Object::Object(int x, int y, const std::string& label) :
 {
 }
 
-void Object::setSprite(const std::string& name, const Assets& gameAssets) {
-	sf::Texture texture;
-	if (name == "purse") {
-		texture = gameAssets.purse;
-	}
-	else if (name == "bookBlue") {
-		texture = gameAssets.bookBlue;
-	}
-	else if (name == "poster") {
-		texture = gameAssets.poster;
-	}
+void Object::setSprite(const sf::Texture& texture) {
+
 	sprite.setTexture(texture);
 	sprite.setPosition(x, y);
 	boxCollider.left = x - 10;
@@ -27,7 +18,7 @@ void Object::setSprite(const std::string& name, const Assets& gameAssets) {
 
 }
 
-sf::Sprite Object::getSprite() const {
+sf::Sprite& Object::getSprite() {
 	return sprite;
 }
 

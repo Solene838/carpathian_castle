@@ -15,6 +15,7 @@
 		[
 			"add_executable",
 			"target_link_libraries",
+			"add_dependencies",
 			"include_directories"
 		],
 		"files" : 
@@ -40,13 +41,19 @@
 				"parent" : 0
 			},
 			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
 				"file" : 1
 			},
 			{
-				"command" : 2,
+				"command" : 3,
 				"file" : 1,
 				"line" : 68,
-				"parent" : 3
+				"parent" : 4
 			}
 		]
 	},
@@ -72,7 +79,7 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 4,
+					"backtrace" : 5,
 					"path" : "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-src/tmxlite/include"
 				},
 				{
@@ -119,11 +126,15 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "tmxlite::@9c532a5ca9e874c93f8b"
+			"id" : "sfml-graphics::@98af38147d5fa7e70f61"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "sfml-graphics::@98af38147d5fa7e70f61"
+			"id" : "tmxlite::@9c532a5ca9e874c93f8b"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "copy-resources::@448b1704701f8cdccfe4"
 		},
 		{
 			"backtrace" : 2,

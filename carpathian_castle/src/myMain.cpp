@@ -50,15 +50,15 @@ int myMain()
     std::vector<Object> objectsRoom1;
 
     Object purse(540, 260, "purse");
-    purse.setSprite(purse.getLabel(), gameAssets);
+    purse.setSprite(gameAssets.purse);
     objectsRoom1.push_back(purse);
     
     Object book1(360, 230, "bookBlue");
-    book1.setSprite(book1.getLabel(), gameAssets);
+    book1.setSprite(gameAssets.bookBlue);
     objectsRoom1.push_back(book1);
 
     Object poster(100, 200, "poster");
-    poster.setSprite(poster.getLabel(), gameAssets);
+    poster.setSprite(gameAssets.poster);
     objectsRoom1.push_back(poster);
 
     sf::Texture texture1, texture2, texture3;
@@ -146,11 +146,11 @@ int myMain()
         window.draw(layerFour);
         window.draw(layerObjects);
         window.draw(circle);
-        window.draw(sprite1);
-        window.draw(sprite2);
-        window.draw(sprite3);
+        //window.draw(sprite1);
+        //window.draw(sprite2);
+        //window.draw(sprite3);
         window.draw(text);
-        //window.draw(purse.getSprite());
+        window.draw(purse.getSprite());
         window.display();
     }
 

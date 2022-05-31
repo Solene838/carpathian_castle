@@ -13,8 +13,8 @@ private:
 public:
 	bool operator==(const Object&) const = default;
 	Object(int x, int y, const std::string& label);
-	void setSprite(const std::string& name, const Assets& gameAssets);
-	sf::Sprite getSprite() const;
+	void setSprite(const sf::Texture& texture);
+	sf::Sprite& getSprite();
 	std::string getLabel() const;
 	sf::IntRect getBoxCollider() const;
 	int getX() const;
