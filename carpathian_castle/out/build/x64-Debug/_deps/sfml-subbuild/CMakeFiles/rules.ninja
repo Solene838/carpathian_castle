@@ -23,7 +23,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\elois\Documents\carpathian_castle\carpathian_castle\out\build\x64-Debug\_deps\sfml-subbuild -BC:\Users\elois\Documents\carpathian_castle\carpathian_castle\out\build\x64-Debug\_deps\sfml-subbuild
+  command = "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\CPP_1\carpathian_castle\carpathian_castle\out\build\x64-Debug\_deps\sfml-subbuild -BC:\CPP_1\carpathian_castle\carpathian_castle\out\build\x64-Debug\_deps\sfml-subbuild
   description = Re-running CMake...
   generator = 1
 

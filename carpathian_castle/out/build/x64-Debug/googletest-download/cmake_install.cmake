@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download
+# Install script for directory: C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

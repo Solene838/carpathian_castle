@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/elois/Documents/carpathian_castle/carpathian_castle
+# Install script for directory: C:/CPP_1/carpathian_castle/carpathian_castle
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "C:/CPP_1/carpathian_castle/carpathian_castle/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,22 +34,22 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-build/cmake_install.cmake")
+  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/pugixml-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/cmake_install.cmake")
+  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/_deps/sfml-build/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/mainLauncher/cmake_install.cmake")
+  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/mainLauncher/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/src/cmake_install.cmake")
+  include("C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/src/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -60,5 +60,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

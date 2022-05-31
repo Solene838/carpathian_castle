@@ -11,8 +11,8 @@ include(ExternalProject)
 ExternalProject_Add(googletest
   GIT_REPOSITORY    https://github.com/google/googletest.git
   GIT_TAG           main
-  SOURCE_DIR        "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src"
-  BINARY_DIR        "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-build"
+  SOURCE_DIR        "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src"
+  BINARY_DIR        "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-build"
   CONFIGURE_COMMAND ""
   BUILD_COMMAND     ""
   INSTALL_COMMAND   ""

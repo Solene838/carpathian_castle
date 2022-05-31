@@ -1,15 +1,15 @@
 
-if(NOT "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitinfo.txt" IS_NEWER_THAN "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt")
-  message(STATUS "Avoiding repeated git clone, stamp file is up to date: 'C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt'")
+if(NOT "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitinfo.txt" IS_NEWER_THAN "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt")
+  message(STATUS "Avoiding repeated git clone, stamp file is up to date: 'C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt'")
   return()
 endif()
 
 execute_process(
-  COMMAND ${CMAKE_COMMAND} -E rm -rf "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src"
+  COMMAND ${CMAKE_COMMAND} -E rm -rf "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to remove directory: 'C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src'")
+  message(FATAL_ERROR "Failed to remove directory: 'C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src'")
 endif()
 
 # try the clone 3 times in case there is an odd git clone issue
@@ -18,7 +18,7 @@ set(number_of_tries 0)
 while(error_code AND number_of_tries LESS 3)
   execute_process(
     COMMAND "C:/Program Files/Git/cmd/git.exe"  clone --no-checkout --config "advice.detachedHead=false" "https://github.com/google/googletest.git" "googletest-src"
-    WORKING_DIRECTORY "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug"
+    WORKING_DIRECTORY "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug"
     RESULT_VARIABLE error_code
     )
   math(EXPR number_of_tries "${number_of_tries} + 1")
@@ -33,7 +33,7 @@ endif()
 
 execute_process(
   COMMAND "C:/Program Files/Git/cmd/git.exe"  checkout main --
-  WORKING_DIRECTORY "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src"
+  WORKING_DIRECTORY "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
@@ -44,23 +44,23 @@ set(init_submodules TRUE)
 if(init_submodules)
   execute_process(
     COMMAND "C:/Program Files/Git/cmd/git.exe"  submodule update --recursive --init 
-    WORKING_DIRECTORY "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src"
+    WORKING_DIRECTORY "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src"
     RESULT_VARIABLE error_code
     )
 endif()
 if(error_code)
-  message(FATAL_ERROR "Failed to update submodules in: 'C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src'")
+  message(FATAL_ERROR "Failed to update submodules in: 'C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-src'")
 endif()
 
 # Complete success, update the script-last-run stamp file:
 #
 execute_process(
   COMMAND ${CMAKE_COMMAND} -E copy
-    "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitinfo.txt"
-    "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt"
+    "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitinfo.txt"
+    "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to copy script-last-run stamp file: 'C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt'")
+  message(FATAL_ERROR "Failed to copy script-last-run stamp file: 'C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt'")
 endif()
 
