@@ -11,4 +11,6 @@ public:
 	int getY() const;
 	void goLeft();
 	void goRight();
+	void goUp();
+	void goDown();
 };
