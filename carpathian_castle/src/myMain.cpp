@@ -97,6 +97,12 @@ int myMain()
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D)) {
                 player.goRight();
             }
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z)) {
+                player.goUp();
+            }
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S)) {
+                player.goDown();
+            }
 
         }
 

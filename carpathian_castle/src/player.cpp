@@ -25,3 +25,15 @@ void Player::goRight() {
 		x += 10;
 	}
 }
+
+void Player::goUp() {
+	if ((y - 10) >= 0) {
+		y += -10;
+	}
+}
+
+void Player::goDown() {
+	if ((y + 10) <= 320) {
+		y += 10;
+	}
+}
