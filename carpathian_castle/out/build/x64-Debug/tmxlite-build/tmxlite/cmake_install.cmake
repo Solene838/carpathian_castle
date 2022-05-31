@@ -1,8 +1,8 @@
-# Install script for directory: C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-src/tmxlite
+# Install script for directory: C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-src/tmxlite
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/CPP_1/carpathian_castle/carpathian_castle/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,10 +33,10 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-src/tmxlite/include/tmxlite")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-src/tmxlite/include/tmxlite")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-build/tmxlite/tmxlite-s-d.lib")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/tmxlite-build/tmxlite/tmxlite-s-d.lib")
 endif()
 

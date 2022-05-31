@@ -1,5 +1,5 @@
-libdir=C:/CPP_1/carpathian_castle/carpathian_castle/out/install/x64-Debug/lib
-includedir=C:/CPP_1/carpathian_castle/carpathian_castle/out/install/x64-Debug/include
+libdir=C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/install/x64-Debug/lib
+includedir=C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/install/x64-Debug/include
 
 Name: gtest_main
 Description: GoogleTest (with main() function)

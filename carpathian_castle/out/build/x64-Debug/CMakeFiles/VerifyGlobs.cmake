@@ -3,59 +3,61 @@
 cmake_policy(SET CMP0009 NEW)
 
 # RESOURCES at mainLauncher/CMakeLists.txt:7 (file)
-file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/CPP_1/carpathian_castle/carpathian_castle/resources/*.*")
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/*.*")
 set(OLD_GLOB
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/arial.ttf"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/castle.tmx"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/demo.tmx"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/platform.tmx"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/tilemap.tmx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/arial.ttf"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/castle.tmx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/castle_first_room.tmx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/demo.tmx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/platform.tmx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/tilemap.tmx"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
 # RESOURCES_TILEMAP at mainLauncher/CMakeLists.txt:8 (file)
-file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/CPP_1/carpathian_castle/carpathian_castle/resources/images/tilemap/*.*")
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/*.*")
 set(OLD_GLOB
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/images/tilemap/Background.tsx"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/images/tilemap/Props.tsx"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/images/tilemap/Tiles.tsx"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/images/tilemap/Tileset.tsx"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/images/tilemap/platform.tsx"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/images/tilemap/tileset.png"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/images/tilemap/tileset.txt"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/resources/images/tilemap/tileset02.png"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/Background.tsx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/Dungeon_tileset.tsx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/Props.tsx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/Tiles.tsx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/Tileset.tsx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/platform.tsx"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/tileset.png"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/tileset.txt"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/resources/images/tilemap/tileset02.png"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
 # SOURCES at src/CMakeLists.txt:2 (file)
-file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/CPP_1/carpathian_castle/carpathian_castle/src/*.cpp")
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/*.cpp")
 set(OLD_GLOB
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/Assets.cpp"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/Object.cpp"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/Player.cpp"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/myMain.cpp"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/Assets.cpp"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/Object.cpp"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/myMain.cpp"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/player.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
 # SOURCES at src/CMakeLists.txt:2 (file)
-file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/CPP_1/carpathian_castle/carpathian_castle/src/*.h")
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/*.h")
 set(OLD_GLOB
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/Assets.h"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/Object.h"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/Player.h"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/SFMLOrthogonalLayer.h"
-  "C:/CPP_1/carpathian_castle/carpathian_castle/src/myMain.h"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/Assets.h"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/Object.h"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/SFMLOrthogonalLayer.h"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/myMain.h"
+  "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/src/player.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "C:/CPP_1/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "C:/Users/elois/Documents/carpathian_castle/carpathian_castle/out/build/x64-Debug/CMakeFiles/cmake.verify_globs")
 endif()
