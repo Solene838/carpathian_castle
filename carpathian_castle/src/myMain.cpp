@@ -57,24 +57,10 @@ int myMain()
     for (pugi::xml_node object : doc.children("Object")) {
         Object obj(object);
         std::string label = obj.getLabel();
-        /*if (std::map<std::string, sf::Texture>::iterator it = gameAssets.getTexturesMap().find(label); it != gameAssets.getTexturesMap().end())
-            gameAssets.addToMap(label);*/
         gameAssets.addToMap(label);
         obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
         objectsRoom1.push_back(obj);
     }
-
-    /*Object purse(540, 260, "purse");
-    purse.setSprite(gameAssets.purse);
-    objectsRoom1.push_back(purse);
-    
-    Object book1(360, 230, "bookBlue");
-    book1.setSprite(gameAssets.bookBlue);
-    objectsRoom1.push_back(book1);
-
-    Object poster(100, 200, "poster");
-    poster.setSprite(gameAssets.poster);
-    objectsRoom1.push_back(poster);*/
     
 
 
