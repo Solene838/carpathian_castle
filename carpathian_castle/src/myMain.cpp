@@ -48,6 +48,9 @@ int myMain()
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
+    bool is_open = false;
+    bool pop_up_open = false;
+    bool pop_up_close = false;
 
     Object purse(240, 260, "purse");
     purse.setSprite(gameAssets.purse);
@@ -61,11 +64,11 @@ int myMain()
     poster.setSprite(gameAssets.poster);
     objectsRoom1.push_back(poster);
 
-    Object closed_door(700, 100, "closed doors");
-    closed_door.setSprite(gameAssets.closed_door);
-
-    Object opened_door(400, 600, "opened doors");
+    Object opened_door(352, 16, "opened_doors");
     opened_door.setSprite(gameAssets.opened_door);
+
+    Object opened_door_bis(210, 289, "opened_doors");
+    opened_door_bis.setSprite(gameAssets.opened_door);
     
 
 
@@ -114,6 +117,22 @@ int myMain()
             text_door.setPosition(player.getX() - 60, player.getY() + 20);
         }
 
+        //texts for the doors
+        sf::Text text_door_close;
+        text_door_close.setString("You don't have the right object to open this door");
+        text_door_close.setFont(arial);
+        text_door_close.setCharacterSize(10);
+        text_door_close.setFillColor(sf::Color::White);
+        text_door_close.setPosition(player.getX() - 60, player.getY() - 30);
+
+        sf::Text text_door_open;
+        text_door_open.setString("the door is open !");
+        text_door_open.setFont(arial);
+        text_door_open.setCharacterSize(10);
+        text_door_open.setFillColor(sf::Color::White);
+        text_door_open.setPosition(player.getX() - 60, player.getY() + 20);
+
+
 
         sf::Event event;
         while (window.pollEvent(event))
@@ -146,9 +165,21 @@ int myMain()
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::R)) {
                 if (player.isNearDoor(doors)) {
-                    //ne plus draw le message de texte pour ouvrir la porte
-                    //text_door.setString("");
-                    //mettre le sprite opened_door
+                    if (player.getInventory().size() == 0) {
+                        pop_up_close = true;
+                        std::cerr << "inventory is empty" << std::endl;
+                    }
+                    for (Object obj : player.getInventory()) {
+                        if (obj.getLabel() == "bookBlue") {
+                            is_open = true;
+                            pop_up_open = true;
+                            std::cerr << "in bookBlue if loop" << std::endl;
+                        }
+                    }
+                    if (is_open == false) {
+                        pop_up_close = true;
+                        std::cerr << "in bookBlue else loop" << std::endl;
+                    }
                 }
             }
         }
@@ -180,13 +211,29 @@ int myMain()
         window.draw(walls);
         window.draw(wall_decorations);
         window.draw(objects);
-        window.draw(circle);
         window.draw(text_object);
         window.draw(text_inventory);
-        window.draw(text_door);
+        if (is_open == true) {
+            window.draw(opened_door.getSprite());
+            window.draw(opened_door_bis.getSprite());
+        }
+        else {
+            window.draw(text_door);
+        }
+        if (pop_up_open == true) {
+            window.draw(text_door_open);
+            pop_up_open = false;
+        }
+        if (pop_up_close == true) {
+            window.draw(text_door_close);
+            if (player.isNearDoor(doors) == false) {
+                pop_up_close = false;
+            }
+        }
         for (Object obj : objectsRoom1) {
             window.draw(obj.getSprite());
         }
+        window.draw(circle);
         window.display();
     }
 
