@@ -9,4 +9,6 @@ Assets::Assets() {
 	poster.loadFromFile("resources/Sprite/poster.png");
 	purse.loadFromFile("resources/Sprite/purse.png");
 	skull.loadFromFile("resources/Sprite/skull.png");
+	opened_door.loadFromFile("resources/Sprite/opened_door.png");
+	closed_door.loadFromFile("resources/Sprite/closed_door.png");
 }

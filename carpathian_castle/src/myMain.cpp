@@ -60,6 +60,12 @@ int myMain()
     Object poster(100, 200, "poster");
     poster.setSprite(gameAssets.poster);
     objectsRoom1.push_back(poster);
+
+    Object closed_door(700, 100, "closed doors");
+    closed_door.setSprite(gameAssets.closed_door);
+
+    Object opened_door(400, 600, "opened doors");
+    opened_door.setSprite(gameAssets.opened_door);
     
 
 
@@ -72,11 +78,12 @@ int myMain()
     circle.setRadius(10);
 
     MapLayer ground(map, 0);
-    MapLayer layerOne(map, 1);
-    MapLayer layerTwo(map, 2);
-    MapLayer layerThree(map, 3);
+    MapLayer doors(map, 1);
+    MapLayer walls(map, 2);
+    MapLayer wall_decorations(map, 3);
+    MapLayer objects(map, 4);
 
-    
+    //if(ground.getGlobalBounds().)
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -133,6 +140,23 @@ int myMain()
             }
         }
 
+        //check if the player is near a door
+        sf::Text text_door;
+        int x_tile = int(player.getX() / 16) + 1;
+        int y_tile = int(player.getY() / 16) + 1;
+        tmx::TileLayer::Tile tile = doors.getTile(x_tile, y_tile);
+        tmx::TileLayer::Tile tile_left = doors.getTile(x_tile - 1, y_tile);
+        tmx::TileLayer::Tile tile_right = doors.getTile(x_tile + 1, y_tile);
+        tmx::TileLayer::Tile tile_up = doors.getTile(x_tile, y_tile - 1);
+        tmx::TileLayer::Tile tile_down = doors.getTile(x_tile, y_tile + 1);
+        if (tile_left.ID != NULL || tile_right.ID != NULL || tile_up.ID != NULL || tile_down.ID != NULL) {
+            text_door.setString("Press R to opent the door");
+            text_door.setFont(arial);
+            text_door.setCharacterSize(10);
+            text_door.setFillColor(sf::Color::White);
+            text_door.setPosition(player.getX() - 60, player.getY() + 20);
+        }
+
         //set up the inventory text
         sf::Text text_inventory;
         std::string display = "Inventory : \n";
@@ -150,12 +174,14 @@ int myMain()
 
         window.clear(sf::Color::Black);
         window.draw(ground);
-        window.draw(layerOne);
-        window.draw(layerTwo);
-        window.draw(layerThree);
+        window.draw(doors);
+        window.draw(walls);
+        window.draw(wall_decorations);
+        window.draw(objects);
         window.draw(circle);
         window.draw(text_object);
         window.draw(text_inventory);
+        window.draw(text_door);
         for (Object obj : objectsRoom1) {
             window.draw(obj.getSprite());
         }

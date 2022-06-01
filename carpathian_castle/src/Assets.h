@@ -13,4 +13,6 @@ public:
 	sf::Texture poster;
 	sf::Texture purse;
 	sf::Texture skull;
+	sf::Texture opened_door;
+	sf::Texture closed_door;
 };
