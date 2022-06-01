@@ -7,8 +7,15 @@ Object::Object(int x, int y, const std::string& label) :
 {
 }
 
-void Object::setSprite(const sf::Texture& texture) {
+Object::Object(pugi::xml_node node) :
+	x(node.attribute("x").as_int()),
+	y(node.attribute("y").as_int()),
+	label(node.attribute("label").value())
+{
 
+}
+
+void Object::setSprite(const sf::Texture& texture) {
 	sprite.setTexture(texture);
 	sprite.setPosition(x, y);
 	boxCollider.left = x - 10;

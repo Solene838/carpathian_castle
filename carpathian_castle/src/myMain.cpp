@@ -41,15 +41,30 @@ source distribution.
 #include "Object.h"
 #include "Assets.h"
 #include <iostream>
-#include <vector>
+#include <vector>j
 
 int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
+    pugi::xml_document doc;
+    if (pugi::xml_parse_result result = doc.load_file("resources/objects.xml"); !result)
+    {
+        std::cerr << "Could not open file visage.xml because " << result.description() << std::endl;
+        return 1;
+    }
+    for (pugi::xml_node object : doc.children("Object")) {
+        Object obj(object);
+        std::string label = obj.getLabel();
+        /*if (std::map<std::string, sf::Texture>::iterator it = gameAssets.getTexturesMap().find(label); it != gameAssets.getTexturesMap().end())
+            gameAssets.addToMap(label);*/
+        gameAssets.addToMap(label);
+        obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
+        objectsRoom1.push_back(obj);
+    }
 
-    Object purse(540, 260, "purse");
+    /*Object purse(540, 260, "purse");
     purse.setSprite(gameAssets.purse);
     objectsRoom1.push_back(purse);
     
@@ -59,7 +74,7 @@ int myMain()
 
     Object poster(100, 200, "poster");
     poster.setSprite(gameAssets.poster);
-    objectsRoom1.push_back(poster);
+    objectsRoom1.push_back(poster);*/
     
 
 
