@@ -1,6 +1,8 @@
 #pragma once
 #include "Object.h"
 #include <vector>
+#include <iostream>
+#include "SFMLOrthogonalLayer.h"
 
 class Player {
 private:
@@ -13,8 +15,8 @@ public:
 	int getX() const;
 	int getY() const;
 	std::vector<Object>& getInventory();
-	void goLeft();
-	void goRight();
-	void goUp();
-	void goDown();
+	void goLeft(MapLayer& ground);
+	void goRight(MapLayer& ground);
+	void goUp(MapLayer& ground);
+	void goDown(MapLayer& ground);
 };
