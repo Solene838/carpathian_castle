@@ -49,7 +49,7 @@ int myMain()
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
 
-    Object purse(540, 260, "purse");
+    Object purse(240, 260, "purse");
     purse.setSprite(gameAssets.purse);
     objectsRoom1.push_back(purse);
     
@@ -139,7 +139,6 @@ int myMain()
         for (Object obj : player.getInventory()) {
             display += obj.getLabel();
             display += "\n";
-            //std::cerr << "String in display : " << display << std::endl;
         }
         text_inventory.setString(display);
         text_inventory.setFont(arial);
