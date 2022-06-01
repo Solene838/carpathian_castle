@@ -45,7 +45,7 @@ source distribution.
 
 int myMain()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(480, 352), "SFML window");
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
     pugi::xml_document doc;
@@ -65,7 +65,7 @@ int myMain()
 
 
     tmx::Map map;
-    map.load("resources/dunjeon.tmx");
+    map.load("resources/dungeon_two_rooms.tmx");
 
     sf::CircleShape circle;
     Player player(400,250);
