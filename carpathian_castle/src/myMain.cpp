@@ -88,6 +88,32 @@ int myMain()
     sf::Clock globalClock;
     while (window.isOpen())
     {
+        sf::Text text_object;
+        sf::Font arial;
+        arial.loadFromFile("resources/arial.ttf");
+
+        //check if the player is near an object
+        for (Object obj : objectsRoom1) {
+            if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
+                text_object.setString("Press E to interact with the object : " + obj.getLabel());
+                text_object.setFont(arial);
+                text_object.setCharacterSize(10);
+                text_object.setStyle(sf::Text::Bold);
+                text_object.setFillColor(sf::Color::White);
+                text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
+            }
+        }
+
+        //check if the player is near a door
+        sf::Text text_door;
+        if (player.isNearDoor(doors)) {
+            text_door.setString("Press R to open the door");
+            text_door.setFont(arial);
+            text_door.setCharacterSize(10);
+            text_door.setFillColor(sf::Color::White);
+            text_door.setPosition(player.getX() - 60, player.getY() + 20);
+        }
+
 
         sf::Event event;
         while (window.pollEvent(event))
@@ -118,44 +144,20 @@ int myMain()
                     }
                 }
             }
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::R)) {
+                if (player.isNearDoor(doors)) {
+                    //ne plus draw le message de texte pour ouvrir la porte
+                    //text_door.setString("");
+                    //mettre le sprite opened_door
+                }
+            }
         }
 
         sf::Time duration = globalClock.getElapsedTime();
         ground.update(duration);
         circle.setPosition(player.getX(), player.getY());
 
-        sf::Text text_object;
-        sf::Font arial;
-        arial.loadFromFile("resources/arial.ttf");
-
-        //check if the player is near an object
-        for (Object obj : objectsRoom1) {
-            if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
-                text_object.setString("Press E to interact with the object : " + obj.getLabel());
-                text_object.setFont(arial);
-                text_object.setCharacterSize(10);
-                text_object.setStyle(sf::Text::Bold);
-                text_object.setFillColor(sf::Color::White);
-                text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
-            }
-        }
-
-        //check if the player is near a door
-        sf::Text text_door;
-        int x_tile = int(player.getX() / 16) + 1;
-        int y_tile = int(player.getY() / 16) + 1;
-        tmx::TileLayer::Tile tile = doors.getTile(x_tile, y_tile);
-        tmx::TileLayer::Tile tile_left = doors.getTile(x_tile - 1, y_tile);
-        tmx::TileLayer::Tile tile_right = doors.getTile(x_tile + 1, y_tile);
-        tmx::TileLayer::Tile tile_up = doors.getTile(x_tile, y_tile - 1);
-        tmx::TileLayer::Tile tile_down = doors.getTile(x_tile, y_tile + 1);
-        if (tile_left.ID != NULL || tile_right.ID != NULL || tile_up.ID != NULL || tile_down.ID != NULL) {
-            text_door.setString("Press R to opent the door");
-            text_door.setFont(arial);
-            text_door.setCharacterSize(10);
-            text_door.setFillColor(sf::Color::White);
-            text_door.setPosition(player.getX() - 60, player.getY() + 20);
-        }
+        
 
         //set up the inventory text
         sf::Text text_inventory;
