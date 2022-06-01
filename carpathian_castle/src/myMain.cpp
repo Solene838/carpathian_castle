@@ -48,6 +48,7 @@ int myMain()
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
+    std::vector<Object> v_doors;
     pugi::xml_document doc;
     if (pugi::xml_parse_result result = doc.load_file("resources/objects.xml"); !result)
     {
@@ -59,7 +60,12 @@ int myMain()
         std::string label = obj.getLabel();
         gameAssets.addToMap(label);
         obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
-        objectsRoom1.push_back(obj);
+        if (obj.getLabel() != "opened_door") {
+            objectsRoom1.push_back(obj);
+        }
+        else {
+            v_doors.push_back(obj);
+        }
     }
     bool is_open = false;
     bool pop_up_open = false;
@@ -80,8 +86,6 @@ int myMain()
     MapLayer walls(map, 2);
     MapLayer wall_decorations(map, 3);
     MapLayer objects(map, 4);
-
-    //if(ground.getGlobalBounds().)
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -160,7 +164,7 @@ int myMain()
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::R)) {
                 if (player.isNearDoor(doors)) {
-                    if (player.getInventory().size() == 0) {
+                    if (player.getInventory().empty()) {
                         pop_up_close = true;
                         std::cerr << "inventory is empty" << std::endl;
                     }
@@ -209,8 +213,10 @@ int myMain()
         window.draw(text_object);
         window.draw(text_inventory);
         if (is_open == true) {
-            window.draw(opened_door.getSprite());
-            window.draw(opened_door_bis.getSprite());
+            for (Object obj : v_doors) {
+                std::cerr << obj.getLabel() << std::endl;
+                window.draw(obj.getSprite());
+            }
         }
         else {
             window.draw(text_door);
