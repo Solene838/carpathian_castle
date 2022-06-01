@@ -1,4 +1,4 @@
-#include "player.h"
+#include "Player.h"
 
 Player::Player(int x, int y) :
 	x(x),
@@ -12,6 +12,10 @@ int Player::getX() const {
 
 int Player::getY() const {
 	return y;
+}
+
+std::vector<Object>& Player::getInventory() {
+	return inventory;
 }
 
 void Player::goLeft() {

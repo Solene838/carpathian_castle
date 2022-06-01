@@ -12,7 +12,7 @@ void Object::setSprite(const sf::Texture& texture) {
 	sprite.setTexture(texture);
 	sprite.setPosition(x, y);
 	boxCollider.left = x - 10;
-	boxCollider.top = y;
+	boxCollider.top = 0;
 	boxCollider.height = 500;
 	boxCollider.width = 32;
 

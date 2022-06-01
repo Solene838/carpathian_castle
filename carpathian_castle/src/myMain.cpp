@@ -75,8 +75,6 @@ int myMain()
     MapLayer layerOne(map, 1);
     MapLayer layerTwo(map, 2);
     MapLayer layerThree(map, 3);
-    //MapLayer layerFour(map, 4);
-    //MapLayer layerObjects(map, 5);
 
     
 
@@ -103,7 +101,25 @@ int myMain()
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S)) {
                 player.goDown();
             }
-
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::E)) {
+                int index = 0;
+                for (Object obj : objectsRoom1) {
+                    index += 1;
+                    if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
+                        player.getInventory().push_back(obj);
+                        objectsRoom1.erase(objectsRoom1.begin() + index - 1);
+                    }
+                }
+       
+                std::cerr << "Objects in room : " << std::endl;
+                for (Object obj : objectsRoom1) {
+                    std::cerr << obj.getLabel() << std::endl;
+                }
+                std::cerr << "Objects in inventory : " << std::endl;
+                for (Object obj : player.getInventory()) {
+                    std::cerr << obj.getLabel() << std::endl;
+                }
+            }
         }
 
         sf::Time duration = globalClock.getElapsedTime();
@@ -114,22 +130,36 @@ int myMain()
         int y_tile = int(player.getY() / 32) + 1;
         //std::cerr << "pos_x/pos_y : " << player.getX() << "/" << player.getY() << " x_tile/y_tile : " << x_tile << "/" << y_tile << std::endl;
 
-        sf::Text text;
+        sf::Text text_object;
         sf::Font arial;
         arial.loadFromFile("resources/arial.ttf");
 
         //check if the player is near an object
         for (Object obj : objectsRoom1) {
             if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
-                text.setString("Press E to interact with the object");
-                text.setFont(arial);
-                text.setCharacterSize(10);
-                text.setStyle(sf::Text::Bold);
-                text.setFillColor(sf::Color::White);
-                text.setPosition(obj.getX() - 60, obj.getY() - 20);
+                text_object.setString("Press E to interact with the object : " + obj.getLabel());
+                text_object.setFont(arial);
+                text_object.setCharacterSize(10);
+                text_object.setStyle(sf::Text::Bold);
+                text_object.setFillColor(sf::Color::White);
+                text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
             }
         }
-        
+
+        //set up the inventory text
+        sf::Text text_inventory;
+        std::string display = "Inventory : \n";
+        for (Object obj : player.getInventory()) {
+            display += obj.getLabel();
+            display += "\n";
+            //std::cerr << "String in display : " << display << std::endl;
+        }
+        text_inventory.setString(display);
+        text_inventory.setFont(arial);
+        text_inventory.setCharacterSize(20);
+        text_inventory.setStyle(sf::Text::Bold);
+        text_inventory.setFillColor(sf::Color::White);
+        text_inventory.setPosition(600, 50);
 
 
         window.clear(sf::Color::Black);
@@ -137,12 +167,12 @@ int myMain()
         window.draw(layerOne);
         window.draw(layerTwo);
         window.draw(layerThree);
-        //window.draw(layerFour);
-        //window.draw(layerObjects);
         window.draw(circle);
-        window.draw(text);
-        window.draw(purse.getSprite());
-        window.draw(book1.getSprite());
+        window.draw(text_object);
+        window.draw(text_inventory);
+        for (Object obj : objectsRoom1) {
+            window.draw(obj.getSprite());
+        }
         window.display();
     }
 
