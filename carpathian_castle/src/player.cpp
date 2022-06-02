@@ -99,23 +99,32 @@ void Player::doEnigma() const {
 		enigma.setFillColor(sf::Color::Red);
 		enigma.setPosition(80, 100);
 
+		//Test of data
+		/*int size_window_px = 450;
+		int size_window_char = size_window_px / enigma.getCharacterSize();
+		std::cerr << "Taille fenetre pixel : " << size_window_px << std::endl;
+		std::cerr << "Taille fenetre nb char : " << size_window_char << std::endl;*/
+
 		//Check if the text is too wide for the screen
-		size_t size = enigma.getString().getSize();
-		int nb_char = 550 / 40;
-		std::cerr << "size of string : " << size << std::endl;
-		for (int i = 0; i < (int)size; i++) {
-			size_t index = i;
-			std::cerr << "index : " << index << std::endl;
-			if (enigma.findCharacterPos(index).x >= 23) {
-				std::cerr << "in if loop" << std::endl;
-				std::string tmp = enigma.getString();
-				std::cerr << "tmp before insert : " << tmp << std::endl;
-				tmp.insert(index, "\n");
-				std::cerr << "tmp after insert : " << tmp << std::endl;
-				enigma.setString(tmp);
-				break;
+		std::string result;
+		std::string current = enigma.getString();
+		while (current.size() > 23) {
+			std::cerr << "Size of current string : " << current.size() << std::endl;
+			for (int i = 0; i < 23; i++) {
+				result = result + current[i];
+				//std::cerr << "result : " << result << std::endl;
 			}
+			result = result + "\n";
+			std::string tmp;
+			for (int j = 23; j < current.size(); j++) {
+				tmp = tmp + current[j];
+				//std::cerr << "tmp : " << tmp << std::endl;
+			}
+			current = tmp;
 		}
+		result = result + current;
+
+		enigma.setString(result);
 
 		window.clear(sf::Color::Black);
 		window.draw(sprite);
