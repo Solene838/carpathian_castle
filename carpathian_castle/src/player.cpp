@@ -73,15 +73,53 @@ bool Player::isNearDoor(MapLayer& doors) const {
 void Player::doEnigma() const {
 	std::cerr << "In enigma function of player" << std::endl;
 	std::cerr << "This object is locked : you need to resolve an enigma" << std::endl;
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Enigma window");
+	sf::RenderWindow window(sf::VideoMode(450, 550), "Enigma window");
 
 	while (window.isOpen()) {
-		std::cerr << "pouet" << std::endl;
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+
+		sf::Sprite sprite;
+		sf::Texture texture;
+		texture.loadFromFile("resources/Sprite/parchemin.png");
+		sprite.setTexture(texture);
+		sprite.setScale(0.1, 0.1);
+
+		sf::Font script;
+		script.loadFromFile("resources/Alexbrush-Regular.ttf");
+		sf::Text enigma;
+		enigma.setString("Qu'est-ce qui est petit et marron ?");
+		enigma.setFont(script);
+		enigma.setCharacterSize(40);
+		enigma.setStyle(sf::Text::Regular);
+		enigma.setFillColor(sf::Color::Red);
+		enigma.setPosition(80, 100);
+
+		//Check if the text is too wide for the screen
+		size_t size = enigma.getString().getSize();
+		int nb_char = 550 / 40;
+		std::cerr << "size of string : " << size << std::endl;
+		for (int i = 0; i < (int)size; i++) {
+			size_t index = i;
+			std::cerr << "index : " << index << std::endl;
+			if (enigma.findCharacterPos(index).x >= 23) {
+				std::cerr << "in if loop" << std::endl;
+				std::string tmp = enigma.getString();
+				std::cerr << "tmp before insert : " << tmp << std::endl;
+				tmp.insert(index, "\n");
+				std::cerr << "tmp after insert : " << tmp << std::endl;
+				enigma.setString(tmp);
+				break;
+			}
+		}
+
+		window.clear(sf::Color::Black);
+		window.draw(sprite);
+		window.draw(enigma);
+		window.display();
 	}
 }
