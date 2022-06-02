@@ -216,7 +216,6 @@ int myMain()
         window.draw(text_inventory);
         if (is_open == true) {
             for (Object obj : v_doors) {
-                //std::cerr << obj.getLabel() << std::endl;
                 window.draw(obj.getSprite());
             }
         }
