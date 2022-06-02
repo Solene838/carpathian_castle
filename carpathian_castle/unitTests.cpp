@@ -10,7 +10,7 @@ TEST(TestTmxLite, AlwaysTrue) {
 
 TEST(TestReadXML, TestObject) {
 	std::string s = R"(<?xml version = "1.0"?>
-			<Object label="test" x="0" y="1"/>)";
+			<Object label="test" x="0" y="1" category="purse"/>)";
 	pugi::xml_document doc;
 	pugi::xml_parse_result result = doc.load_string(s.c_str());
 	ASSERT_TRUE(result) << result.description();
@@ -19,7 +19,7 @@ TEST(TestReadXML, TestObject) {
 	EXPECT_EQ(o.getLabel(), o_ref.getLabel());
 	EXPECT_EQ(o.getX(), o_ref.getX());
 	EXPECT_EQ(o.getY(), o_ref.getY());
-	//EXPECT_EQ(o.getType(), o_ref.getType());
+	EXPECT_EQ(o.getCategory(), o_ref.getCategory());
 }
 
 TEST(TestMap, TestAddToMap) {
