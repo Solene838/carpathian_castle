@@ -127,7 +127,7 @@ int myMain()
         text_door_close.setPosition(player.getX() - 60, player.getY() - 30);
 
         sf::Text text_door_open;
-        text_door_open.setString("the door is open !");
+        text_door_open.setString("The door is open !");
         text_door_open.setFont(arial);
         text_door_open.setCharacterSize(10);
         text_door_open.setFillColor(sf::Color::White);
@@ -225,7 +225,9 @@ int myMain()
         }
         if (pop_up_open == true) {
             window.draw(text_door_open);
-            pop_up_open = false;
+            if (player.isNearDoor(doors) == false) {
+                pop_up_open = false;
+            }
         }
         if (pop_up_close == true) {
             window.draw(text_door_close);
