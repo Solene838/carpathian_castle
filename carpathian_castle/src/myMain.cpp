@@ -160,7 +160,7 @@ int myMain()
                     index += 1;
                     if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
                         if (obj.getLock()) {
-                            std::cerr << "This object is locked : you need to resolve an enigma" << std::endl;
+                            player.doEnigma();
                         }
                         else {
                             player.getInventory().push_back(obj);

@@ -54,7 +54,7 @@ void Player::goDown(MapLayer& ground) {
 	}
 }
 
-bool Player::isNearDoor(MapLayer& doors) {
+bool Player::isNearDoor(MapLayer& doors) const {
 	int x_tile = int(x / 16) + 1;
 	int y_tile = int(y / 16) + 1;
 	tmx::TileLayer::Tile tile = doors.getTile(x_tile, y_tile);
@@ -62,10 +62,26 @@ bool Player::isNearDoor(MapLayer& doors) {
 	tmx::TileLayer::Tile tile_right = doors.getTile(x_tile + 1, y_tile);
 	tmx::TileLayer::Tile tile_up = doors.getTile(x_tile, y_tile - 1);
 	tmx::TileLayer::Tile tile_down = doors.getTile(x_tile, y_tile + 1);
-	if (tile_left.ID != NULL || tile_right.ID != NULL || tile_up.ID != NULL || tile_down.ID != NULL) {
+	if (tile.ID != NULL || tile_left.ID != NULL || tile_right.ID != NULL || tile_up.ID != NULL || tile_down.ID != NULL) {
 		return true;
 	}
 	else {
 		return false;
+	}
+}
+
+void Player::doEnigma() const {
+	std::cerr << "In enigma function of player" << std::endl;
+	std::cerr << "This object is locked : you need to resolve an enigma" << std::endl;
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Enigma window");
+
+	while (window.isOpen()) {
+		std::cerr << "pouet" << std::endl;
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
 	}
 }
