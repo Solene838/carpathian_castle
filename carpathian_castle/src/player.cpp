@@ -1,6 +1,5 @@
 #include "Player.h"
 
-
 Player::Player(int x, int y) :
 	x(x),
 	y(y)
@@ -52,5 +51,21 @@ void Player::goDown(MapLayer& ground) {
 	tmx::TileLayer::Tile tile_down = ground.getTile(x_tile, y_tile + 1);
 	if (tile_down.ID != NULL) {
 		y += 10;
+	}
+}
+
+bool Player::isNearDoor(MapLayer& doors) {
+	int x_tile = int(x / 16) + 1;
+	int y_tile = int(y / 16) + 1;
+	tmx::TileLayer::Tile tile = doors.getTile(x_tile, y_tile);
+	tmx::TileLayer::Tile tile_left = doors.getTile(x_tile - 1, y_tile);
+	tmx::TileLayer::Tile tile_right = doors.getTile(x_tile + 1, y_tile);
+	tmx::TileLayer::Tile tile_up = doors.getTile(x_tile, y_tile - 1);
+	tmx::TileLayer::Tile tile_down = doors.getTile(x_tile, y_tile + 1);
+	if (tile_left.ID != NULL || tile_right.ID != NULL || tile_up.ID != NULL || tile_down.ID != NULL) {
+		return true;
+	}
+	else {
+		return false;
 	}
 }

@@ -1,16 +1,18 @@
 #include "Object.h"
 
-Object::Object(int x, int y, const std::string& label) :
+Object::Object(int x, int y, const std::string& label, const std::string& category) :
 	x(x),
 	y(y),
-	label(label)
+	label(label),
+	category(category)
 {
 }
 
 Object::Object(pugi::xml_node node) :
 	x(node.attribute("x").as_int()),
 	y(node.attribute("y").as_int()),
-	label(node.attribute("label").value())
+	label(node.attribute("label").as_string()),
+	category(node.attribute("category").as_string())
 {
 
 }
@@ -19,8 +21,8 @@ void Object::setSprite(const sf::Texture& texture) {
 	sprite.setTexture(texture);
 	sprite.setPosition(x, y);
 	boxCollider.left = x - 10;
-	boxCollider.top = 0;
-	boxCollider.height = 500;
+	boxCollider.top = y - 10;
+	boxCollider.height = 32;
 	boxCollider.width = 32;
 
 }
@@ -43,4 +45,8 @@ int Object::getX() const {
 
 int Object::getY() const {
 	return y;
+}
+
+std::string Object::getCategory() const {
+	return category;
 }

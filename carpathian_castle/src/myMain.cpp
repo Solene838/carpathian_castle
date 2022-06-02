@@ -41,13 +41,14 @@ source distribution.
 #include "Object.h"
 #include "Assets.h"
 #include <iostream>
-#include <vector>j
+#include <vector>
 
 int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(480, 352), "SFML window");
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
+    std::vector<Object> v_doors;
     pugi::xml_document doc;
     if (pugi::xml_parse_result result = doc.load_file("resources/objects.xml"); !result)
     {
@@ -57,10 +58,19 @@ int myMain()
     for (pugi::xml_node object : doc.children("Object")) {
         Object obj(object);
         std::string label = obj.getLabel();
-        gameAssets.addToMap(label);
+        std::string type = obj.getCategory();
+        gameAssets.addToMap(label, type);
         obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
-        objectsRoom1.push_back(obj);
+        if (obj.getCategory() != "opened_door") {
+            objectsRoom1.push_back(obj);
+        }
+        else {
+            v_doors.push_back(obj);
+        }
     }
+    bool is_open = false;
+    bool pop_up_open = false;
+    bool pop_up_close = false;
     
 
 
@@ -73,15 +83,56 @@ int myMain()
     circle.setRadius(10);
 
     MapLayer ground(map, 0);
-    MapLayer layerOne(map, 1);
-    MapLayer layerTwo(map, 2);
-    MapLayer layerThree(map, 3);
-
-    
+    MapLayer doors(map, 1);
+    MapLayer walls(map, 2);
+    MapLayer wall_decorations(map, 3);
+    MapLayer objects(map, 4);
 
     sf::Clock globalClock;
     while (window.isOpen())
     {
+        sf::Text text_object;
+        sf::Font arial;
+        arial.loadFromFile("resources/arial.ttf");
+
+        //check if the player is near an object
+        for (Object obj : objectsRoom1) {
+            if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
+                text_object.setString("Press E to interact with the object : " + obj.getLabel());
+                text_object.setFont(arial);
+                text_object.setCharacterSize(10);
+                text_object.setStyle(sf::Text::Bold);
+                text_object.setFillColor(sf::Color::White);
+                text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
+            }
+        }
+
+        //check if the player is near a door
+        sf::Text text_door;
+        if (player.isNearDoor(doors)) {
+            text_door.setString("Press R to open the door");
+            text_door.setFont(arial);
+            text_door.setCharacterSize(10);
+            text_door.setFillColor(sf::Color::White);
+            text_door.setPosition(player.getX() - 60, player.getY() + 20);
+        }
+
+        //texts for the doors
+        sf::Text text_door_close;
+        text_door_close.setString("You don't have the right object to open this door");
+        text_door_close.setFont(arial);
+        text_door_close.setCharacterSize(10);
+        text_door_close.setFillColor(sf::Color::White);
+        text_door_close.setPosition(player.getX() - 60, player.getY() - 30);
+
+        sf::Text text_door_open;
+        text_door_open.setString("The door is open !");
+        text_door_open.setFont(arial);
+        text_door_open.setCharacterSize(10);
+        text_door_open.setFillColor(sf::Color::White);
+        text_door_open.setPosition(player.getX() - 60, player.getY() + 20);
+
+
 
         sf::Event event;
         while (window.pollEvent(event))
@@ -112,27 +163,33 @@ int myMain()
                     }
                 }
             }
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::R)) {
+                if (player.isNearDoor(doors)) {
+                    if (player.getInventory().empty()) {
+                        pop_up_close = true;
+                        std::cerr << "inventory is empty" << std::endl;
+                    }
+                    for (Object obj : player.getInventory()) {
+                        if (obj.getLabel() == "bookBlue") {
+                            is_open = true;
+                            pop_up_open = true;
+                            std::cerr << "in bookBlue if loop" << std::endl;
+                            std::cerr << "is_open/pop_up_open : " << is_open << "/" << pop_up_open << std::endl;
+                        }
+                    }
+                    if (is_open == false) {
+                        pop_up_close = true;
+                        std::cerr << "in bookBlue else loop" << std::endl;
+                    }
+                }
+            }
         }
 
         sf::Time duration = globalClock.getElapsedTime();
         ground.update(duration);
         circle.setPosition(player.getX(), player.getY());
 
-        sf::Text text_object;
-        sf::Font arial;
-        arial.loadFromFile("resources/arial.ttf");
-
-        //check if the player is near an object
-        for (Object obj : objectsRoom1) {
-            if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
-                text_object.setString("Press E to interact with the object : " + obj.getLabel());
-                text_object.setFont(arial);
-                text_object.setCharacterSize(10);
-                text_object.setStyle(sf::Text::Bold);
-                text_object.setFillColor(sf::Color::White);
-                text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
-            }
-        }
+        
 
         //set up the inventory text
         sf::Text text_inventory;
@@ -140,7 +197,6 @@ int myMain()
         for (Object obj : player.getInventory()) {
             display += obj.getLabel();
             display += "\n";
-            //std::cerr << "String in display : " << display << std::endl;
         }
         text_inventory.setString(display);
         text_inventory.setFont(arial);
@@ -152,15 +208,37 @@ int myMain()
 
         window.clear(sf::Color::Black);
         window.draw(ground);
-        window.draw(layerOne);
-        window.draw(layerTwo);
-        window.draw(layerThree);
-        window.draw(circle);
+        window.draw(doors);
+        window.draw(walls);
+        window.draw(wall_decorations);
+        window.draw(objects);
         window.draw(text_object);
         window.draw(text_inventory);
+        if (is_open == true) {
+            for (Object obj : v_doors) {
+                std::cerr << obj.getLabel() << std::endl;
+                window.draw(obj.getSprite());
+            }
+        }
+        else {
+            window.draw(text_door);
+        }
+        if (pop_up_open == true) {
+            window.draw(text_door_open);
+            if (player.isNearDoor(doors) == false) {
+                pop_up_open = false;
+            }
+        }
+        if (pop_up_close == true) {
+            window.draw(text_door_close);
+            if (player.isNearDoor(doors) == false) {
+                pop_up_close = false;
+            }
+        }
         for (Object obj : objectsRoom1) {
             window.draw(obj.getSprite());
         }
+        window.draw(circle);
         window.display();
     }
 

@@ -5,8 +5,9 @@ class Assets {
 public:
 	bool operator==(const Assets&) const = default;
 	Assets();
+	sf::Texture bookBlue;
 	const std::map<std::string, sf::Texture>& getTexturesMap() const;
-	void addToMap(std::string label);
+	void addToMap(std::string label, std::string type);
 private:
 	std::map<std::string, sf::Texture> textures;
 };
