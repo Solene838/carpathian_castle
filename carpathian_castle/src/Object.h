@@ -11,6 +11,7 @@ private:
 	std::string category;
 	sf::IntRect boxCollider;
 	sf::Sprite sprite;
+	bool is_locked;
 
 public:
 	bool operator==(const Object&) const = default;
@@ -23,4 +24,5 @@ public:
 	int getX() const;
 	int getY() const;
 	std::string getCategory() const;
+	bool getLock() const;
 };

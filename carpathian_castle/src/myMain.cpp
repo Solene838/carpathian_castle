@@ -158,8 +158,13 @@ int myMain()
                 for (Object obj : objectsRoom1) {
                     index += 1;
                     if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
-                        player.getInventory().push_back(obj);
-                        objectsRoom1.erase(objectsRoom1.begin() + index - 1);
+                        if (obj.getLock()) {
+                            std::cerr << "This object is locked : you need to resolve an enigma" << std::endl;
+                        }
+                        else {
+                            player.getInventory().push_back(obj);
+                            objectsRoom1.erase(objectsRoom1.begin() + index - 1);
+                        }
                     }
                 }
             }

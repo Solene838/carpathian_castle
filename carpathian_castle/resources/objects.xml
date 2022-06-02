@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Object label="purse" x="540" y="260" category="purse"/>
+<Object label="purse" x="240" y="230" category="purse"/>
 <Object label="bookBlue" x="360" y="230" category="bookBlue"/>
 <Object label="poster" x="100" y="200" category="poster"/>
 <Object label="opened_door1" x="210" y="288" category="opened_door"/>

@@ -6,6 +6,7 @@ Object::Object(int x, int y, const std::string& label, const std::string& catego
 	label(label),
 	category(category)
 {
+	is_locked = false;
 }
 
 Object::Object(pugi::xml_node node) :
@@ -49,4 +50,8 @@ int Object::getY() const {
 
 std::string Object::getCategory() const {
 	return category;
+}
+
+bool Object::getLock() const {
+	return is_locked;
 }
