@@ -173,6 +173,7 @@ int myMain()
                             is_open = true;
                             pop_up_open = true;
                             std::cerr << "in bookBlue if loop" << std::endl;
+                            std::cerr << "is_open/pop_up_open : " << is_open << "/" << pop_up_open << std::endl;
                         }
                     }
                     if (is_open == false) {
