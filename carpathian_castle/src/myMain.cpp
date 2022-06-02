@@ -63,6 +63,7 @@ int myMain()
         obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
         if (obj.getCategory() != "opened_door") {
             objectsRoom1.push_back(obj);
+            std::cerr << "is_locked : " << obj.getLock() << std::endl;
         }
         else {
             v_doors.push_back(obj);

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<Object label="purse" x="240" y="230" category="purse"/>
-<Object label="bookBlue" x="360" y="230" category="bookBlue"/>
-<Object label="poster" x="100" y="200" category="poster"/>
-<Object label="opened_door1" x="210" y="288" category="opened_door"/>
-<Object label="opened_door2" x="350" y ="15" category="opened_door"/>
+<Object label="purse" x="240" y="230" category="purse" is_locked="false"/>
+<Object label="bookBlue" x="360" y="230" category="bookBlue" is_locked="true"/>
+<Object label="poster" x="100" y="200" category="poster" is_locked="false"/>
+<Object label="opened_door1" x="210" y="288" category="opened_door" is_locked="false"/>
+<Object label="opened_door2" x="350" y ="15" category="opened_door" is_locked="false"/>

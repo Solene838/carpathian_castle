@@ -15,7 +15,7 @@ private:
 
 public:
 	bool operator==(const Object&) const = default;
-	Object(int x, int y, const std::string& label, const std::string& category);
+	Object(int x, int y, const std::string& label, const std::string& category, bool is_locked);
 	explicit Object(pugi::xml_node node);
 	void setSprite(const sf::Texture& texture);
 	sf::Sprite& getSprite();
@@ -25,4 +25,5 @@ public:
 	int getY() const;
 	std::string getCategory() const;
 	bool getLock() const;
+	void setLock(bool tmp);
 };
