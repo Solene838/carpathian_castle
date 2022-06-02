@@ -1,16 +1,18 @@
 #include "Object.h"
 
-Object::Object(int x, int y, const std::string& label) :
+Object::Object(int x, int y, const std::string& label, const std::string& type) :
 	x(x),
 	y(y),
-	label(label)
+	label(label),
+	type(type)
 {
 }
 
 Object::Object(pugi::xml_node node) :
 	x(node.attribute("x").as_int()),
 	y(node.attribute("y").as_int()),
-	label(node.attribute("label").value())
+	label(node.attribute("label").as_string()),
+	type(node.attribute("category").as_string())
 {
 
 }
@@ -43,4 +45,8 @@ int Object::getX() const {
 
 int Object::getY() const {
 	return y;
+}
+
+std::string Object::getType() const {
+	return type;
 }

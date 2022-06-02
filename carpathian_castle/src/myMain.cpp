@@ -41,7 +41,7 @@ source distribution.
 #include "Object.h"
 #include "Assets.h"
 #include <iostream>
-#include <vector>j
+#include <vector>
 
 int myMain()
 {
@@ -58,9 +58,11 @@ int myMain()
     for (pugi::xml_node object : doc.children("Object")) {
         Object obj(object);
         std::string label = obj.getLabel();
-        gameAssets.addToMap(label);
+        std::string type = obj.getType();
+        std::cout << type << std::endl;
+        gameAssets.addToMap(label, type);
         obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
-        if (obj.getLabel() != "opened_door") {
+        if (obj.getType() != "opened_door") {
             objectsRoom1.push_back(obj);
         }
         else {
