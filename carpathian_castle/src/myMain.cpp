@@ -41,7 +41,7 @@ source distribution.
 #include "Object.h"
 #include "Assets.h"
 #include <iostream>
-#include <vector>j
+#include <vector>
 
 int myMain()
 {
@@ -58,9 +58,11 @@ int myMain()
     for (pugi::xml_node object : doc.children("Object")) {
         Object obj(object);
         std::string label = obj.getLabel();
-        gameAssets.addToMap(label);
+        std::string type = obj.getType();
+        std::cout << type << std::endl;
+        gameAssets.addToMap(label, type);
         obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
-        if (obj.getLabel() != "opened_door") {
+        if (obj.getType() != "opened_door") {
             objectsRoom1.push_back(obj);
         }
         else {
@@ -125,7 +127,7 @@ int myMain()
         text_door_close.setPosition(player.getX() - 60, player.getY() - 30);
 
         sf::Text text_door_open;
-        text_door_open.setString("the door is open !");
+        text_door_open.setString("The door is open !");
         text_door_open.setFont(arial);
         text_door_open.setCharacterSize(10);
         text_door_open.setFillColor(sf::Color::White);
@@ -224,7 +226,9 @@ int myMain()
         }
         if (pop_up_open == true) {
             window.draw(text_door_open);
-            pop_up_open = false;
+            if (player.isNearDoor(doors) == false) {
+                pop_up_open = false;
+            }
         }
         if (pop_up_close == true) {
             window.draw(text_door_close);
