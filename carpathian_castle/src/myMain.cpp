@@ -46,6 +46,7 @@ source distribution.
 int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(480, 352), "SFML window");
+    sf::View view2(sf::Vector2f(240, 176), sf::Vector2f(480, 352));
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
     std::vector<Object> v_doors;
@@ -189,7 +190,13 @@ int myMain()
         ground.update(duration);
         circle.setPosition(player.getX(), player.getY());
 
-        
+        if (player.getY() > 330) {
+            view2.setCenter(240, 518);
+        }
+
+        if (player.getY() < 350) {
+            view2.setCenter(240, 176);
+        }
 
         //set up the inventory text
         sf::Text text_inventory;
@@ -205,8 +212,8 @@ int myMain()
         text_inventory.setFillColor(sf::Color::White);
         text_inventory.setPosition(600, 50);
 
-
         window.clear(sf::Color::Black);
+        window.setView(view2);
         window.draw(ground);
         window.draw(doors);
         window.draw(walls);
