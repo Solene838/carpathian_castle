@@ -8,13 +8,13 @@ private:
 	int x;
 	int y;
 	std::string label;
-	std::string type;
+	std::string category;
 	sf::IntRect boxCollider;
 	sf::Sprite sprite;
 
 public:
 	bool operator==(const Object&) const = default;
-	Object(int x, int y, const std::string& label, const std::string& type);
+	Object(int x, int y, const std::string& label, const std::string& category);
 	explicit Object(pugi::xml_node node);
 	void setSprite(const sf::Texture& texture);
 	sf::Sprite& getSprite();
@@ -22,5 +22,5 @@ public:
 	sf::IntRect getBoxCollider() const;
 	int getX() const;
 	int getY() const;
-	std::string getType() const;
+	std::string getCategory() const;
 };

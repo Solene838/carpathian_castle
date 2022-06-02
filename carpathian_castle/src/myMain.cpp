@@ -58,11 +58,10 @@ int myMain()
     for (pugi::xml_node object : doc.children("Object")) {
         Object obj(object);
         std::string label = obj.getLabel();
-        std::string type = obj.getType();
-        std::cout << type << std::endl;
+        std::string type = obj.getCategory();
         gameAssets.addToMap(label, type);
         obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
-        if (obj.getType() != "opened_door") {
+        if (obj.getCategory() != "opened_door") {
             objectsRoom1.push_back(obj);
         }
         else {
