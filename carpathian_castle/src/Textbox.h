@@ -15,6 +15,69 @@ public:
 		textbox.setCharacterSize(size);
 		textbox.setColor(color);
 		isSelected = sel;
+		if (isSelected) {
+			textbox.setString("_");
+		}
+		else {
+			textbox.setString("");
+		}
+	}
+
+	void setFont(sf::Font& font) {
+		textbox.setFont(font);
+	}
+
+	void setPosition(sf::Vector2f pos) {
+		textbox.setPosition(pos);
+	}
+
+	void setLimit(bool ToF) {
+		hasLimit = ToF;
+	}
+
+	void setLimit(bool ToF, int lim) {
+		hasLimit = ToF;
+		limit = lim;
+	}
+
+	void setSelected(bool sel) {
+		isSelected = sel;
+		if (!sel) {
+			std::string t = text.str();
+			std::string newT = "";
+			for (int i = 0; i < t.length(); i++) {
+				newT += t[i];
+			}
+			textbox.setString(newT);
+		}
+	}
+
+	std::string getText() {
+		return text.str();
+	}
+
+	void drawTo(sf::RenderWindow& window) {
+		window.draw(textbox);
+	}
+
+	void typedOn(sf::Event input) {
+		if (isSelected) {
+			int charTyped = input.text.unicode;
+			//allowing only numbers, letters and slash
+			if (charTyped < 128) {
+				if (hasLimit) {
+					if (text.str().length() <= limit) {
+						inputLogic(charTyped);
+					}
+					else if (text.str().length() > limit && charTyped == DELETE_KEY) {
+						deleteLastChar();
+					}
+				}
+				else {
+					inputLogic(charTyped);
+				}
+			}
+		}
 	}
 
 private:
