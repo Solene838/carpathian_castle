@@ -75,12 +75,29 @@ void Player::doEnigma() const {
 	std::cerr << "This object is locked : you need to resolve an enigma" << std::endl;
 	sf::RenderWindow window(sf::VideoMode(450, 550), "Enigma window");
 
+	sf::Font script;
+	script.loadFromFile("resources/Alexbrush-Regular.ttf");
+	sf::Font arial;
+	arial.loadFromFile("resources/arial.ttf");
+	sf::String playerInput;
+	sf::Text playerText;
+	playerText.setFont(arial);
+	playerText.setCharacterSize(40);
+	playerText.setStyle(sf::Text::Regular);
+	playerText.setFillColor(sf::Color::Black);
+	playerText.setPosition(80, 300);
+
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			if (event.type == sf::Event::TextEntered)
+			{
+				playerInput += event.text.unicode;
+				playerText.setString(playerInput);
+			}
 		}
 
 		sf::Sprite sprite;
@@ -89,14 +106,13 @@ void Player::doEnigma() const {
 		sprite.setTexture(texture);
 		sprite.setScale(0.1, 0.1);
 
-		sf::Font script;
-		script.loadFromFile("resources/Alexbrush-Regular.ttf");
+
 		sf::Text enigma;
 		enigma.setString("Qu'est-ce qui est petit et marron ?");
 		enigma.setFont(script);
 		enigma.setCharacterSize(40);
 		enigma.setStyle(sf::Text::Regular);
-		enigma.setFillColor(sf::Color::Red);
+		enigma.setFillColor(sf::Color::Black);
 		enigma.setPosition(80, 100);
 
 		//Test of data
@@ -109,7 +125,7 @@ void Player::doEnigma() const {
 		std::string result;
 		std::string current = enigma.getString();
 		while (current.size() > 23) {
-			std::cerr << "Size of current string : " << current.size() << std::endl;
+			//std::cerr << "Size of current string : " << current.size() << std::endl;
 			for (int i = 0; i < 23; i++) {
 				result = result + current[i];
 				//std::cerr << "result : " << result << std::endl;
@@ -129,6 +145,7 @@ void Player::doEnigma() const {
 		window.clear(sf::Color::Black);
 		window.draw(sprite);
 		window.draw(enigma);
+		window.draw(playerText);
 		window.display();
 	}
 }
