@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Textbox.h"
 
 Player::Player(int x, int y) :
 	x(x),
@@ -79,24 +80,31 @@ void Player::doEnigma() const {
 	script.loadFromFile("resources/Alexbrush-Regular.ttf");
 	sf::Font arial;
 	arial.loadFromFile("resources/arial.ttf");
-	sf::String playerInput;
-	sf::Text playerText;
-	playerText.setFont(arial);
-	playerText.setCharacterSize(40);
-	playerText.setStyle(sf::Text::Regular);
-	playerText.setFillColor(sf::Color::Black);
-	playerText.setPosition(80, 300);
+
+
+	Textbox textbox(20, sf::Color::Red, true);
+	textbox.setFont(arial);
+	textbox.setPosition({ 100, 300 });
 
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			switch (event.type) {
+
+			case sf::Event::Closed:
 				window.close();
-			if (event.type == sf::Event::TextEntered)
-			{
-				playerInput += event.text.unicode;
-				playerText.setString(playerInput);
+
+			case sf::Event::TextEntered:
+				textbox.typedOn(event);
+
+			case sf::Event::KeyPressed:
+				if (event.key.code == sf::Keyboard::Return) {
+					textbox.setSelected(true);
+				}
+				else if (event.key.code == sf::Keyboard::Escape) {
+					textbox.setSelected(false);
+				}
 			}
 		}
 
@@ -145,7 +153,7 @@ void Player::doEnigma() const {
 		window.clear(sf::Color::Black);
 		window.draw(sprite);
 		window.draw(enigma);
-		window.draw(playerText);
+		textbox.drawTo(window);
 		window.display();
 	}
 }

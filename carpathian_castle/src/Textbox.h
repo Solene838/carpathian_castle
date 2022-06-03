@@ -81,7 +81,7 @@ public:
 	}
 
 private:
-	sf::Text:: textbox;
+	sf::Text textbox;
 	std::ostringstream text;
 	bool isSelected = false;
 	bool hasLimit = false;
@@ -92,7 +92,7 @@ private:
 			text << static_cast<char>(charTyped);
 		}
 		else if (charTyped == DELETE_KEY) {
-			if (text.str().length > 0) {
+			if (text.str().length() > 0) {
 				deleteLastChar();
 			}
 		}
