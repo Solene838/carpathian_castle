@@ -160,7 +160,10 @@ int myMain()
                     index += 1;
                     if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
                         if (obj.getLock()) {
-                            player.doEnigma();
+                            if (player.doEnigma()) {
+                                obj.setLock(false);
+                                std::cerr << "after enigma : " << obj.getLabel() << " : " << obj.getLock() << std::endl;
+                            }
                         }
                         else {
                             player.getInventory().push_back(obj);
@@ -179,13 +182,10 @@ int myMain()
                         if (obj.getLabel() == "bookBlue") {
                             is_open = true;
                             pop_up_open = true;
-                            std::cerr << "in bookBlue if loop" << std::endl;
-                            std::cerr << "is_open/pop_up_open : " << is_open << "/" << pop_up_open << std::endl;
                         }
                     }
                     if (is_open == false) {
                         pop_up_close = true;
-                        std::cerr << "in bookBlue else loop" << std::endl;
                     }
                 }
             }
@@ -242,6 +242,7 @@ int myMain()
         }
         for (Object obj : objectsRoom1) {
             window.draw(obj.getSprite());
+            std::cerr << "lock state of objects : " << obj.getLock() << std::endl;
         }
         window.draw(circle);
         window.display();

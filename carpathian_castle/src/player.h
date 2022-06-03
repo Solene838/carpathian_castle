@@ -21,5 +21,5 @@ public:
 	void goUp(MapLayer& ground);
 	void goDown(MapLayer& ground);
 	bool isNearDoor(MapLayer& doors) const;
-	void doEnigma() const;
+	bool doEnigma() const;
 };

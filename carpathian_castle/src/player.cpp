@@ -71,7 +71,7 @@ bool Player::isNearDoor(MapLayer& doors) const {
 	}
 }
 
-void Player::doEnigma() const {
+bool Player::doEnigma() const {
 	std::cerr << "In enigma function of player" << std::endl;
 	std::cerr << "This object is locked : you need to resolve an enigma" << std::endl;
 	sf::RenderWindow window(sf::VideoMode(450, 550), "Enigma window");
@@ -82,9 +82,20 @@ void Player::doEnigma() const {
 	arial.loadFromFile("resources/arial.ttf");
 
 
-	Textbox textbox(20, sf::Color::Red, true);
+	Textbox textbox(20, sf::Color::Red, false);
 	textbox.setFont(arial);
 	textbox.setPosition({ 100, 300 });
+	textbox.setLimit(true, 10);
+	textbox.setRect(100, 300, 30, 200);
+
+	sf::RectangleShape inputBox;
+	inputBox.setSize({ 200, 30 });
+	inputBox.setPosition(100, 300);
+	inputBox.setFillColor(sf::Color::White);
+
+
+	bool is_resolved = false;
+
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -94,15 +105,31 @@ void Player::doEnigma() const {
 
 			case sf::Event::Closed:
 				window.close();
+				return is_resolved;
 
 			case sf::Event::TextEntered:
 				textbox.typedOn(event);
 
 			case sf::Event::KeyPressed:
 				if (event.key.code == sf::Keyboard::Return) {
-					textbox.setSelected(true);
+					if (textbox.getText() == "un marron") {
+						is_resolved = true;
+						return is_resolved;
+					}
 				}
 				else if (event.key.code == sf::Keyboard::Escape) {
+					textbox.setSelected(false);
+				}
+			}
+
+			if(event.type == sf::Event::MouseButtonPressed) {
+				int pos_x = event.mouseButton.x;
+				int pos_y = event.mouseButton.y;
+				if (textbox.getRect().contains(pos_x, pos_y)) {
+					std::cerr << "in containing loop" << std::endl;
+					textbox.setSelected(true);
+				}
+				else {
 					textbox.setSelected(false);
 				}
 			}
@@ -133,16 +160,13 @@ void Player::doEnigma() const {
 		std::string result;
 		std::string current = enigma.getString();
 		while (current.size() > 23) {
-			//std::cerr << "Size of current string : " << current.size() << std::endl;
 			for (int i = 0; i < 23; i++) {
 				result = result + current[i];
-				//std::cerr << "result : " << result << std::endl;
 			}
 			result = result + "\n";
 			std::string tmp;
 			for (int j = 23; j < current.size(); j++) {
 				tmp = tmp + current[j];
-				//std::cerr << "tmp : " << tmp << std::endl;
 			}
 			current = tmp;
 		}
@@ -153,6 +177,7 @@ void Player::doEnigma() const {
 		window.clear(sf::Color::Black);
 		window.draw(sprite);
 		window.draw(enigma);
+		window.draw(inputBox);
 		textbox.drawTo(window);
 		window.display();
 	}

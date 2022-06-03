@@ -37,7 +37,7 @@ public:
 
 	void setLimit(bool ToF, int lim) {
 		hasLimit = ToF;
-		limit = lim;
+		limit = lim - 1;
 	}
 
 	void setSelected(bool sel) {
@@ -80,12 +80,24 @@ public:
 		}
 	}
 
+	void setRect(int left, int top, int height, int width) {
+		rect.left = left;
+		rect.top = top;
+		rect.height = height;
+		rect.width = width;
+	}
+
+	sf::IntRect getRect() {
+		return rect;
+	}
+
 private:
 	sf::Text textbox;
 	std::ostringstream text;
 	bool isSelected = false;
 	bool hasLimit = false;
 	int limit;
+	sf::IntRect rect;
 
 	void inputLogic(int charTyped) {
 		if (charTyped != DELETE_KEY && charTyped != ENTER_KEY && charTyped != ESCAPE_KEY) {
