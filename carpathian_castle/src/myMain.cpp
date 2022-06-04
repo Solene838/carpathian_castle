@@ -45,8 +45,8 @@ source distribution.
 
 int myMain()
 {
-    sf::RenderWindow window(sf::VideoMode(480, 352), "SFML window");
-    sf::View view2(sf::Vector2f(240, 176), sf::Vector2f(480, 352));
+    sf::RenderWindow window(sf::VideoMode(780, 352), "SFML window");
+    sf::View view2(sf::Vector2f(390, 176), sf::Vector2f(780, 352));
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
     std::vector<Object> v_doors;
@@ -84,10 +84,11 @@ int myMain()
     circle.setRadius(10);
 
     MapLayer ground(map, 0);
-    MapLayer doors(map, 1);
-    MapLayer walls(map, 2);
-    MapLayer wall_decorations(map, 3);
-    MapLayer objects(map, 4);
+    MapLayer ground_when_opened(map, 1);
+    MapLayer doors(map, 2);
+    MapLayer walls(map, 3);
+    MapLayer wall_decorations(map, 4);
+    MapLayer objects(map, 5);
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -140,19 +141,35 @@ int myMain()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            if (is_open == false) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q)) {
+                    player.goLeft(ground);
+                }
 
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q)) {
-                player.goLeft(ground);
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D)) {
+                    player.goRight(ground);
+                }
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z)) {
+                    player.goUp(ground);
+                }
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S)) {
+                    player.goDown(ground);
+                }
             }
+            if (is_open == true) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q)) {
+                    player.goLeft(ground_when_opened);
+                }
 
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D)) {
-                player.goRight(ground);
-            }
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z)) {
-                player.goUp(ground);
-            }
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S)) {
-                player.goDown(ground);
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D)) {
+                    player.goRight(ground_when_opened);
+                }
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z)) {
+                    player.goUp(ground_when_opened);
+                }
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S)) {
+                    player.goDown(ground_when_opened);
+                }
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::E)) {
                 int index = 0;
@@ -190,14 +207,6 @@ int myMain()
         ground.update(duration);
         circle.setPosition(player.getX(), player.getY());
 
-        if (player.getY() > 330) {
-            view2.setCenter(240, 518);
-        }
-
-        if (player.getY() < 350) {
-            view2.setCenter(240, 176);
-        }
-
         //set up the inventory text
         sf::Text text_inventory;
         std::string display = "Inventory : \n";
@@ -215,16 +224,28 @@ int myMain()
         window.clear(sf::Color::Black);
         window.setView(view2);
         window.draw(ground);
-        window.draw(doors);
         window.draw(walls);
         window.draw(wall_decorations);
         window.draw(objects);
         window.draw(text_object);
         window.draw(text_inventory);
+        if (is_open == false) {
+            window.draw(doors);
+        }
         if (is_open == true) {
             for (Object obj : v_doors) {
                 //std::cerr << obj.getLabel() << std::endl;
                 window.draw(obj.getSprite());
+            }
+            window.draw(ground_when_opened);
+            if (player.getY() > 330) {
+                view2.setCenter(390, 518);
+                text_inventory.setPosition(600, 370);
+                window.draw(text_inventory);
+            }
+
+            if (player.getY() < 350) {
+                view2.setCenter(390, 176);
             }
         }
         else {
