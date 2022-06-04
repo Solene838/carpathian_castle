@@ -40,6 +40,7 @@ source distribution.
 #include "Player.h"
 #include "Object.h"
 #include "Assets.h"
+#include "Enigma.h"
 #include <iostream>
 #include <vector>
 
@@ -49,10 +50,12 @@ int myMain()
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
     std::vector<Object> v_doors;
+    std::vector<Enigma> v_en;
     pugi::xml_document doc;
+    pugi::xml_document doc_enigmas;
     if (pugi::xml_parse_result result = doc.load_file("resources/objects.xml"); !result)
     {
-        std::cerr << "Could not open file visage.xml because " << result.description() << std::endl;
+        std::cerr << "Could not open file objects.xml because " << result.description() << std::endl;
         return 1;
     }
     for (pugi::xml_node object : doc.children("Object")) {
@@ -69,6 +72,16 @@ int myMain()
             v_doors.push_back(obj);
         }
     }
+
+    if (pugi::xml_parse_result result = doc_enigmas.load_file("resources/enigmas.xml"); !result) {
+        std::cerr << "Could not open file enigmas.xml because " << result.description() << std::endl;
+        return 1;
+    }
+    for (pugi::xml_node enigma : doc_enigmas.children("Enigma")) {
+        Enigma en(enigma);
+        v_en.push_back(en);
+    }
+
     bool is_open = false;
     bool pop_up_open = false;
     bool pop_up_close = false;
@@ -160,7 +173,7 @@ int myMain()
                     index += 1;
                     if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
                         if (obj.getLock()) {
-                            if (player.doEnigma()) {
+                            if (true) {
                                 obj.setLock(false);
                                 std::cerr << "after enigma : " << obj.getLabel() << " : " << obj.getLock() << std::endl;
                             }

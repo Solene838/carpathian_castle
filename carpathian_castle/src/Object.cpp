@@ -53,7 +53,7 @@ std::string Object::getCategory() const {
 	return category;
 }
 
-bool Object::getLock() const {
+bool& Object::getLock() {
 	return is_locked;
 }
 
