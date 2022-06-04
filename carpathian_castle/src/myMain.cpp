@@ -41,8 +41,10 @@ source distribution.
 #include "Object.h"
 #include "Assets.h"
 #include "Enigma.h"
+#include "Text.h"
 #include <iostream>
 #include <vector>
+#include <map>
 
 int myMain()
 {
@@ -102,6 +104,8 @@ int myMain()
     MapLayer wall_decorations(map, 3);
     MapLayer objects(map, 4);
 
+    std::map<std::string, Text> textMap;
+
     sf::Clock globalClock;
     while (window.isOpen())
     {
@@ -118,6 +122,10 @@ int myMain()
                 text_object.setStyle(sf::Text::Bold);
                 text_object.setFillColor(sf::Color::White);
                 text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
+                std::string tmp = "Blabla ceci est un test : " + obj.getLabel();
+                Text test("test");
+                //test.setText(tmp, arial, 10, sf::Text::Bold, sf::Color::Red, obj.getX() - 60, obj.getY() - 20);
+                //textMap.try_emplace(test.getLabel(), test.getText());
             }
         }
 
@@ -257,6 +265,7 @@ int myMain()
             window.draw(obj.getSprite());
             std::cerr << "lock state of objects : " << obj.getLock() << std::endl;
         }
+        window.draw(textMap.find("test")->second.getText());
         window.draw(circle);
         window.display();
     }
