@@ -41,8 +41,11 @@ source distribution.
 #include "Object.h"
 #include "Assets.h"
 #include "Button.h"
+#include "Enigma.h"
+#include "Text.h"
 #include <iostream>
 #include <vector>
+
 
 int myMain()
 {
@@ -51,10 +54,12 @@ int myMain()
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
     std::vector<Object> v_doors;
+    std::vector<Enigma> v_en;
     pugi::xml_document doc;
+    pugi::xml_document doc_enigmas;
     if (pugi::xml_parse_result result = doc.load_file("resources/objects.xml"); !result)
     {
-        std::cerr << "Could not open file visage.xml because " << result.description() << std::endl;
+        std::cerr << "Could not open file objects.xml because " << result.description() << std::endl;
         return 1;
     }
     for (pugi::xml_node object : doc.children("Object")) {
@@ -65,11 +70,22 @@ int myMain()
         obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
         if (obj.getCategory() != "opened_door") {
             objectsRoom1.push_back(obj);
+            std::cerr << "is_locked : " << obj.getLock() << std::endl;
         }
         else {
             v_doors.push_back(obj);
         }
     }
+
+    if (pugi::xml_parse_result result = doc_enigmas.load_file("resources/enigmas.xml"); !result) {
+        std::cerr << "Could not open file enigmas.xml because " << result.description() << std::endl;
+        return 1;
+    }
+    for (pugi::xml_node enigma : doc_enigmas.children("Enigma")) {
+        Enigma en(enigma);
+        v_en.push_back(en);
+    }
+
     bool is_open = false;
     bool pop_up_open = false;
     bool pop_up_close = false;
@@ -91,6 +107,8 @@ int myMain()
     MapLayer wall_decorations(map, 4);
     MapLayer objects(map, 5);
 
+    //std::map<std::string, sf::Text> textMap;
+
     sf::Clock globalClock;
     while (window.isOpen())
     {
@@ -107,6 +125,12 @@ int myMain()
                 text_object.setStyle(sf::Text::Bold);
                 text_object.setFillColor(sf::Color::White);
                 text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
+                std::string tmp = "Blabla ceci est un test : " + obj.getLabel();
+                /*std::string label = "test";
+                Text toto("toto");
+                toto.setText(tmp, arial, 10, sf::Text::Bold, sf::Color::Red);
+                std::cerr << "toto label : " << toto.getLabel() << std::endl;
+                textMap.try_emplace(toto.getLabel(), toto.getText());*/
             }
         }
 
@@ -174,11 +198,23 @@ int myMain()
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::E)) {
                 int index = 0;
-                for (Object obj : objectsRoom1) {
+                for (Object& obj : objectsRoom1) {
                     index += 1;
                     if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
-                        player.getInventory().push_back(obj);
-                        objectsRoom1.erase(objectsRoom1.begin() + index - 1);
+                        if (obj.getLock()) {
+                            window.setActive(false);
+                            if (player.doEnigma()) {
+                                obj.setLock(false);
+                                std::cerr << "after enigma : " << obj.getLabel() << " : " << obj.getLock() << std::endl;
+                            }
+                            obj.setLock(false);
+                            std::cerr << "getLock true" << std::endl;
+                        }
+                        else {
+                            player.getInventory().push_back(obj);
+                            objectsRoom1.erase(objectsRoom1.begin() + index - 1);
+                            std::cerr << "getLock false" << std::endl;
+                        }
                     }
                 }
             }
@@ -188,17 +224,14 @@ int myMain()
                         pop_up_close = true;
                         std::cerr << "inventory is empty" << std::endl;
                     }
-                    for (Object obj : player.getInventory()) {
+                    for (Object& obj : player.getInventory()) {
                         if (obj.getLabel() == "bookBlue") {
                             is_open = true;
                             pop_up_open = true;
-                            std::cerr << "in bookBlue if loop" << std::endl;
-                            std::cerr << "is_open/pop_up_open : " << is_open << "/" << pop_up_open << std::endl;
                         }
                     }
                     if (is_open == false) {
                         pop_up_close = true;
-                        std::cerr << "in bookBlue else loop" << std::endl;
                     }
                 }
             }
@@ -208,10 +241,12 @@ int myMain()
         ground.update(duration);
         circle.setPosition(player.getX(), player.getY());
 
+        
+
         //set up the inventory text
         sf::Text text_inventory;
         std::string display = "Inventory : \n";
-        for (Object obj : player.getInventory()) {
+        for (Object& obj : player.getInventory()) {
             display += obj.getLabel();
             display += "\n";
         }
@@ -234,7 +269,7 @@ int myMain()
             window.draw(doors);
         }
         if (is_open == true) {
-            for (Object obj : v_doors) {
+            for (Object& obj : v_doors) {
                 window.draw(obj.getSprite());
             }
             window.draw(ground_when_opened);
@@ -265,7 +300,14 @@ int myMain()
         }
         for (Object obj : objectsRoom1) {
             window.draw(obj.getSprite());
+            //std::cerr << "lock state of objects : " << obj.getLock() << std::endl;
         }
+        /*if (textMap.find("test") == textMap.end()) {
+            std::cerr << "Key not found" << std::endl;
+        }
+        else {
+            window.draw(textMap.find("toto")->second);
+        }*/
         window.draw(circle);
         window.display();
     }

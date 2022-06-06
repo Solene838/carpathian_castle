@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include "SFMLOrthogonalLayer.h"
+#include <SFML/Graphics/RenderWindow.hpp>
 
 class Player {
 private:
@@ -19,5 +20,6 @@ public:
 	void goRight(MapLayer& ground);
 	void goUp(MapLayer& ground);
 	void goDown(MapLayer& ground);
-	bool isNearDoor(MapLayer& doors);
+	bool isNearDoor(MapLayer& doors) const;
+	bool doEnigma() const;
 };
