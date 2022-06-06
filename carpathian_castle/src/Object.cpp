@@ -1,10 +1,12 @@
 #include "Object.h"
+#include <iostream>
 
-Object::Object(int x, int y, const std::string& label, const std::string& category) :
+Object::Object(int x, int y, const std::string& label, const std::string& category, bool is_locked) :
 	x(x),
 	y(y),
 	label(label),
-	category(category)
+	category(category),
+	is_locked(is_locked)
 {
 }
 
@@ -12,9 +14,9 @@ Object::Object(pugi::xml_node node) :
 	x(node.attribute("x").as_int()),
 	y(node.attribute("y").as_int()),
 	label(node.attribute("label").as_string()),
-	category(node.attribute("category").as_string())
+	category(node.attribute("category").as_string()),
+	is_locked(node.attribute("is_locked").as_bool())
 {
-
 }
 
 void Object::setSprite(const sf::Texture& texture) {
@@ -49,4 +51,13 @@ int Object::getY() const {
 
 std::string Object::getCategory() const {
 	return category;
+}
+
+bool Object::getLock() {
+	return is_locked;
+}
+
+void Object::setLock(bool tmp) {
+	std::cerr << "received lock value: " << tmp << std::endl;
+	is_locked = tmp;
 }
