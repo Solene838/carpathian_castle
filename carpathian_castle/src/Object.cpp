@@ -1,4 +1,5 @@
 #include "Object.h"
+#include <iostream>
 
 Object::Object(int x, int y, const std::string& label, const std::string& category, bool is_locked) :
 	x(x),
@@ -16,7 +17,6 @@ Object::Object(pugi::xml_node node) :
 	category(node.attribute("category").as_string()),
 	is_locked(node.attribute("is_locked").as_bool())
 {
-
 }
 
 void Object::setSprite(const sf::Texture& texture) {
@@ -53,10 +53,11 @@ std::string Object::getCategory() const {
 	return category;
 }
 
-bool& Object::getLock() {
+bool Object::getLock() {
 	return is_locked;
 }
 
 void Object::setLock(bool tmp) {
+	std::cerr << "received lock value: " << tmp << std::endl;
 	is_locked = tmp;
 }

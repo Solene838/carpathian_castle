@@ -104,7 +104,7 @@ int myMain()
     MapLayer wall_decorations(map, 3);
     MapLayer objects(map, 4);
 
-    std::map<std::string, sf::Text> textMap;
+    //std::map<std::string, sf::Text> textMap;
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -123,10 +123,11 @@ int myMain()
                 text_object.setFillColor(sf::Color::White);
                 text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
                 std::string tmp = "Blabla ceci est un test : " + obj.getLabel();
-                std::string label = "test";
-                Text toto(label);
-                toto.setText(tmp, arial, 10, sf::Text::Bold, sf::Color::Red, obj.getX() - 60, obj.getY() - 20);
-                textMap.try_emplace(toto.getLabel(), toto.getText());
+                /*std::string label = "test";
+                Text toto("toto");
+                toto.setText(tmp, arial, 10, sf::Text::Bold, sf::Color::Red);
+                std::cerr << "toto label : " << toto.getLabel() << std::endl;
+                textMap.try_emplace(toto.getLabel(), toto.getText());*/
             }
         }
 
@@ -178,20 +179,22 @@ int myMain()
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::E)) {
                 int index = 0;
-                for (Object obj : objectsRoom1) {
+                for (Object& obj : objectsRoom1) {
                     index += 1;
                     if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
                         if (obj.getLock()) {
                             window.setActive(false);
                             if (player.doEnigma()) {
-                                //obj.getLock() = false;
-                                obj.setLock(0);
+                                obj.setLock(false);
                                 std::cerr << "after enigma : " << obj.getLabel() << " : " << obj.getLock() << std::endl;
                             }
+                            obj.setLock(false);
+                            std::cerr << "getLock true" << std::endl;
                         }
                         else {
                             player.getInventory().push_back(obj);
                             objectsRoom1.erase(objectsRoom1.begin() + index - 1);
+                            std::cerr << "getLock false" << std::endl;
                         }
                     }
                 }
@@ -202,7 +205,7 @@ int myMain()
                         pop_up_close = true;
                         std::cerr << "inventory is empty" << std::endl;
                     }
-                    for (Object obj : player.getInventory()) {
+                    for (Object& obj : player.getInventory()) {
                         if (obj.getLabel() == "bookBlue") {
                             is_open = true;
                             pop_up_open = true;
@@ -219,12 +222,11 @@ int myMain()
         ground.update(duration);
         circle.setPosition(player.getX(), player.getY());
 
-        
 
         //set up the inventory text
         sf::Text text_inventory;
         std::string display = "Inventory : \n";
-        for (Object obj : player.getInventory()) {
+        for (Object& obj : player.getInventory()) {
             display += obj.getLabel();
             display += "\n";
         }
@@ -245,7 +247,7 @@ int myMain()
         window.draw(text_object);
         window.draw(text_inventory);
         if (is_open == true) {
-            for (Object obj : v_doors) {
+            for (Object& obj : v_doors) {
                 window.draw(obj.getSprite());
             }
         }
@@ -268,7 +270,12 @@ int myMain()
             window.draw(obj.getSprite());
             //std::cerr << "lock state of objects : " << obj.getLock() << std::endl;
         }
-        window.draw(textMap.find("toto")->second);
+        /*if (textMap.find("test") == textMap.end()) {
+            std::cerr << "Key not found" << std::endl;
+        }
+        else {
+            window.draw(textMap.find("toto")->second);
+        }*/
         window.draw(circle);
         window.display();
     }

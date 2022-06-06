@@ -5,13 +5,12 @@ Text::Text(std::string label) :
 {
 }
 
-void Text::setText(std::string display, sf::Font font, int characterSize, sf::Text::Style style, sf::Color color, int pos_x, int pos_y) {
+void Text::setText(std::string display, sf::Font font, int characterSize, sf::Text::Style style, sf::Color color) {
 	text.setString(display);
 	text.setFont(font);
 	text.setCharacterSize(characterSize);
 	text.setStyle(style);
 	text.setFillColor(color);
-	text.setPosition(pos_x, pos_y);
 }
 
 std::string& Text::getLabel() {
