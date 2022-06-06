@@ -44,7 +44,7 @@ source distribution.
 #include "Text.h"
 #include <iostream>
 #include <vector>
-#include <map>
+
 
 int myMain()
 {
@@ -104,7 +104,7 @@ int myMain()
     MapLayer wall_decorations(map, 3);
     MapLayer objects(map, 4);
 
-    std::map<std::string, Text> textMap;
+    std::map<std::string, sf::Text> textMap;
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -123,9 +123,10 @@ int myMain()
                 text_object.setFillColor(sf::Color::White);
                 text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
                 std::string tmp = "Blabla ceci est un test : " + obj.getLabel();
-                Text test("test");
-                //test.setText(tmp, arial, 10, sf::Text::Bold, sf::Color::Red, obj.getX() - 60, obj.getY() - 20);
-                //textMap.try_emplace(test.getLabel(), test.getText());
+                std::string label = "test";
+                Text toto(label);
+                toto.setText(tmp, arial, 10, sf::Text::Bold, sf::Color::Red, obj.getX() - 60, obj.getY() - 20);
+                textMap.try_emplace(toto.getLabel(), toto.getText());
             }
         }
 
@@ -181,8 +182,10 @@ int myMain()
                     index += 1;
                     if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
                         if (obj.getLock()) {
-                            if (true) {
-                                obj.setLock(false);
+                            window.setActive(false);
+                            if (player.doEnigma()) {
+                                //obj.getLock() = false;
+                                obj.setLock(0);
                                 std::cerr << "after enigma : " << obj.getLabel() << " : " << obj.getLock() << std::endl;
                             }
                         }
@@ -263,9 +266,9 @@ int myMain()
         }
         for (Object obj : objectsRoom1) {
             window.draw(obj.getSprite());
-            std::cerr << "lock state of objects : " << obj.getLock() << std::endl;
+            //std::cerr << "lock state of objects : " << obj.getLock() << std::endl;
         }
-        window.draw(textMap.find("test")->second.getText());
+        window.draw(textMap.find("toto")->second);
         window.draw(circle);
         window.display();
     }
