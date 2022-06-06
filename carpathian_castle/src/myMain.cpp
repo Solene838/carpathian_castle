@@ -40,6 +40,7 @@ source distribution.
 #include "Player.h"
 #include "Object.h"
 #include "Assets.h"
+#include "Button.h"
 #include <iostream>
 #include <vector>
 
