@@ -40,6 +40,7 @@ source distribution.
 #include "Player.h"
 #include "Object.h"
 #include "Assets.h"
+#include "Button.h"
 #include "Enigma.h"
 #include "Text.h"
 #include <iostream>
@@ -93,8 +94,8 @@ int myMain()
     bool room2_is_open = false;
     bool pop_up_open = false;
     bool pop_up_close = false;
-    
-
+    bool main_menu = true;
+    bool pause = false;
 
     tmx::Map map;
     map.load("resources/dungeon_two_rooms.tmx");
@@ -163,7 +164,29 @@ int myMain()
         text_door_open.setFillColor(sf::Color::White);
         text_door_open.setPosition(player.getX() - 60, player.getY() + 20);
 
+        sf::Text title;
+        title.setString("Carpathian castle");
+        title.setFont(arial);
+        title.setCharacterSize(50);
+        title.setFillColor(sf::Color::White);
+        title.setPosition(200, 80);
 
+        Button start_button("Start", { 300, 75 }, 45, sf::Color::White, sf::Color::Black);
+        start_button.setPosition({ 390, 216 });
+        start_button.setFont(arial);
+
+        Button quit("Quit", { 250, 40 }, 20, sf::Color::White, sf::Color::Black);
+        quit.setPosition({ 390, 276 });
+        quit.setFont(arial);
+
+        Button return_main_menu("Return to main menu", { 250, 40 }, 20, sf::Color::White, sf::Color::Black);
+        return_main_menu.setPosition({ 390, 150 });
+        return_main_menu.setFont(arial);
+
+        sf::RectangleShape fade(sf::Vector2f(780, 352));
+        fade.setOrigin(390, 176);
+        fade.setPosition(390, 176);
+        fade.setFillColor(sf::Color(0, 0, 0, 150));
 
         sf::Event event;
         while (window.pollEvent(event))
@@ -239,6 +262,31 @@ int myMain()
                     }
                 }
             }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (start_button.isMouseOver(window)) {
+                    main_menu = false;
+                }
+            }
+
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape)) {
+                pause = !pause;
+                std::cout << pause << std::endl;
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (quit.isMouseOver(window)) {
+                    exit(0);
+                }
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (return_main_menu.isMouseOver(window)) {
+                    main_menu = true;
+                    pause = false;
+                }
+            }
+
         }
 
         sf::Time duration = globalClock.getElapsedTime();
@@ -261,71 +309,83 @@ int myMain()
         text_inventory.setFillColor(sf::Color::White);
         text_inventory.setPosition(600, 50);
 
-        window.clear(sf::Color::Black);
-        window.setView(view2);
-
-        if (room1_is_open == true) {
-            window.draw(ground_when_opened);
-            window.draw(walls);
-            window.draw(wall_decorations);
-            window.draw(doors);
-            window.draw(objects);
-            window.draw(text_object);
-            window.draw(text_inventory);
-            
-            if (player.getY() > 330) {
-                view2.setCenter(390, 500);
-                text_inventory.setPosition(600, 370);
-                window.draw(text_inventory);
-                for (Object& obj : v_doors_room1) {
-                    window.draw(obj.getSprite());
-                }
-            }
-
-            if (player.getY() < 350) {
-                view2.setCenter(390, 176);
-                for (Object& obj : v_doors_room1) {
-                    window.draw(obj.getSprite());
-                }
-            }
+        if (main_menu == true) {
+            window.clear(sf::Color::Black);
+            start_button.drawTo(window);
+            window.draw(title);
         }
-        else if (room2_is_open) {
-            for (Object& obj : v_doors_room2) {
+        if (main_menu == false) {
+            window.clear(sf::Color::Black);
+            window.setView(view2);
+            if (room1_is_open == true) {
+                window.draw(ground_when_opened);
+                window.draw(walls);
+                window.draw(wall_decorations);
+                window.draw(doors);
+                window.draw(objects);
+                window.draw(text_object);
+                window.draw(text_inventory);
+
+                if (player.getY() > 330) {
+                    view2.setCenter(390, 500);
+                    text_inventory.setPosition(600, 370);
+                    window.draw(text_inventory);
+                    for (Object& obj : v_doors_room1) {
+                        window.draw(obj.getSprite());
+                    }
+                }
+
+                if (player.getY() < 350) {
+                    view2.setCenter(390, 176);
+                    for (Object& obj : v_doors_room1) {
+                        window.draw(obj.getSprite());
+                    }
+                }
+            }
+            else if (room2_is_open) {
+                for (Object& obj : v_doors_room2) {
+                    window.draw(obj.getSprite());
+                }
+            }
+            else {
+                window.draw(ground);
+                window.draw(walls);
+                window.draw(wall_decorations);
+                window.draw(objects);
+                window.draw(text_object);
+                window.draw(text_inventory);
+                window.draw(doors);
+                window.draw(text_door);
+            }
+            if (pop_up_open == true) {
+                window.draw(text_door_open);
+                if (player.isNearDoor(doors) == false) {
+                    pop_up_open = false;
+                }
+            }
+            if (pop_up_close == true) {
+                window.draw(text_door_close);
+                if (player.isNearDoor(doors) == false) {
+                    pop_up_close = false;
+                }
+            }
+            for (Object obj : objectsRoom1) {
                 window.draw(obj.getSprite());
             }
-        }
-        else {
-            window.draw(ground);
-            window.draw(walls);
-            window.draw(wall_decorations);
-            window.draw(objects);
-            window.draw(text_object);
-            window.draw(text_inventory);
-            window.draw(doors);
-            window.draw(text_door);
-        }
-        if (pop_up_open == true) {
-            window.draw(text_door_open);
-            if (player.isNearDoor(doors) == false) {
-                pop_up_open = false;
+            /*if (textMap.find("test") == textMap.end()) {
+                std::cerr << "Key not found" << std::endl;
             }
-        }
-        if (pop_up_close == true) {
-            window.draw(text_door_close);
-            if (player.isNearDoor(doors) == false) {
-                pop_up_close = false;
+            else {
+                window.draw(textMap.find("toto")->second);
+            }*/
+            window.draw(circle);
+
+            if (pause == true) {
+                window.draw(fade);
+                quit.drawTo(window);
+                return_main_menu.drawTo(window);
             }
-        }
-        for (Object obj : objectsRoom1) {
-            window.draw(obj.getSprite());
-        }
-        /*if (textMap.find("test") == textMap.end()) {
-            std::cerr << "Key not found" << std::endl;
-        }
-        else {
-            window.draw(textMap.find("toto")->second);
-        }*/
-        window.draw(circle);
+        }  
         window.display();
     }
 
