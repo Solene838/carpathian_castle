@@ -4,5 +4,5 @@
 <Object label="poster" x="100" y="560" category="poster" is_locked="false"/>
 <Object label="opened_door1" x="225" y="608" category="opened_door_room1" is_locked="false"/>
 <Object label="opened_door2" x="352" y ="326" category="opened_door_room1" is_locked="false"/>
-<Object label="opened_door3" x="200" y="100" category="opened_door_room2" is_locked="false"/>
-<Object label="opened_door4" x="400" y="100" category="opened_door_room2" is_locked="false"/>
+<Object label="opened_door3" x="96" y="0" category="opened_door_room2" is_locked="false"/>
+<Object label="opened_door4" x="320" y="0" category="opened_door_room2" is_locked="false"/>
