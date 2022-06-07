@@ -89,7 +89,8 @@ int myMain()
         v_en.push_back(en);
     }
 
-    bool is_open = false;
+    bool room1_is_open = false;
+    bool room2_is_open = false;
     bool pop_up_open = false;
     bool pop_up_close = false;
     
@@ -169,7 +170,7 @@ int myMain()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-            if (is_open == false) {
+            if (room1_is_open == false) {
                 if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q)) {
                     player.goLeft(ground);
                 }
@@ -184,7 +185,7 @@ int myMain()
                     player.goDown(ground);
                 }
             }
-            if (is_open == true) {
+            if (room1_is_open == true) {
                 if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q)) {
                     player.goLeft(ground_when_opened);
                 }
@@ -229,11 +230,11 @@ int myMain()
                     }
                     for (Object& obj : player.getInventory()) {
                         if (obj.getLabel() == "bookBlue") {
-                            is_open = true;
+                            room1_is_open = true;
                             pop_up_open = true;
                         }
                     }
-                    if (is_open == false) {
+                    if (room1_is_open == false) {
                         pop_up_close = true;
                     }
                 }
@@ -262,16 +263,12 @@ int myMain()
 
         window.clear(sf::Color::Black);
         window.setView(view2);
-       /* window.draw(ground);
-        window.draw(walls);
-        window.draw(wall_decorations);
-        window.draw(objects);
-        window.draw(text_object);
-        window.draw(text_inventory);*/
-        if (is_open == true) {
+
+        if (room1_is_open == true) {
             window.draw(ground_when_opened);
             window.draw(walls);
             window.draw(wall_decorations);
+            window.draw(doors);
             window.draw(objects);
             window.draw(text_object);
             window.draw(text_inventory);
@@ -287,9 +284,14 @@ int myMain()
 
             if (player.getY() < 350) {
                 view2.setCenter(390, 176);
-                for (Object& obj : v_doors_room2) {
+                for (Object& obj : v_doors_room1) {
                     window.draw(obj.getSprite());
                 }
+            }
+        }
+        else if (room2_is_open) {
+            for (Object& obj : v_doors_room2) {
+                window.draw(obj.getSprite());
             }
         }
         else {
