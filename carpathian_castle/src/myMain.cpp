@@ -89,7 +89,7 @@ int myMain()
     bool is_open = false;
     bool pop_up_open = false;
     bool pop_up_close = false;
-    
+    bool main_menu = true;
 
 
     tmx::Map map;
@@ -159,7 +159,16 @@ int myMain()
         text_door_open.setFillColor(sf::Color::White);
         text_door_open.setPosition(player.getX() - 60, player.getY() + 20);
 
+        sf::Text title;
+        title.setString("Carpathian castle");
+        title.setFont(arial);
+        title.setCharacterSize(50);
+        title.setFillColor(sf::Color::White);
+        title.setPosition(200, 80);
 
+        Button start_button("Start", { 300, 75 }, 45, sf::Color::White, sf::Color::Black);
+        start_button.setPosition({ 390, 216 });
+        start_button.setFont(arial);
 
         sf::Event event;
         while (window.pollEvent(event))
@@ -235,6 +244,12 @@ int myMain()
                     }
                 }
             }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (start_button.isMouseOver(window)) {
+                    main_menu = false;
+                }
+            }
+
         }
 
         sf::Time duration = globalClock.getElapsedTime();
@@ -257,58 +272,66 @@ int myMain()
         text_inventory.setFillColor(sf::Color::White);
         text_inventory.setPosition(600, 50);
 
-        window.clear(sf::Color::Black);
-        window.setView(view2);
-        window.draw(ground);
-        window.draw(walls);
-        window.draw(wall_decorations);
-        window.draw(objects);
-        window.draw(text_object);
-        window.draw(text_inventory);
-        if (is_open == false) {
-            window.draw(doors);
+        if (main_menu == true) {
+            window.clear(sf::Color::Black);
+            start_button.drawTo(window);
+            window.draw(title);
         }
-        if (is_open == true) {
-            for (Object& obj : v_doors) {
-                window.draw(obj.getSprite());
-            }
-            window.draw(ground_when_opened);
-            if (player.getY() > 330) {
-                view2.setCenter(390, 518);
-                text_inventory.setPosition(600, 370);
-                window.draw(text_inventory);
-            }
+        if (main_menu == false) {
+            window.clear(sf::Color::Black);
+            window.setView(view2);
+            window.draw(ground);
+            window.draw(walls);
+            window.draw(wall_decorations);
+            window.draw(objects);
+            window.draw(text_object);
+            window.draw(text_inventory);
 
-            if (player.getY() < 350) {
-                view2.setCenter(390, 176);
+            if (is_open == false) {
+                window.draw(doors);
             }
-        }
-        else {
-            window.draw(text_door);
-        }
-        if (pop_up_open == true) {
-            window.draw(text_door_open);
-            if (player.isNearDoor(doors) == false) {
-                pop_up_open = false;
+            if (is_open == true) {
+                for (Object& obj : v_doors) {
+                    window.draw(obj.getSprite());
+                }
+                window.draw(ground_when_opened);
+                if (player.getY() > 330) {
+                    view2.setCenter(390, 518);
+                    text_inventory.setPosition(600, 370);
+                    window.draw(text_inventory);
+                }
+
+                if (player.getY() < 350) {
+                    view2.setCenter(390, 176);
+                }
             }
-        }
-        if (pop_up_close == true) {
-            window.draw(text_door_close);
-            if (player.isNearDoor(doors) == false) {
-                pop_up_close = false;
+            else {
+                window.draw(text_door);
             }
+            if (pop_up_open == true) {
+                window.draw(text_door_open);
+                if (player.isNearDoor(doors) == false) {
+                    pop_up_open = false;
+                }
+            }
+            if (pop_up_close == true) {
+                window.draw(text_door_close);
+                if (player.isNearDoor(doors) == false) {
+                    pop_up_close = false;
+                }
+            }
+            for (Object obj : objectsRoom1) {
+                window.draw(obj.getSprite());
+                //std::cerr << "lock state of objects : " << obj.getLock() << std::endl;
+            }
+            /*if (textMap.find("test") == textMap.end()) {
+                std::cerr << "Key not found" << std::endl;
+            }
+            else {
+                window.draw(textMap.find("toto")->second);
+            }*/
+            window.draw(circle);
         }
-        for (Object obj : objectsRoom1) {
-            window.draw(obj.getSprite());
-            //std::cerr << "lock state of objects : " << obj.getLock() << std::endl;
-        }
-        /*if (textMap.find("test") == textMap.end()) {
-            std::cerr << "Key not found" << std::endl;
-        }
-        else {
-            window.draw(textMap.find("toto")->second);
-        }*/
-        window.draw(circle);
         window.display();
     }
 
