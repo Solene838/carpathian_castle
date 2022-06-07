@@ -90,7 +90,7 @@ int myMain()
     bool pop_up_open = false;
     bool pop_up_close = false;
     bool main_menu = true;
-
+    bool pause = false;
 
     tmx::Map map;
     map.load("resources/dungeon_two_rooms.tmx");
@@ -170,6 +170,19 @@ int myMain()
         start_button.setPosition({ 390, 216 });
         start_button.setFont(arial);
 
+        Button quit("Quit", { 250, 40 }, 20, sf::Color::White, sf::Color::Black);
+        quit.setPosition({ 390, 276 });
+        quit.setFont(arial);
+
+        Button return_main_menu("Return to main menu", { 250, 40 }, 20, sf::Color::White, sf::Color::Black);
+        return_main_menu.setPosition({ 390, 150 });
+        return_main_menu.setFont(arial);
+
+        sf::RectangleShape fade(sf::Vector2f(780, 352));
+        fade.setOrigin(390, 176);
+        fade.setPosition(390, 176);
+        fade.setFillColor(sf::Color(0, 0, 0, 150));
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -244,9 +257,28 @@ int myMain()
                     }
                 }
             }
+
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (start_button.isMouseOver(window)) {
                     main_menu = false;
+                }
+            }
+
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape)) {
+                pause = !pause;
+                std::cout << pause << std::endl;
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (quit.isMouseOver(window)) {
+                    exit(0);
+                }
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (return_main_menu.isMouseOver(window)) {
+                    main_menu = true;
+                    pause = false;
                 }
             }
 
@@ -331,6 +363,13 @@ int myMain()
                 window.draw(textMap.find("toto")->second);
             }*/
             window.draw(circle);
+
+
+            if (pause == true) {
+                window.draw(fade);
+                quit.drawTo(window);
+                return_main_menu.drawTo(window);
+            }
         }
         window.display();
     }
