@@ -49,10 +49,11 @@ source distribution.
 int myMain()
 {
     sf::RenderWindow window(sf::VideoMode(780, 352), "SFML window");
-    sf::View view2(sf::Vector2f(390, 176), sf::Vector2f(780, 352));
+    sf::View view2(sf::Vector2f(390, 500), sf::Vector2f(780, 352));
     Assets gameAssets;
     std::vector<Object> objectsRoom1;
-    std::vector<Object> v_doors;
+    std::vector<Object> v_doors_room1;
+    std::vector<Object> v_doors_room2;
     std::vector<Enigma> v_en;
     pugi::xml_document doc;
     pugi::xml_document doc_enigmas;
@@ -67,12 +68,15 @@ int myMain()
         std::string type = obj.getCategory();
         gameAssets.addToMap(label, type);
         obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
-        if (obj.getCategory() != "opened_door") {
-            objectsRoom1.push_back(obj);
-            std::cerr << "is_locked : " << obj.getLock() << std::endl;
+        if (obj.getCategory() == "opened_door_room1") {
+            v_doors_room1.push_back(obj);
+        }
+        else if (obj.getCategory() == "opened_door_room2") {
+            v_doors_room2.push_back(obj);
         }
         else {
-            v_doors.push_back(obj);
+            objectsRoom1.push_back(obj);
+            std::cerr << "is_locked : " << obj.getLock() << std::endl;
         }
     }
 
@@ -95,7 +99,7 @@ int myMain()
     map.load("resources/dungeon_two_rooms.tmx");
 
     sf::CircleShape circle;
-    Player player(400,250);
+    Player player(400,550);
     circle.setFillColor(sf::Color::Blue);
     circle.setRadius(10);
 
@@ -258,22 +262,24 @@ int myMain()
 
         window.clear(sf::Color::Black);
         window.setView(view2);
-        window.draw(ground);
+       /* window.draw(ground);
         window.draw(walls);
         window.draw(wall_decorations);
         window.draw(objects);
         window.draw(text_object);
-        window.draw(text_inventory);
-        if (is_open == false) {
-            window.draw(doors);
-        }
+        window.draw(text_inventory);*/
         if (is_open == true) {
-            for (Object& obj : v_doors) {
+            window.draw(ground_when_opened);
+            window.draw(walls);
+            window.draw(wall_decorations);
+            window.draw(objects);
+            window.draw(text_object);
+            window.draw(text_inventory);
+            for (Object& obj : v_doors_room1) {
                 window.draw(obj.getSprite());
             }
-            window.draw(ground_when_opened);
             if (player.getY() > 330) {
-                view2.setCenter(390, 518);
+                view2.setCenter(390, 500);
                 text_inventory.setPosition(600, 370);
                 window.draw(text_inventory);
             }
@@ -283,6 +289,13 @@ int myMain()
             }
         }
         else {
+            window.draw(ground);
+            window.draw(walls);
+            window.draw(wall_decorations);
+            window.draw(objects);
+            window.draw(text_object);
+            window.draw(text_inventory);
+            window.draw(doors);
             window.draw(text_door);
         }
         if (pop_up_open == true) {
@@ -299,7 +312,6 @@ int myMain()
         }
         for (Object obj : objectsRoom1) {
             window.draw(obj.getSprite());
-            //std::cerr << "lock state of objects : " << obj.getLock() << std::endl;
         }
         /*if (textMap.find("test") == textMap.end()) {
             std::cerr << "Key not found" << std::endl;
