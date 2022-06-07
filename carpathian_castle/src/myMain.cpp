@@ -275,17 +275,21 @@ int myMain()
             window.draw(objects);
             window.draw(text_object);
             window.draw(text_inventory);
-            for (Object& obj : v_doors_room1) {
-                window.draw(obj.getSprite());
-            }
+            
             if (player.getY() > 330) {
                 view2.setCenter(390, 500);
                 text_inventory.setPosition(600, 370);
                 window.draw(text_inventory);
+                for (Object& obj : v_doors_room1) {
+                    window.draw(obj.getSprite());
+                }
             }
 
             if (player.getY() < 350) {
                 view2.setCenter(390, 176);
+                for (Object& obj : v_doors_room2) {
+                    window.draw(obj.getSprite());
+                }
             }
         }
         else {
