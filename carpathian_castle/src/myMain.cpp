@@ -131,6 +131,17 @@ int myMain()
         std::cerr << "Corresponding text display : " << tmp << std::endl;
     }
 
+    Text text_object("test_object");
+    text_object.setParameters("Press E to interact with the object : ", arial, 10, sf::Text::Style::Bold, sf::Color::White);
+    textMap.try_emplace(text_object.getLabel(), text_object.getText());
+    std::cerr << "Size of the map : " << textMap.size() << std::endl;
+    if (textMap.find("text_object") == textMap.end()) {
+        std::cerr << "Key text_object not found" << std::endl;
+    }
+    else {
+        textMap.find("text_object")->second.setPosition(200, 400);
+        std::cerr << "Found text_object in map, first try" << std::endl;
+    }
     //FIN SECTION TEST
 
     sf::Clock globalClock;
@@ -147,7 +158,10 @@ int myMain()
                 text_object.setStyle(sf::Text::Bold);
                 text_object.setFillColor(sf::Color::White);
                 text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
-                std::string tmp = "Blabla ceci est un test : " + obj.getLabel();
+                if (textMap.find("text_object") != textMap.end()) {
+                    textMap.find("text_object")->second.setPosition(obj.getX() - 60, obj.getY() - 20);
+                    std::cerr << "text object found in map, second try" << std::endl;
+                }
             }
         }
 
