@@ -5,7 +5,7 @@ Text::Text(std::string label) :
 {
 }
 
-void Text::setText(std::string display, sf::Font font, int characterSize, sf::Text::Style style, sf::Color color) {
+void Text::setParameters(std::string display, sf::Font font, int characterSize, sf::Text::Style style, sf::Color color) {
 	text.setString(display);
 	text.setFont(font);
 	text.setCharacterSize(characterSize);

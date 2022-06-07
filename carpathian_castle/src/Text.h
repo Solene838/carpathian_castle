@@ -9,7 +9,7 @@ private :
 
 public:
 	explicit Text(std::string label);
-	void setText(std::string display, sf::Font font, int characterSize, sf::Text::Style style, sf::Color color);
+	void setParameters(std::string display, sf::Font font, int characterSize, sf::Text::Style style, sf::Color color);
 	std::string& getLabel();
 	sf::Text& getText();
 };

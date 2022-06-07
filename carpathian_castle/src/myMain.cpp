@@ -111,14 +111,32 @@ int myMain()
     MapLayer wall_decorations(map, 4);
     MapLayer objects(map, 5);
 
-    //std::map<std::string, sf::Text> textMap;
+    sf::Font arial;
+    arial.loadFromFile("resources/arial.ttf");
+
+    //ATTENTION : section de test pour la textMap
+    std::map<std::string, sf::Text> textMap;
+    Text test("test");
+    test.setParameters("This is a test", arial, 20, sf::Text::Style::Bold, sf::Color::Red);
+    test.getText().setPosition(200, 500);
+    textMap.try_emplace(test.getLabel(), test.getText());
+    std::cerr << "Size of the map : " << textMap.size() << std::endl;
+
+    if (textMap.find("test") == textMap.end()) {
+        std::cerr << "Key not found" << std::endl;
+    }
+    else {
+        std::cerr << "Key found : " << textMap.find("test")->first << std::endl;
+        std::string tmp = textMap.find("test")->second.getString();
+        std::cerr << "Corresponding text display : " << tmp << std::endl;
+    }
+
+    //FIN SECTION TEST
 
     sf::Clock globalClock;
     while (window.isOpen())
     {
         sf::Text text_object;
-        sf::Font arial;
-        arial.loadFromFile("resources/arial.ttf");
 
         //check if the player is near an object
         for (Object obj : objectsRoom1) {
@@ -130,11 +148,6 @@ int myMain()
                 text_object.setFillColor(sf::Color::White);
                 text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
                 std::string tmp = "Blabla ceci est un test : " + obj.getLabel();
-                /*std::string label = "test";
-                Text toto("toto");
-                toto.setText(tmp, arial, 10, sf::Text::Bold, sf::Color::Red);
-                std::cerr << "toto label : " << toto.getLabel() << std::endl;
-                textMap.try_emplace(toto.getLabel(), toto.getText());*/
             }
         }
 
@@ -319,12 +332,7 @@ int myMain()
         for (Object obj : objectsRoom1) {
             window.draw(obj.getSprite());
         }
-        /*if (textMap.find("test") == textMap.end()) {
-            std::cerr << "Key not found" << std::endl;
-        }
-        else {
-            window.draw(textMap.find("toto")->second);
-        }*/
+
         window.draw(circle);
         window.display();
     }
