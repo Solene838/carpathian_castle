@@ -96,6 +96,7 @@ int myMain()
     bool pop_up_close = false;
     bool main_menu = true;
     bool pause = false;
+    int id_room_in = 0;
 
     tmx::Map map;
     map.load("resources/dungeon_two_rooms.tmx");
@@ -176,11 +177,11 @@ int myMain()
         start_button.setFont(arial);
 
         Button quit("Quit", { 250, 40 }, 20, sf::Color::White, sf::Color::Black);
-        quit.setPosition({ 390, 276 });
+        quit.setPosition({ 390, 568 });
         quit.setFont(arial);
 
         Button return_main_menu("Return to main menu", { 250, 40 }, 20, sf::Color::White, sf::Color::Black);
-        return_main_menu.setPosition({ 390, 150 });
+        return_main_menu.setPosition({ 390, 442 });
         return_main_menu.setFont(arial);
 
         sf::RectangleShape fade(sf::Vector2f(780, 352));
@@ -264,7 +265,7 @@ int myMain()
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
-                if (start_button.isMouseOver(window)) {
+                if (start_button.isMouseOver(window) && main_menu == true) {
                     main_menu = false;
                 }
             }
@@ -275,13 +276,13 @@ int myMain()
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
-                if (quit.isMouseOver(window)) {
+                if (quit.isMouseOver(window) && pause == true) {
                     exit(0);
                 }
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
-                if (return_main_menu.isMouseOver(window)) {
+                if (return_main_menu.isMouseOver(window) && pause == true) {
                     main_menu = true;
                     pause = false;
                 }
@@ -307,16 +308,18 @@ int myMain()
         text_inventory.setCharacterSize(20);
         text_inventory.setStyle(sf::Text::Bold);
         text_inventory.setFillColor(sf::Color::White);
-        text_inventory.setPosition(600, 50);
+        text_inventory.setPosition(600, 370);
+        window.setView(view2);
 
         if (main_menu == true) {
+            view2.setCenter(390, 176);
             window.clear(sf::Color::Black);
             start_button.drawTo(window);
             window.draw(title);
         }
         if (main_menu == false) {
             window.clear(sf::Color::Black);
-            window.setView(view2);
+            view2.setCenter(390, 500);
             if (room1_is_open == true) {
                 window.draw(ground_when_opened);
                 window.draw(walls);
@@ -327,15 +330,17 @@ int myMain()
                 window.draw(text_inventory);
 
                 if (player.getY() > 330) {
+                    id_room_in = 0;
                     view2.setCenter(390, 500);
-                    text_inventory.setPosition(600, 370);
-                    window.draw(text_inventory);
                     for (Object& obj : v_doors_room1) {
                         window.draw(obj.getSprite());
                     }
                 }
 
                 if (player.getY() < 350) {
+                    id_room_in = 1;
+                    text_inventory.setPosition(600, 50);
+                    window.draw(text_inventory);
                     view2.setCenter(390, 176);
                     for (Object& obj : v_doors_room1) {
                         window.draw(obj.getSprite());
@@ -381,6 +386,16 @@ int myMain()
             window.draw(circle);
 
             if (pause == true) {
+                if (id_room_in == 0) {
+                    fade.setPosition(390, 500);
+                    quit.setPosition({ 390, 568 });
+                    return_main_menu.setPosition({ 390, 442 });
+                }
+                if (id_room_in == 1) {
+                    fade.setPosition(390, 176);
+                    quit.setPosition({ 390, 300 });
+                    return_main_menu.setPosition({ 390, 130 });
+                }
                 window.draw(fade);
                 quit.drawTo(window);
                 return_main_menu.drawTo(window);

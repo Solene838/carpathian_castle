@@ -28,8 +28,8 @@ void Button::setPosition(sf::Vector2f pos) {
 	button.setOrigin((button.getSize().x) / 2, (button.getSize().y) / 2);
 	button.setPosition(pos);
 	//float xPos = (pos.x - button.getLocalBounds().width / 6) - (text.getLocalBounds().width / 6);
-	float xPos = pos.x + (button.getLocalBounds().width / 6);
-	float yPos = pos.x + (button.getLocalBounds().height / 6);
+	//float xPos = pos.x + (button.getLocalBounds().width / 6);
+	//float yPos = pos.x + (button.getLocalBounds().height / 6);
 	//float yPos = (pos.y - button.getLocalBounds().height / 3) + (text.getLocalBounds().height / 3);
 	text.setOrigin((button.getSize().x) / 2, (button.getSize().y) / 2);
 	text.setPosition(pos);
@@ -45,14 +45,14 @@ void Button::drawTo(sf::RenderWindow& window)
 
 bool Button::isMouseOver(sf::RenderWindow& window)
 {
-	float mouseX = sf::Mouse::getPosition(window).x;
-	float mouseY = sf::Mouse::getPosition(window).y;
+	int mouseX = sf::Mouse::getPosition(window).x;
+	int mouseY = sf::Mouse::getPosition(window).y;
 
-	float btnPosX = button.getPosition().x - (button.getLocalBounds().width / 2);
-	float btnPosY = button.getPosition().y - (button.getLocalBounds().height / 2);
+	int btnPosX = button.getPosition().x - (button.getLocalBounds().width / 2);
+	int btnPosY = (int)(button.getPosition().y - (button.getLocalBounds().height / 2)) % 352;
 
-	float btnxPosWidth = button.getPosition().x + (button.getLocalBounds().width / 2);
-	float btnyPosHeight = button.getPosition().y + (button.getLocalBounds().height / 2);
+	int btnxPosWidth = button.getPosition().x + (button.getLocalBounds().width / 2);
+	int btnyPosHeight = (int)(button.getPosition().y + (button.getLocalBounds().height / 2)) % 352;
 	
 	if (mouseX < btnxPosWidth && mouseX > btnPosX && mouseY < btnyPosHeight && mouseY > btnPosY) {
 		return true;
