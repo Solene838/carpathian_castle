@@ -45,6 +45,7 @@ source distribution.
 #include "Text.h"
 #include "Pickable.h"
 #include "Door.h"
+#include "GameStates.h"
 #include <iostream>
 #include <vector>
 
@@ -54,6 +55,9 @@ int myMain()
     sf::RenderWindow window(sf::VideoMode(780, 352), "SFML window");
     sf::View view2(sf::Vector2f(390, 500), sf::Vector2f(780, 352));
     Assets gameAssets;
+    GameState* _state;
+    _state = &GameStates::no_room_open;
+
     std::vector<Pickable> objectsRoom1;
     std::vector<Door> v_doors_room1;
     std::vector<Door> v_doors_room2;
@@ -314,8 +318,10 @@ int myMain()
         window.setView(view2);
 
         if (main_menu == true) {
-            view2.setCenter(390, 176);
-            window.clear(sf::Color::Black);
+            _state = &GameStates::menu_open;
+            _state->stateExecute(&player, &window, &view2, &start_button, &id_room_in);
+            /*view2.setCenter(390, 176);
+            window.clear(sf::Color::Black);*/
             start_button.drawTo(window);
             window.draw(title);
         }
@@ -323,6 +329,8 @@ int myMain()
             window.clear(sf::Color::Black);
             view2.setCenter(390, 500);
             if (room1_is_open == true) {
+                _state = &GameStates::room1_open;
+
                 window.draw(ground_when_opened);
                 window.draw(walls);
                 window.draw(wall_decorations);
@@ -331,9 +339,9 @@ int myMain()
                 window.draw(text_object);
                 window.draw(text_inventory);
 
+                _state->stateExecute(&player, &window, &view2, &start_button, &id_room_in);
+
                 if (player.getY() > 330) {
-                    id_room_in = 0;
-                    view2.setCenter(390, 500);
                     text_inventory.setPosition(600, 370);
                     window.draw(text_inventory);
                     for (Door& obj: v_doors_room1) {
@@ -342,10 +350,8 @@ int myMain()
                 }
 
                 if (player.getY() < 350) {
-                    id_room_in = 1;
                     text_inventory.setPosition(600, 50);
                     window.draw(text_inventory);
-                    view2.setCenter(390, 176);
                     for (Door& obj : v_doors_room1) {
                         window.draw(obj.getSprite());
                     }
@@ -378,19 +384,19 @@ int myMain()
                     pop_up_close = false;
                 }
             }
-            for (Pickable obj : objectsRoom1) {
+            for (Pickable& obj : objectsRoom1) {
                 window.draw(obj.getSprite());
             }
 
             window.draw(circle);
 
             if (pause == true) {
-                if (id_room_in == 0) {
+                if (id_room_in == 1) {
                     fade.setPosition(390, 500);
                     quit.setPosition({ 390, 568 });
                     return_main_menu.setPosition({ 390, 442 });
                 }
-                if (id_room_in == 1) {
+                if (id_room_in == 2) {
                     fade.setPosition(390, 176);
                     quit.setPosition({ 390, 300 });
                     return_main_menu.setPosition({ 390, 130 });
