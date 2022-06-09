@@ -52,7 +52,7 @@ public:
 //main menu is close, and pause menu is open
 class PauseMenuOpenState : public GameState {
 private:
-    std::string;
+    std::string stateName;
 public:
     PauseMenuOpenState();
     void stateExecute(Player* player, sf::RenderWindow* window) override;
