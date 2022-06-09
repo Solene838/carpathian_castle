@@ -15,7 +15,7 @@ int Player::getY() const {
 	return y;
 }
 
-std::vector<Object>& Player::getInventory() {
+std::vector<Pickable>& Player::getInventory() {
 	return inventory;
 }
 

@@ -1,12 +1,11 @@
 #include "Object.h"
 #include <iostream>
 
-Object::Object(int x, int y, const std::string& label, const std::string& category, bool is_locked) :
+Object::Object(int x, int y, const std::string& label, const std::string& category) :
 	x(x),
 	y(y),
 	label(label),
-	category(category),
-	is_locked(is_locked)
+	category(category)
 {
 }
 
@@ -14,8 +13,7 @@ Object::Object(pugi::xml_node node) :
 	x(node.attribute("x").as_int()),
 	y(node.attribute("y").as_int()),
 	label(node.attribute("label").as_string()),
-	category(node.attribute("category").as_string()),
-	is_locked(node.attribute("is_locked").as_bool())
+	category(node.attribute("category").as_string())
 {
 }
 
@@ -54,10 +52,12 @@ std::string Object::getCategory() const {
 }
 
 bool Object::getLock() {
-	return is_locked;
+	return false;
 }
 
-void Object::setLock(bool tmp) {
-	std::cerr << "received lock value: " << tmp << std::endl;
-	is_locked = tmp;
+void Object::setLock(bool tmp) {}
+
+int Object::getRoom() {
+	return 0;
 }
+

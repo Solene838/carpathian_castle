@@ -43,6 +43,8 @@ source distribution.
 #include "Button.h"
 #include "Enigma.h"
 #include "Text.h"
+#include "Pickable.h"
+#include "Door.h"
 #include <iostream>
 #include <vector>
 
@@ -52,9 +54,9 @@ int myMain()
     sf::RenderWindow window(sf::VideoMode(780, 352), "SFML window");
     sf::View view2(sf::Vector2f(390, 500), sf::Vector2f(780, 352));
     Assets gameAssets;
-    std::vector<Object> objectsRoom1;
-    std::vector<Object> v_doors_room1;
-    std::vector<Object> v_doors_room2;
+    std::vector<Pickable> objectsRoom1;
+    std::vector<Door> v_doors_room1;
+    std::vector<Door> v_doors_room2;
     std::vector<Enigma> v_en;
     pugi::xml_document doc;
     pugi::xml_document doc_enigmas;
@@ -63,21 +65,28 @@ int myMain()
         std::cerr << "Could not open file objects.xml because " << result.description() << std::endl;
         return 1;
     }
-    for (pugi::xml_node object : doc.children("Object")) {
-        Object obj(object);
-        std::string label = obj.getLabel();
-        std::string type = obj.getCategory();
-        gameAssets.addToMap(label, type);
-        obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
-        if (obj.getCategory() == "opened_door_room1") {
-            v_doors_room1.push_back(obj);
+
+    for (pugi::xml_node pickable : doc.children("Pickable")) {
+        Pickable pic(pickable);
+        std::string label = pic.getLabel();
+        std::string category = pic.getCategory();
+        gameAssets.addToMap(label, category);
+        pic.setSprite(gameAssets.getTexturesMap().find(label)->second);
+        objectsRoom1.push_back(pic);
+        std::cerr << "is_locked : " << pic.getLock() << std::endl;
+    }
+
+    for (pugi::xml_node door : doc.children("Doors")) {
+        Door d(door);
+        std::string label = d.getLabel();
+        std::string category = d.getCategory();
+        gameAssets.addToMap(label, category);
+        d.setSprite(gameAssets.getTexturesMap().find(label)->second);
+        if (d.getRoom() == 1) {
+            v_doors_room1.push_back(d);
         }
-        else if (obj.getCategory() == "opened_door_room2") {
-            v_doors_room2.push_back(obj);
-        }
-        else {
-            objectsRoom1.push_back(obj);
-            std::cerr << "is_locked : " << obj.getLock() << std::endl;
+        else if (d.getRoom() == 2) {
+            v_doors_room2.push_back(d);
         }
     }
 
@@ -113,7 +122,6 @@ int myMain()
     MapLayer wall_decorations(map, 4);
     MapLayer objects(map, 5);
 
-    //std::map<std::string, sf::Text> textMap;
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -123,7 +131,7 @@ int myMain()
         arial.loadFromFile("resources/arial.ttf");
 
         //check if the player is near an object
-        for (Object obj : objectsRoom1) {
+        for (Pickable obj : objectsRoom1) {
             if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
                 text_object.setString("Press E to interact with the object : " + obj.getLabel());
                 text_object.setFont(arial);
@@ -131,12 +139,6 @@ int myMain()
                 text_object.setStyle(sf::Text::Bold);
                 text_object.setFillColor(sf::Color::White);
                 text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
-                std::string tmp = "Blabla ceci est un test : " + obj.getLabel();
-                /*std::string label = "test";
-                Text toto("toto");
-                toto.setText(tmp, arial, 10, sf::Text::Bold, sf::Color::Red);
-                std::cerr << "toto label : " << toto.getLabel() << std::endl;
-                textMap.try_emplace(toto.getLabel(), toto.getText());*/
             }
         }
 
@@ -226,7 +228,7 @@ int myMain()
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::E)) {
                 int index = 0;
-                for (Object& obj : objectsRoom1) {
+                for (Pickable& obj : objectsRoom1) {
                     index += 1;
                     if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
                         if (obj.getLock()) {
@@ -252,7 +254,7 @@ int myMain()
                         pop_up_close = true;
                         std::cerr << "inventory is empty" << std::endl;
                     }
-                    for (Object& obj : player.getInventory()) {
+                    for (Pickable& obj : player.getInventory()) {
                         if (obj.getLabel() == "bookBlue") {
                             room1_is_open = true;
                             pop_up_open = true;
@@ -299,7 +301,7 @@ int myMain()
         //set up the inventory text
         sf::Text text_inventory;
         std::string display = "Inventory : \n";
-        for (Object& obj : player.getInventory()) {
+        for (Pickable& obj : player.getInventory()) {
             display += obj.getLabel();
             display += "\n";
         }
@@ -332,7 +334,9 @@ int myMain()
                 if (player.getY() > 330) {
                     id_room_in = 0;
                     view2.setCenter(390, 500);
-                    for (Object& obj : v_doors_room1) {
+                    text_inventory.setPosition(600, 370);
+                    window.draw(text_inventory);
+                    for (Door& obj: v_doors_room1) {
                         window.draw(obj.getSprite());
                     }
                 }
@@ -342,13 +346,13 @@ int myMain()
                     text_inventory.setPosition(600, 50);
                     window.draw(text_inventory);
                     view2.setCenter(390, 176);
-                    for (Object& obj : v_doors_room1) {
+                    for (Door& obj : v_doors_room1) {
                         window.draw(obj.getSprite());
                     }
                 }
             }
             else if (room2_is_open) {
-                for (Object& obj : v_doors_room2) {
+                for (Door& obj : v_doors_room2) {
                     window.draw(obj.getSprite());
                 }
             }
@@ -374,15 +378,10 @@ int myMain()
                     pop_up_close = false;
                 }
             }
-            for (Object obj : objectsRoom1) {
+            for (Pickable obj : objectsRoom1) {
                 window.draw(obj.getSprite());
             }
-            /*if (textMap.find("test") == textMap.end()) {
-                std::cerr << "Key not found" << std::endl;
-            }
-            else {
-                window.draw(textMap.find("toto")->second);
-            }*/
+
             window.draw(circle);
 
             if (pause == true) {

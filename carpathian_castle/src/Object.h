@@ -11,11 +11,9 @@ private:
 	std::string category;
 	sf::IntRect boxCollider;
 	sf::Sprite sprite;
-	bool is_locked;
-	int id_enigma;
 
 public:
-	Object(int x, int y, const std::string& label, const std::string& category, bool is_locked);
+	Object(int x, int y, const std::string& label, const std::string& category);
 	explicit Object(pugi::xml_node node);
 	void setSprite(const sf::Texture& texture);
 	sf::Sprite& getSprite();
@@ -24,6 +22,7 @@ public:
 	int getX() const;
 	int getY() const;
 	std::string getCategory() const;
-	bool getLock();
-	void setLock(bool tmp);
+	virtual bool getLock();
+	virtual void setLock(bool tmp);
+	virtual int getRoom();
 };
