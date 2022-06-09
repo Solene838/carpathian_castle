@@ -131,7 +131,7 @@ int myMain()
         std::cerr << "Corresponding text display : " << tmp << std::endl;
     }
 
-    Text text_object("test_object");
+    Text text_object("text_object");
     text_object.setParameters("Press E to interact with the object : ", arial, 10, sf::Text::Style::Bold, sf::Color::White);
     textMap.try_emplace(text_object.getLabel(), text_object.getText());
     std::cerr << "Size of the map : " << textMap.size() << std::endl;
@@ -297,7 +297,8 @@ int myMain()
             window.draw(wall_decorations);
             window.draw(doors);
             window.draw(objects);
-            window.draw(text_object);
+            //window.draw(text_object);
+            window.draw(textMap.find("text_object")->second);
             window.draw(text_inventory);
             
             if (player.getY() > 330) {
@@ -326,7 +327,8 @@ int myMain()
             window.draw(walls);
             window.draw(wall_decorations);
             window.draw(objects);
-            window.draw(text_object);
+            //window.draw(text_object);
+            window.draw(textMap.find("text_object")->second);
             window.draw(text_inventory);
             window.draw(doors);
             window.draw(text_door);
