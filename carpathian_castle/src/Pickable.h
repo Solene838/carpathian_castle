@@ -9,6 +9,6 @@ private:
 public:
 	Pickable(int x, int y, const std::string& label, const std::string& category, bool is_locked);
 	explicit Pickable(const pugi::xml_node& node);
-	bool getLock();
+	bool getLock() override;
 	void setLock(bool tmp);
 };

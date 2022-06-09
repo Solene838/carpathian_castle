@@ -51,3 +51,13 @@ std::string Object::getCategory() const {
 	return category;
 }
 
+bool Object::getLock() {
+	return false;
+}
+
+void Object::setLock(bool tmp) {}
+
+int Object::getRoom() {
+	return 0;
+}
+

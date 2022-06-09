@@ -22,4 +22,7 @@ public:
 	int getX() const;
 	int getY() const;
 	std::string getCategory() const;
+	virtual bool getLock();
+	virtual void setLock(bool tmp);
+	virtual int getRoom();
 };

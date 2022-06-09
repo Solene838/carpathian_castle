@@ -43,6 +43,8 @@ source distribution.
 #include "Button.h"
 #include "Enigma.h"
 #include "Text.h"
+#include "Pickable.h"
+#include "Door.h"
 #include <iostream>
 #include <vector>
 
@@ -52,9 +54,9 @@ int myMain()
     sf::RenderWindow window(sf::VideoMode(780, 352), "SFML window");
     sf::View view2(sf::Vector2f(390, 500), sf::Vector2f(780, 352));
     Assets gameAssets;
-    std::vector<Object> objectsRoom1;
-    std::vector<Object> v_doors_room1;
-    std::vector<Object> v_doors_room2;
+    std::vector<Pickable> objectsRoom1;
+    std::vector<Door> v_doors_room1;
+    std::vector<Door> v_doors_room2;
     std::vector<Enigma> v_en;
     pugi::xml_document doc;
     pugi::xml_document doc_enigmas;
@@ -63,21 +65,28 @@ int myMain()
         std::cerr << "Could not open file objects.xml because " << result.description() << std::endl;
         return 1;
     }
-    for (pugi::xml_node object : doc.children("Object")) {
-        Object obj(object);
-        std::string label = obj.getLabel();
-        std::string type = obj.getCategory();
-        gameAssets.addToMap(label, type);
-        obj.setSprite(gameAssets.getTexturesMap().find(label)->second);
-        if (obj.getCategory() == "opened_door_room1") {
-            v_doors_room1.push_back(obj);
+
+    for (pugi::xml_node pickable : doc.children("Pickable")) {
+        Pickable pic(pickable);
+        std::string label = pic.getLabel();
+        std::string category = pic.getCategory();
+        gameAssets.addToMap(label, category);
+        pic.setSprite(gameAssets.getTexturesMap().find(label)->second);
+        objectsRoom1.push_back(pic);
+        std::cerr << "is_locked : " << pic.getLock() << std::endl;
+    }
+
+    for (pugi::xml_node door : doc.children("Doors")) {
+        Door d(door);
+        std::string label = d.getLabel();
+        std::string category = d.getCategory();
+        gameAssets.addToMap(label, category);
+        d.setSprite(gameAssets.getTexturesMap().find(label)->second);
+        if (d.getRoom() == 1) {
+            v_doors_room1.push_back(d);
         }
-        else if (obj.getCategory() == "opened_door_room2") {
-            v_doors_room2.push_back(obj);
-        }
-        else {
-            objectsRoom1.push_back(obj);
-            std::cerr << "is_locked : " << obj.getLock() << std::endl;
+        else if (d.getRoom() == 2) {
+            v_doors_room2.push_back(d);
         }
     }
 
@@ -130,12 +139,6 @@ int myMain()
                 text_object.setStyle(sf::Text::Bold);
                 text_object.setFillColor(sf::Color::White);
                 text_object.setPosition(obj.getX() - 60, obj.getY() - 20);
-                std::string tmp = "Blabla ceci est un test : " + obj.getLabel();
-                /*std::string label = "test";
-                Text toto("toto");
-                toto.setText(tmp, arial, 10, sf::Text::Bold, sf::Color::Red);
-                std::cerr << "toto label : " << toto.getLabel() << std::endl;
-                textMap.try_emplace(toto.getLabel(), toto.getText());*/
             }
         }
 
@@ -330,7 +333,7 @@ int myMain()
                     view2.setCenter(390, 500);
                     text_inventory.setPosition(600, 370);
                     window.draw(text_inventory);
-                    for (Object& obj : v_doors_room1) {
+                    for (Object& obj: v_doors_room1) {
                         window.draw(obj.getSprite());
                     }
                 }
