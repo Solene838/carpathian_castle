@@ -2,10 +2,10 @@
 <Pickable label="purse" x="240" y="530" category="purse" is_locked="false"/>
 <Pickable label="bookBlue" x="360" y="530" category="bookBlue" is_locked="true"/>
 <Pickable label="poster" x="100" y="100" category="poster" is_locked="true"/>
-<Doors label="opened_door1" x="225" y="608" category="opened_door_room1" room="1"/>
-<Doors label="opened_door2" x="352" y ="326" category="opened_door_room1" room="1"/>
-<Doors label="opened_door3" x="96" y="0" category="opened_door_room2" room="2"/>
-<Doors label="opened_door4" x="320" y="0" category="opened_door_room2" room="2"/>
+<Doors label="opened_door1" x="225" y="608" category="opened_door_room" room="1"/>
+<Doors label="opened_door2" x="352" y ="326" category="opened_door_room" room="1"/>
+<Doors label="opened_door3" x="96" y="0" category="opened_door_room" room="2"/>
+<Doors label="opened_door4" x="320" y="0" category="opened_door_room" room="2"/>
 <UIObjects label="first_heart" x="600" y="560" category="heart" />
 <UIObjects label="second_heart" x="620" y="560" category="heart" />
 <UIObjects label="third_heart" x="640" y="560" category="heart" />

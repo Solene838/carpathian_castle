@@ -167,6 +167,7 @@ int myMain()
             text_door.setCharacterSize(10);
             text_door.setFillColor(sf::Color::White);
             text_door.setPosition(player.getX() - 60, player.getY() + 20);
+            std::cerr << "is near door" << std::endl;
         }
 
         //texts for the doors
@@ -305,6 +306,10 @@ int myMain()
                             room1_is_open = true;
                             pop_up_open = true;
                         }
+                        else if (obj.getLabel() == "poster") {
+                            room2_is_open = true;
+                            pop_up_open = true;
+                        }
                     }
                     if (room1_is_open == false) {
                         pop_up_close = true;
@@ -379,6 +384,7 @@ int myMain()
                 window.draw(wall_decorations);
                 window.draw(peaks);
                 window.draw(doors);
+                window.draw(text_door);
                 window.draw(objects);
                 window.draw(text_object);
                 window.draw(text_inventory);
