@@ -117,6 +117,7 @@ int myMain()
     bool main_menu = true;
     bool pause = false;
     bool dead = false;
+    bool is_victory = false;
     int id_room_in = 0;
 
     tmx::Map map;
@@ -198,6 +199,13 @@ int myMain()
         game_over.setFillColor(sf::Color::White);
         game_over.setPosition(200, 50);
 
+        sf::Text victory;
+        victory.setString("Victory !");
+        victory.setFont(arial);
+        victory.setCharacterSize(50);
+        victory.setFillColor(sf::Color::White);
+        victory.setPosition(230, 50);
+
         Button start_button("Start", { 300, 75 }, 45, sf::Color::White, sf::Color::Black);
         start_button.setPosition({ 390, 216 });
         start_button.setFont(arial);
@@ -221,25 +229,25 @@ int myMain()
             if (event.type == sf::Event::Closed)
                 window.close();
             if (room1_is_open == false) {
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q) && dead == false && pause == false) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q) && dead == false && pause == false && is_victory == false) {
                     player.goLeft(ground);
                     if (player.isOnPeaks(peaks)) {
                         player.setHealth(player.getHealth() - 1);
                     }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D) && dead == false && pause == false) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D) && dead == false && pause == false && is_victory == false) {
                     player.goRight(ground);
                     if (player.isOnPeaks(peaks)) {
                         player.setHealth(player.getHealth() - 1);
                     }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z) && dead == false && pause == false) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z) && dead == false && pause == false && is_victory == false) {
                     player.goUp(ground);
                     if (player.isOnPeaks(peaks)) {
                         player.setHealth(player.getHealth() - 1);
                     }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S) && dead == false && pause == false) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S) && dead == false && pause == false && is_victory == false) {
                     player.goDown(ground);
                     if (player.isOnPeaks(peaks)) {
                         player.setHealth(player.getHealth() - 1);
@@ -247,25 +255,25 @@ int myMain()
                 }
             }
             if (room1_is_open == true) {
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q) && dead == false && pause == false) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q) && dead == false && pause == false && is_victory == false) {
                     player.goLeft(ground_when_opened);
                     if (player.isOnPeaks(peaks)) {
                         player.setHealth(player.getHealth() - 1);
                     }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D) && dead == false && pause == false) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D) && dead == false && pause == false && is_victory == false) {
                     player.goRight(ground_when_opened);
                     if (player.isOnPeaks(peaks)) {
                         player.setHealth(player.getHealth() - 1);
                     }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z) && dead == false && pause == false) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z) && dead == false && pause == false && is_victory == false) {
                     player.goUp(ground_when_opened);
                     if (player.isOnPeaks(peaks)) {
                         player.setHealth(player.getHealth() - 1);
                     }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S) && dead == false && pause == false) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S) && dead == false && pause == false && is_victory == false) {
                     player.goDown(ground_when_opened);
                     if (player.isOnPeaks(peaks)) {
                         player.setHealth(player.getHealth() - 1);
@@ -300,7 +308,7 @@ int myMain()
                         pop_up_close = true;
                         std::cerr << "inventory is empty" << std::endl;
                     }
-                    for (Pickable& obj : player.getInventory()) {
+                    for (Pickable const& obj : player.getInventory()) {
                         if (obj.getLabel() == "bookBlue") {
                             room1_is_open = true;
                             pop_up_open = true;
@@ -308,6 +316,7 @@ int myMain()
                         else if (obj.getLabel() == "poster") {
                             room2_is_open = true;
                             pop_up_open = true;
+                            is_victory = true;
                         }
                     }
                     if (room1_is_open == false) {
@@ -327,7 +336,7 @@ int myMain()
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
-                if (quit.isMouseOver(window) && pause == true) {
+                if (quit.isMouseOver(window) && (pause == true || is_victory == true)) {
                     exit(0);
                 }
             }
@@ -337,10 +346,6 @@ int myMain()
                     main_menu = true;
                     pause = false;
                 }
-            }
-
-            if (return_main_menu.isMouseOver(window)) {
-                return_main_menu.setBackColor(sf::Color::Green);
             }
 
         }
@@ -371,6 +376,7 @@ int myMain()
         if (main_menu == true) {
             player.setHealth(3);
             dead = false;
+            is_victory = false;
             view2.setCenter(390, 176);
             window.clear(sf::Color::Black);
             start_button.drawTo(window);
@@ -500,6 +506,13 @@ int myMain()
                 window.draw(fade);
                 window.draw(game_over);
                 return_main_menu.drawTo(window);
+            }
+
+            if (is_victory) {
+                quit.setPosition({ 390, 300 });
+                window.draw(fade);
+                window.draw(victory);
+                quit.drawTo(window);
             }
         }  
         window.display();
