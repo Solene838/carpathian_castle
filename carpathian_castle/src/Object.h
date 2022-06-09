@@ -11,8 +11,8 @@ private:
 	std::string category;
 	sf::IntRect boxCollider;
 	sf::Sprite sprite;
-	bool is_locked;
-	int id_enigma;
+	//bool is_locked;
+	//int id_enigma;
 
 public:
 	Object(int x, int y, const std::string& label, const std::string& category, bool is_locked);
@@ -24,6 +24,6 @@ public:
 	int getX() const;
 	int getY() const;
 	std::string getCategory() const;
-	bool getLock();
-	void setLock(bool tmp);
+	//bool getLock();
+	//void setLock(bool tmp);
 };

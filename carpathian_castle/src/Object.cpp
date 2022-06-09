@@ -6,7 +6,7 @@ Object::Object(int x, int y, const std::string& label, const std::string& catego
 	y(y),
 	label(label),
 	category(category),
-	is_locked(is_locked)
+	//is_locked(is_locked)
 {
 }
 
@@ -15,7 +15,7 @@ Object::Object(pugi::xml_node node) :
 	y(node.attribute("y").as_int()),
 	label(node.attribute("label").as_string()),
 	category(node.attribute("category").as_string()),
-	is_locked(node.attribute("is_locked").as_bool())
+	//is_locked(node.attribute("is_locked").as_bool())
 {
 }
 
@@ -53,11 +53,11 @@ std::string Object::getCategory() const {
 	return category;
 }
 
-bool Object::getLock() {
-	return is_locked;
-}
-
-void Object::setLock(bool tmp) {
-	std::cerr << "received lock value: " << tmp << std::endl;
-	is_locked = tmp;
-}
+//bool Object::getLock() {
+//	return is_locked;
+//}
+//
+//void Object::setLock(bool tmp) {
+//	std::cerr << "received lock value: " << tmp << std::endl;
+//	is_locked = tmp;
+//}
