@@ -167,7 +167,6 @@ int myMain()
             text_door.setCharacterSize(10);
             text_door.setFillColor(sf::Color::White);
             text_door.setPosition(player.getX() - 60, player.getY() + 20);
-            std::cerr << "is near door" << std::endl;
         }
 
         //texts for the doors
