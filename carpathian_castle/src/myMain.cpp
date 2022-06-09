@@ -121,7 +121,6 @@ int myMain()
     MapLayer wall_decorations(map, 4);
     MapLayer objects(map, 5);
 
-    //std::map<std::string, sf::Text> textMap;
 
     sf::Clock globalClock;
     while (window.isOpen())
@@ -131,7 +130,7 @@ int myMain()
         arial.loadFromFile("resources/arial.ttf");
 
         //check if the player is near an object
-        for (Object obj : objectsRoom1) {
+        for (Pickable obj : objectsRoom1) {
             if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
                 text_object.setString("Press E to interact with the object : " + obj.getLabel());
                 text_object.setFont(arial);
@@ -228,7 +227,7 @@ int myMain()
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::E)) {
                 int index = 0;
-                for (Object& obj : objectsRoom1) {
+                for (Pickable& obj : objectsRoom1) {
                     index += 1;
                     if (obj.getBoxCollider().contains(player.getX(), player.getY())) {
                         if (obj.getLock()) {
@@ -254,7 +253,7 @@ int myMain()
                         pop_up_close = true;
                         std::cerr << "inventory is empty" << std::endl;
                     }
-                    for (Object& obj : player.getInventory()) {
+                    for (Pickable& obj : player.getInventory()) {
                         if (obj.getLabel() == "bookBlue") {
                             room1_is_open = true;
                             pop_up_open = true;
@@ -301,7 +300,7 @@ int myMain()
         //set up the inventory text
         sf::Text text_inventory;
         std::string display = "Inventory : \n";
-        for (Object& obj : player.getInventory()) {
+        for (Pickable& obj : player.getInventory()) {
             display += obj.getLabel();
             display += "\n";
         }
@@ -333,20 +332,20 @@ int myMain()
                     view2.setCenter(390, 500);
                     text_inventory.setPosition(600, 370);
                     window.draw(text_inventory);
-                    for (Object& obj: v_doors_room1) {
+                    for (Door& obj: v_doors_room1) {
                         window.draw(obj.getSprite());
                     }
                 }
 
                 if (player.getY() < 350) {
                     view2.setCenter(390, 176);
-                    for (Object& obj : v_doors_room1) {
+                    for (Door& obj : v_doors_room1) {
                         window.draw(obj.getSprite());
                     }
                 }
             }
             else if (room2_is_open) {
-                for (Object& obj : v_doors_room2) {
+                for (Door& obj : v_doors_room2) {
                     window.draw(obj.getSprite());
                 }
             }
@@ -372,15 +371,10 @@ int myMain()
                     pop_up_close = false;
                 }
             }
-            for (Object obj : objectsRoom1) {
+            for (Pickable obj : objectsRoom1) {
                 window.draw(obj.getSprite());
             }
-            /*if (textMap.find("test") == textMap.end()) {
-                std::cerr << "Key not found" << std::endl;
-            }
-            else {
-                window.draw(textMap.find("toto")->second);
-            }*/
+
             window.draw(circle);
 
             if (pause == true) {
