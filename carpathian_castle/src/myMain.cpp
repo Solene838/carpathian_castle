@@ -320,8 +320,6 @@ int myMain()
         if (main_menu == true) {
             _state = &GameStates::menu_open;
             _state->stateExecute(&player, &window, &view2, &start_button, &id_room_in);
-            /*view2.setCenter(390, 176);
-            window.clear(sf::Color::Black);*/
             start_button.drawTo(window);
             window.draw(title);
         }
@@ -358,7 +356,7 @@ int myMain()
                 }
             }
             else if (room2_is_open) {
-                for (Door& obj : v_doors_room2) {
+                for (Door& obj : v_doors_room1) {
                     window.draw(obj.getSprite());
                 }
             }
