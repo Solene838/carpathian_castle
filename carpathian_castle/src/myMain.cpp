@@ -364,6 +364,8 @@ int myMain()
         text_inventory.setStyle(sf::Text::Bold);
         text_inventory.setFillColor(sf::Color::White);
         text_inventory.setPosition(600, 370);
+
+
         window.setView(view2);
 
         if (main_menu == true) {
@@ -383,7 +385,7 @@ int myMain()
                 window.draw(wall_decorations);
                 window.draw(peaks);
                 window.draw(doors);
-                window.draw(text_door);
+                //window.draw(text_door);
                 window.draw(objects);
                 window.draw(text_object);
                 window.draw(text_inventory);
