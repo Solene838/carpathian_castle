@@ -21,6 +21,7 @@ public:
 	sf::IntRect getBoxCollider() const;
 	int getX() const;
 	int getY() const;
+	void setPosition(int new_x, int new_y);
 	std::string getCategory() const;
 	virtual bool getLock();
 	virtual void setLock(bool tmp);

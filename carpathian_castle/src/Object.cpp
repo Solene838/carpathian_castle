@@ -1,4 +1,5 @@
 #include "Object.h"
+#include "Object.h"
 #include <iostream>
 
 Object::Object(int x, int y, const std::string& label, const std::string& category) :
@@ -45,6 +46,12 @@ int Object::getX() const {
 
 int Object::getY() const {
 	return y;
+}
+
+void Object::setPosition(int new_x, int new_y)
+{
+	x = new_x;
+	y = new_y;
 }
 
 std::string Object::getCategory() const {

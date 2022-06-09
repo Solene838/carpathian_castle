@@ -1,9 +1,10 @@
 #include "Player.h"
 #include "Textbox.h"
 
-Player::Player(int x, int y) :
+Player::Player(int x, int y, int health) :
 	x(x),
-	y(y)
+	y(y),
+	health(health)
 {
 }
 
@@ -13,6 +14,14 @@ int Player::getX() const {
 
 int Player::getY() const {
 	return y;
+}
+
+int Player::getHealth() const {
+	return health;
+}
+
+void Player::setHealth(int new_health) {
+	health = new_health;
 }
 
 std::vector<Pickable>& Player::getInventory() {
@@ -64,6 +73,18 @@ bool Player::isNearDoor(MapLayer& doors) const {
 	tmx::TileLayer::Tile tile_up = doors.getTile(x_tile, y_tile - 1);
 	tmx::TileLayer::Tile tile_down = doors.getTile(x_tile, y_tile + 1);
 	if (tile.ID != NULL || tile_left.ID != NULL || tile_right.ID != NULL || tile_up.ID != NULL || tile_down.ID != NULL) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool Player::isOnPeaks(MapLayer& peaks) const {
+	int x_tile = int(x / 16) + 1;
+	int y_tile = int(y / 16) + 1;
+	tmx::TileLayer::Tile tile = peaks.getTile(x_tile, y_tile);
+	if (tile.ID != NULL) {
 		return true;
 	}
 	else {

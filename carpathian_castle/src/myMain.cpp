@@ -45,6 +45,7 @@ source distribution.
 #include "Text.h"
 #include "Pickable.h"
 #include "Door.h"
+#include "UIObjects.h"
 #include <iostream>
 #include <vector>
 
@@ -57,6 +58,7 @@ int myMain()
     std::vector<Pickable> objectsRoom1;
     std::vector<Door> v_doors_room1;
     std::vector<Door> v_doors_room2;
+    std::vector<UIObjects> ui;
     std::vector<Enigma> v_en;
     pugi::xml_document doc;
     pugi::xml_document doc_enigmas;
@@ -90,6 +92,15 @@ int myMain()
         }
     }
 
+    for (pugi::xml_node uiobject : doc.children("UIObjects")) {
+        UIObjects u(uiobject);
+        std::string label = u.getLabel();
+        std::string category = u.getCategory();
+        gameAssets.addToMap(label, category);
+        u.setSprite(gameAssets.getTexturesMap().find(label)->second);
+        ui.push_back(u);
+    }
+
     if (pugi::xml_parse_result result = doc_enigmas.load_file("resources/enigmas.xml"); !result) {
         std::cerr << "Could not open file enigmas.xml because " << result.description() << std::endl;
         return 1;
@@ -105,22 +116,28 @@ int myMain()
     bool pop_up_close = false;
     bool main_menu = true;
     bool pause = false;
+    bool dead = false;
     int id_room_in = 0;
 
     tmx::Map map;
     map.load("resources/dungeon_two_rooms.tmx");
 
     sf::CircleShape circle;
-    Player player(400,550);
+    Player player(400,550, 3);
     circle.setFillColor(sf::Color::Blue);
     circle.setRadius(10);
 
+    sf::Texture heart;
+    heart.loadFromFile("resources/Sprite/heart.png");
+
+
     MapLayer ground(map, 0);
     MapLayer ground_when_opened(map, 1);
-    MapLayer doors(map, 2);
-    MapLayer walls(map, 3);
-    MapLayer wall_decorations(map, 4);
-    MapLayer objects(map, 5);
+    MapLayer peaks(map, 2);
+    MapLayer doors(map, 3);
+    MapLayer walls(map, 4);
+    MapLayer wall_decorations(map, 5);
+    MapLayer objects(map, 6);
 
 
     sf::Clock globalClock;
@@ -174,6 +191,13 @@ int myMain()
         title.setFillColor(sf::Color::White);
         title.setPosition(200, 80);
 
+        sf::Text game_over;
+        game_over.setString("Game Over");
+        game_over.setFont(arial);
+        game_over.setCharacterSize(50);
+        game_over.setFillColor(sf::Color::White);
+        game_over.setPosition(200, 50);
+
         Button start_button("Start", { 300, 75 }, 45, sf::Color::White, sf::Color::Black);
         start_button.setPosition({ 390, 216 });
         start_button.setFont(arial);
@@ -197,33 +221,55 @@ int myMain()
             if (event.type == sf::Event::Closed)
                 window.close();
             if (room1_is_open == false) {
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q)) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q) && dead == false && pause == false) {
                     player.goLeft(ground);
+                    if (player.isOnPeaks(peaks)) {
+                        player.setHealth(player.getHealth() - 1);
+                    }
                 }
-
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D)) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D) && dead == false && pause == false) {
                     player.goRight(ground);
+                    if (player.isOnPeaks(peaks)) {
+                        player.setHealth(player.getHealth() - 1);
+                    }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z)) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z) && dead == false && pause == false) {
                     player.goUp(ground);
+                    if (player.isOnPeaks(peaks)) {
+                        player.setHealth(player.getHealth() - 1);
+                    }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S)) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S) && dead == false && pause == false) {
                     player.goDown(ground);
+                    if (player.isOnPeaks(peaks)) {
+                        player.setHealth(player.getHealth() - 1);
+                    }
                 }
             }
             if (room1_is_open == true) {
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q)) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Q) && dead == false && pause == false) {
                     player.goLeft(ground_when_opened);
+                    if (player.isOnPeaks(peaks)) {
+                        player.setHealth(player.getHealth() - 1);
+                    }
                 }
-
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D)) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::D) && dead == false && pause == false) {
                     player.goRight(ground_when_opened);
+                    if (player.isOnPeaks(peaks)) {
+                        player.setHealth(player.getHealth() - 1);
+                    }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z)) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Z) && dead == false && pause == false) {
                     player.goUp(ground_when_opened);
+                    if (player.isOnPeaks(peaks)) {
+                        player.setHealth(player.getHealth() - 1);
+                    }
                 }
-                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S)) {
+                if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::S) && dead == false && pause == false) {
                     player.goDown(ground_when_opened);
+                    if (player.isOnPeaks(peaks)) {
+                        player.setHealth(player.getHealth() - 1);
+                    }
                 }
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::E)) {
@@ -274,7 +320,6 @@ int myMain()
 
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape)) {
                 pause = !pause;
-                std::cout << pause << std::endl;
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
@@ -284,10 +329,14 @@ int myMain()
             }
 
             if (event.type == sf::Event::MouseButtonPressed) {
-                if (return_main_menu.isMouseOver(window) && pause == true) {
+                if (return_main_menu.isMouseOver(window) && (pause == true || dead == true)) {
                     main_menu = true;
                     pause = false;
                 }
+            }
+
+            if (return_main_menu.isMouseOver(window)) {
+                return_main_menu.setBackColor(sf::Color::Green);
             }
 
         }
@@ -301,7 +350,7 @@ int myMain()
         //set up the inventory text
         sf::Text text_inventory;
         std::string display = "Inventory : \n";
-        for (Pickable& obj : player.getInventory()) {
+        for (Pickable const& obj : player.getInventory()) {
             display += obj.getLabel();
             display += "\n";
         }
@@ -314,6 +363,8 @@ int myMain()
         window.setView(view2);
 
         if (main_menu == true) {
+            player.setHealth(3);
+            dead = false;
             view2.setCenter(390, 176);
             window.clear(sf::Color::Black);
             start_button.drawTo(window);
@@ -326,6 +377,7 @@ int myMain()
                 window.draw(ground_when_opened);
                 window.draw(walls);
                 window.draw(wall_decorations);
+                window.draw(peaks);
                 window.draw(doors);
                 window.draw(objects);
                 window.draw(text_object);
@@ -339,6 +391,12 @@ int myMain()
                     for (Door& obj: v_doors_room1) {
                         window.draw(obj.getSprite());
                     }
+                    ui[0].setPosition(600, 560);
+                    ui[0].setSprite(gameAssets.getTexturesMap().find(ui[0].getLabel())->second);
+                    ui[1].setPosition(620, 560);
+                    ui[1].setSprite(gameAssets.getTexturesMap().find(ui[1].getLabel())->second);
+                    ui[2].setPosition(640, 560);
+                    ui[2].setSprite(gameAssets.getTexturesMap().find(ui[2].getLabel())->second);
                 }
 
                 if (player.getY() < 350) {
@@ -349,6 +407,12 @@ int myMain()
                     for (Door& obj : v_doors_room1) {
                         window.draw(obj.getSprite());
                     }
+                    ui[0].setPosition(600, 300);
+                    ui[0].setSprite(gameAssets.getTexturesMap().find(ui[0].getLabel())->second);
+                    ui[1].setPosition(620, 300);
+                    ui[1].setSprite(gameAssets.getTexturesMap().find(ui[1].getLabel())->second);
+                    ui[2].setPosition(640, 300);
+                    ui[2].setSprite(gameAssets.getTexturesMap().find(ui[2].getLabel())->second);
                 }
             }
             else if (room2_is_open) {
@@ -360,6 +424,7 @@ int myMain()
                 window.draw(ground);
                 window.draw(walls);
                 window.draw(wall_decorations);
+                window.draw(peaks);
                 window.draw(objects);
                 window.draw(text_object);
                 window.draw(text_inventory);
@@ -381,6 +446,19 @@ int myMain()
             for (Pickable obj : objectsRoom1) {
                 window.draw(obj.getSprite());
             }
+            if (player.getHealth() == 3) {
+                window.draw(ui[0].getSprite());
+                window.draw(ui[1].getSprite());
+                window.draw(ui[2].getSprite());
+            }
+            if (player.getHealth() == 2) {
+                window.draw(ui[0].getSprite());
+                window.draw(ui[1].getSprite());
+            }
+            if (player.getHealth() == 1) {
+                window.draw(ui[0].getSprite());
+            }
+
 
             window.draw(circle);
 
@@ -397,6 +475,23 @@ int myMain()
                 }
                 window.draw(fade);
                 quit.drawTo(window);
+                return_main_menu.drawTo(window);
+            }
+
+            if (player.getHealth() == 0) {
+                dead = true;
+                if (id_room_in == 0) {
+                    fade.setPosition(390, 500);
+                    return_main_menu.setPosition({ 390, 442 });
+                    game_over.setPosition(250, 340);
+                }
+                if (id_room_in == 1) {
+                    fade.setPosition(390, 176);
+                    return_main_menu.setPosition({ 390, 130 });
+                    game_over.setPosition(250, 20);
+                }
+                window.draw(fade);
+                window.draw(game_over);
                 return_main_menu.drawTo(window);
             }
         }  

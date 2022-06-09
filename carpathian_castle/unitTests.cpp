@@ -8,7 +8,7 @@ TEST(TestTmxLite, AlwaysTrue) {
 	EXPECT_EQ(true, true);
 }
 
-TEST(TestReadXML, TestObject) {
+/*TEST(TestReadXML, TestObject) {
 	std::string s = R"(<?xml version = "1.0"?>
 			<Object label="test" x="0" y="1" category="purse" is_locked="false"/>)";
 	pugi::xml_document doc;
@@ -20,7 +20,7 @@ TEST(TestReadXML, TestObject) {
 	EXPECT_EQ(o.getX(), o_ref.getX());
 	EXPECT_EQ(o.getY(), o_ref.getY());
 	EXPECT_EQ(o.getCategory(), o_ref.getCategory());
-}
+}*/
 
 TEST(TestMap, TestAddToMap) {
 	Assets assets;
