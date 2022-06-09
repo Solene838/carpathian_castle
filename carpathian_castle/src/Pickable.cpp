@@ -10,7 +10,7 @@ Pickable::Pickable(int x, int y, const std::string& label, const std::string& ca
 
 Pickable::Pickable(const pugi::xml_node& node) :
 	Object(node),
-	is_locked(node.attribute("is_locked").as_bool()),
+	is_locked(node.attribute("is_locked").as_bool())
 {
 
 }

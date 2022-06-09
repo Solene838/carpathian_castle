@@ -8,7 +8,7 @@ private:
 
 public:
 	Pickable(int x, int y, const std::string& label, const std::string& category, bool is_locked);
-	Pickable(const pugi::xml_node& node);
+	explicit Pickable(const pugi::xml_node& node);
 	bool getLock();
 	void setLock(bool tmp);
 };
